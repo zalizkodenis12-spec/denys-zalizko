@@ -7,6 +7,6 @@
 window.SITE_CONFIG = {
   telegramBotToken: 'PASTE_YOUR_BOT_TOKEN_HERE',
   telegramChatId: 'PASTE_YOUR_CHAT_ID_HERE',
-  phone: '+380632943278',
-  phoneDisplay: '+38 063 294 32 78'
+  phone: '+380672302233',
+  phoneDisplay: '067 230 22 33'
 };

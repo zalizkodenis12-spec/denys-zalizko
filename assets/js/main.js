@@ -43,7 +43,7 @@
     revealTargets.forEach((el) => observer.observe(el));
   }
 
-  // ===== Gallery slider =====
+  // ===== Gallery / Team slider =====
   const track = document.getElementById('galleryTrack');
   if (track) {
     const dotsWrap = document.getElementById('galleryDots');
@@ -106,7 +106,7 @@
 
     const name = form.name.value.trim();
     const phone = form.phone.value.trim();
-    const car = form.car.value.trim();
+    const master = form.master ? form.master.value.trim() : '';
     const comment = form.comment.value.trim();
 
     let firstInvalid = null;
@@ -134,12 +134,12 @@
     statusEl.className = 'booking-status';
 
     const text = [
-      '🔧 Нова заявка з сайту СТО «Відар»',
+      '✂️ Нова заявка з сайту Барбершоп «El Salvador»',
       '',
       `Ім'я: ${name}`,
       `Телефон: ${phone}`,
-      `Авто: ${car || '—'}`,
-      `Коментар: ${comment || '—'}`
+      `Майстер: ${master || '—'}`,
+      `Побажання: ${comment || '—'}`
     ].join('\n');
 
     try {
@@ -156,10 +156,10 @@
       if (!response.ok) throw new Error('bad-response');
 
       form.reset();
-      statusEl.textContent = "Дякуємо! Ми зв'яжемося з вами найближчим часом.";
+      statusEl.textContent = "Дякуємо! Майстер зв'яжеться з вами найближчим часом.";
       statusEl.className = 'booking-status success';
     } catch (err) {
-      statusEl.innerHTML = `Не вдалося надіслати заявку. Зателефонуйте нам напряму: <a href="tel:${cfg.phone}">${cfg.phoneDisplay}</a>`;
+      statusEl.innerHTML = `Не вдалося надіслати заявку. Зателефонуйте напряму: <a href="tel:${cfg.phone}">${cfg.phoneDisplay}</a>`;
       statusEl.className = 'booking-status error';
     } finally {
       submitBtn.disabled = false;
