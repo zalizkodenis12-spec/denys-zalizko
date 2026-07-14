@@ -288,9 +288,9 @@ h1, h2, h3 {
 .price-cta { width: 100%; margin-top: auto; }
 
 /* ===== Additional Services table ===== */
-.additional-section { padding: 0 0 96px; }
 .additional-table-wrap {
-  overflow: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border-radius: var(--radius-lg);
   border: 1.5px solid var(--border);
   box-shadow: var(--shadow-sm);
@@ -334,6 +334,7 @@ h1, h2, h3 {
   font-size: 15px;
   color: var(--accent);
   white-space: nowrap;
+  min-width: 140px;
 }
 
 /* ===== Team / Gallery slider ===== */
