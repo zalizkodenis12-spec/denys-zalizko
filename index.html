@@ -1,457 +1,623 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Студія масажу «Масаж+» — Софіївська Борщагівка | вул. Бишівська, 14</title>
-<meta name="description" content="Студія масажу «Масаж+» у Київській області, Софіївська Борщагівка, вул. Бишівська, 14. Класичний, спортивний, лімфодренажний, релакс масаж. Досвідчені майстри. 4.9★ на Google. Запис: 093 896 4929.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Nunito:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Денис Залізко — Веб-розробник | Лендінги, Магазини, Telegram-боти</title>
+  <meta name="description" content="Денис Залізко — веб-розробник з України. Створюю лендінги, онлайн-магазини, преміальні сайти з 3D-анімацією та ШІ-інтеграціями. Швидко, чисто, адаптивно.">
+  <meta name="keywords" content="веб-розробник, лендінг, онлайн-магазин, сайт на замовлення, Telegram-бот, ШІ-інтеграція">
+  <meta property="og:title" content="Денис Залізко — Веб-розробник">
+  <meta property="og:description" content="Створюю лендінги, онлайн-магазини та преміальні сайти. Швидко, чисто, результат.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="site-header" id="siteHeader">
-  <div class="container header-inner">
-    <a href="#top" class="logo">
-      <span class="logo-mark" id="logoMark">
-        <img src="assets/images/лого.png" alt="Масаж+ логотип">
-      </span>
-      <span class="logo-text"><strong>Масаж+</strong></span>
+<!-- ========== HEADER ========== -->
+<header class="p-header" id="pHeader">
+  <div class="p-container p-header__inner">
+    <a href="#hero" class="p-logo" id="pLogo">
+      <span class="p-logo__mark">DZ</span>
+      <span class="p-logo__text">Denys Zalizko</span>
     </a>
-    <nav class="main-nav" id="mainNav">
-      <a href="#services">Послуги</a>
-      <a href="#gallery">Майстри</a>
-      <a href="#about">Про нас</a>
-      <a href="#reviews">Відгуки</a>
-      <a href="#contacts">Контакти</a>
+    <nav class="p-nav" id="pNav">
+      <a href="#cases" class="p-nav__link">Кейси</a>
+      <a href="#advantages" class="p-nav__link">Переваги</a>
+      <a href="#about" class="p-nav__link">Про мене</a>
+      <a href="#services" class="p-nav__link">Послуги</a>
+      <a href="#process" class="p-nav__link">Процес</a>
+      <a href="#contact" class="p-nav__link">Контакти</a>
     </nav>
-    <div class="header-actions">
-      <a href="tel:+380938964929" class="header-phone">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <span>093 896 4929</span>
-      </a>
-      <a href="#booking" class="btn btn-cta btn-sm">Записатись</a>
-    </div>
-    <button class="burger" id="burgerBtn" aria-label="Меню" aria-expanded="false">
+    <a href="#contact" class="p-btn p-btn--accent p-header__cta">Замовити сайт</a>
+    <button class="p-burger" id="pBurger" aria-label="Меню" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
 <!-- MOBILE NAV -->
-<div class="mobile-nav" id="mobileNav">
-  <a href="#services">Послуги</a>
-  <a href="#gallery">Майстри</a>
-  <a href="#about">Про нас</a>
-  <a href="#reviews">Відгуки</a>
-  <a href="#contacts">Контакти</a>
-  <a href="tel:+380938964929" class="btn btn-outline">Зателефонувати</a>
-  <a href="#booking" class="btn btn-cta">Записатися</a>
+<div class="p-mobile-nav" id="pMobileNav">
+  <a href="#cases" class="p-mobile-nav__link">Кейси</a>
+  <a href="#advantages" class="p-mobile-nav__link">Переваги</a>
+  <a href="#about" class="p-mobile-nav__link">Про мене</a>
+  <a href="#services" class="p-mobile-nav__link">Послуги</a>
+  <a href="#process" class="p-mobile-nav__link">Процес</a>
+  <a href="#contact" class="p-mobile-nav__link">Контакти</a>
+  <a href="#contact" class="p-btn p-btn--accent">Замовити сайт</a>
 </div>
 
-<main id="top">
+<main>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg">
-      <img src="assets/images/Знімок екрана 2026-07-14 132337.png" alt="Студія масажу Масаж+ — кабінет" loading="eager">
-      <div class="hero-scrim"></div>
+<!-- ========== HERO ========== -->
+<section class="p-hero" id="hero">
+  <canvas class="p-hero__canvas" id="heroCanvas"></canvas>
+  <div class="p-hero__noise"></div>
+  <div class="p-container p-hero__inner">
+    <div class="p-hero__badge reveal-up">
+      <span class="p-hero__badge-dot"></span>
+      Доступний для нових проєктів
     </div>
-    <div class="container hero-inner">
-      <h1 class="hero-title reveal">
-        Студія масажу<br>
-        <em>«Масаж+»</em>
-      </h1>
-      <p class="hero-sub reveal">
-        Розслаблення, відновлення та турбота про тіло — у затишній студії Софіївської Борщагівки. Класичний, спортивний, лімфодренажний, релакс та медовий масаж від досвідчених майстрів.
-      </p>
-      <div class="hero-actions reveal">
-        <a href="#booking" class="btn btn-cta btn-lg">Записатися на масаж</a>
-        <a href="tel:+380938964929" class="btn btn-outline btn-lg">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Зателефонувати
-        </a>
-      </div>
-      <div class="hero-meta reveal">
-        <span>вул. Бишівська, 14, Софіївська Борщагівка</span>
-        <span>·</span>
-        <span>1 838 підписників в Instagram</span>
-      </div>
+    <h1 class="p-hero__title reveal-up">
+      Роблю сайти,<br>
+      <span class="p-hero__title-grad">які продають</span>
+    </h1>
+    <p class="p-hero__sub reveal-up">
+      Лендінги, онлайн-магазини та преміальні сайти з 3D-анімацією.<br>
+      Адаптивно, швидко, з увагою до кожного пікселя.
+    </p>
+    <div class="p-hero__actions reveal-up">
+      <a href="#cases" class="p-btn p-btn--accent p-btn--lg">Дивитись кейси</a>
+      <a href="#contact" class="p-btn p-btn--ghost p-btn--lg">Замовити сайт →</a>
     </div>
-  </section>
-
-  <!-- TRUST BAR -->
-  <section class="trust-bar">
-    <div class="container trust-grid">
-      <div class="trust-item reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <div>
-          <strong>Досвідчені майстри</strong>
-          <span>Кваліфіковані масажисти з медичною освітою</span>
-        </div>
+    <div class="p-hero__stats reveal-up">
+      <div class="p-hero__stat">
+        <strong>3+</strong>
+        <span>Живих проєктів</span>
       </div>
-      <div class="trust-item reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4.5 12.5l4 4 11-11"/><circle cx="12" cy="12" r="10"/></svg>
-        <div>
-          <strong>Натуральні засоби</strong>
-          <span>Тільки якісні олії та косметика для масажу</span>
-        </div>
+      <div class="p-hero__stat-divider"></div>
+      <div class="p-hero__stat">
+        <strong>ШІ</strong>
+        <span>У розробці</span>
       </div>
-      <div class="trust-item reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        <div>
-          <strong>Затишна атмосфера</strong>
-          <span>Приватний кабінет, релакс-музика, комфорт</span>
-        </div>
-      </div>
-      <div class="trust-item reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-        <div>
-          <strong>Зручний запис</strong>
-          <span>Онлайн або по телефону — без черг</span>
-        </div>
+      <div class="p-hero__stat-divider"></div>
+      <div class="p-hero__stat">
+        <strong>100%</strong>
+        <span>Адаптивність</span>
       </div>
     </div>
-  </section>
+  </div>
+  <div class="p-hero__scroll-hint" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="p-hero__scroll-line"></div>
+  </div>
+</section>
 
-  <!-- SERVICES / PRICE LIST -->
-  <section class="section" id="services">
-    <div class="container">
-      <div class="section-head reveal" style="text-align:center; display:flex; flex-direction:column; align-items:center;">
-        <h2 class="section-title">Масаж та Прайс</h2>
-        <p class="section-desc">Широкий спектр масажних технік — від класичного розслаблення до інтенсивного спортивного відновлення. Кожна процедура підбирається індивідуально.</p>
-      </div>
+<!-- ========== CASES ========== -->
+<section class="p-section" id="cases">
+  <div class="p-container">
+    <div class="p-section__head reveal-up">
+      <span class="p-section__tag">Портфоліо</span>
+      <h2 class="p-section__title">Живі проєкти</h2>
+      <p class="p-section__desc">Клікай — переходиш на реальний сайт. Не просто картинки — це продукти, які вже працюють і приносять клієнтів.</p>
+    </div>
 
-      <!-- Додаткові послуги (таблиця) -->
-      <div class="additional-table-wrap reveal" style="margin-bottom: 36px;">
-        <table class="additional-table">
-          <thead>
-            <tr>
-              <th>Додаткові послуги</th>
-              <th>Час</th>
-              <th>Ціна</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Масаж у чотири руки</td>
-              <td class="time-cell">45 / 60 / 90 хв</td>
-              <td class="price-cell">2 000 / 2 500 / 3 400 ₴</td>
-            </tr>
-            <tr>
-              <td>Антицелюлітне обгортання Cello Gel</td>
-              <td class="time-cell">50 / 60 хв</td>
-              <td class="price-cell">1 000 / 1 200 ₴</td>
-            </tr>
-            <tr>
-              <td>Кінезіотейпування</td>
-              <td class="time-cell">1 / 2 зони</td>
-              <td class="price-cell">300 / 500 ₴</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="p-cases">
 
-      <div class="price-grid">
-
-        <!-- Основні масажі -->
-        <div class="price-card reveal">
-          <div class="price-card-header">
-            <div class="price-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+      <!-- Case 1: El Salvador Barbershop -->
+      <a href="https://elsalvador-barbershop.vercel.app/" target="_blank" rel="noopener" class="p-case reveal-up" id="case-barbershop">
+        <div class="p-case__mockup">
+          <div class="p-case__browser">
+            <div class="p-case__browser-bar">
+              <span class="p-case__browser-dot"></span>
+              <span class="p-case__browser-dot"></span>
+              <span class="p-case__browser-dot"></span>
+              <span class="p-case__browser-url">elsalvador-barbershop.vercel.app</span>
             </div>
-            <h3>Класичний та Релакс</h3>
-          </div>
-          <ul class="price-list">
-            <li><span class="price-name">Загальний класичний масаж</span><span class="price-time">60/75/90 хв</span><span class="price-val">1250/1500/1750 ₴</span></li>
-            <li><span class="price-name">Релакс масаж</span><span class="price-time">60/75/90 хв</span><span class="price-val">1250/1500/1750 ₴</span></li>
-            <li><span class="price-name">Масаж спини, шиї та рук</span><span class="price-time">30/45/60 хв</span><span class="price-val">750/1000/1250 ₴</span></li>
-            <li><span class="price-name">Масаж шиї, комірцевої зони та рук</span><span class="price-time">30 хв</span><span class="price-val">750 ₴</span></li>
-            <li><span class="price-name">Масаж обличчя</span><span class="price-time">30/40 хв</span><span class="price-val">850/1000 ₴</span></li>
-          </ul>
-          <a href="#booking" class="price-cta btn btn-outline btn-sm">Записатися →</a>
-        </div>
-
-        <!-- Лікувальний та Спортивний -->
-        <div class="price-card reveal">
-          <div class="price-card-header">
-            <div class="price-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <div class="p-case__browser-screen">
+              <div class="p-case__screen-placeholder p-case__screen--barber">
+                <div class="p-case__screen-inner">
+                  <div class="p-case__preview-logo">✂ El Salvador</div>
+                  <div class="p-case__preview-tag">Barbershop</div>
+                  <div class="p-case__preview-lines">
+                    <div class="p-case__preview-line" style="width:70%"></div>
+                    <div class="p-case__preview-line" style="width:50%"></div>
+                    <div class="p-case__preview-btn"></div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <h3>Спортивний та Лікувальний</h3>
           </div>
-          <ul class="price-list">
-            <li><span class="price-name">Спортивний масаж</span><span class="price-time">60/75/90 хв</span><span class="price-val">1400/1700/2000 ₴</span></li>
-            <li><span class="price-name">Лімфодренажний масаж</span><span class="price-time">60/75/90 хв</span><span class="price-val">1250/1500/1750 ₴</span></li>
-            <li><span class="price-name">Моделюючий (антицелюлітний)</span><span class="price-time">30/50 хв</span><span class="price-val">900/1300 ₴</span></li>
-            <li><span class="price-name">Оздоровчий (лікувальний)</span><span class="price-time">40/60 хв</span><span class="price-val">1000/1250 ₴</span></li>
-            <li><span class="price-name">Масаж живота і талії</span><span class="price-time">30/45 хв</span><span class="price-val">750/950 ₴</span></li>
-          </ul>
-          <a href="#booking" class="price-cta btn btn-outline btn-sm">Записатися →</a>
-        </div>
-
-        <!-- Спеціальні -->
-        <div class="price-card reveal">
-          <div class="price-card-header">
-            <div class="price-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg>
+          <div class="p-case__phone">
+            <div class="p-case__phone-screen p-case__screen--barber-m">
+              <div class="p-case__phone-notch"></div>
             </div>
-            <h3>Спеціальні процедури</h3>
           </div>
-          <ul class="price-list">
-            <li><span class="price-name">Масаж ніг зі стопами</span><span class="price-time">30 хв</span><span class="price-val">800 ₴</span></li>
-            <li><span class="price-name">Дитячий масаж</span><span class="price-time">30 хв</span><span class="price-val">750 ₴</span></li>
-            <li><span class="price-name">Масаж ніг зі стопами</span><span class="price-time">60 хв</span><span class="price-val">1250 ₴</span></li>
-            <li><span class="price-name">Медовий масаж</span><span class="price-time">60 хв</span><span class="price-val">1400 ₴</span></li>
-            <li><span class="price-name">Вакуумно-баночний масаж</span><span class="price-time">60 хв</span><span class="price-val">+200 ₴</span></li>
-          </ul>
-          <a href="#booking" class="price-cta btn btn-outline btn-sm">Записатися →</a>
         </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- TEAM -->
-  <section class="section section-dark" id="gallery">
-    <div class="container">
-      <div class="section-head reveal" style="text-align:center; display:flex; flex-direction:column; align-items:center;">
-        <h2 class="section-title">Команда «Масаж+»</h2>
-        <p class="section-desc">Кваліфіковані масажисти з індивідуальним підходом до кожного клієнта. Більше в <a href="https://instagram.com/massage_plius" target="_blank" rel="noopener">Instagram</a>.</p>
-      </div>
-
-      <div class="gallery-slider reveal">
-        <div class="gallery-track" id="galleryTrack">
-          <figure class="gallery-slide team-slide">
-            <img src="assets/images/маряна.png" alt="Майстер Мар'яна" loading="lazy">
-            <figcaption>
-              <span class="team-name">Мар'яна</span>
-              <span class="team-role">Масажист</span>
-            </figcaption>
-          </figure>
-          <figure class="gallery-slide team-slide">
-            <img src="assets/images/денис.png" alt="Майстер Денис" loading="lazy">
-            <figcaption>
-              <span class="team-name">Денис</span>
-              <span class="team-role">Масажист</span>
-            </figcaption>
-          </figure>
-          <figure class="gallery-slide team-slide">
-            <img src="assets/images/валентина.png" alt="Майстер Валентина" loading="lazy">
-            <figcaption>
-              <span class="team-name">Валентина</span>
-              <span class="team-role">Масажист</span>
-            </figcaption>
-          </figure>
+        <div class="p-case__info">
+          <div class="p-case__tags">
+            <span class="p-tag">Лендінг</span>
+            <span class="p-tag">Барбершоп</span>
+          </div>
+          <h3 class="p-case__title">El Salvador Barbershop</h3>
+          <p class="p-case__desc">Преміальний лендінг для барбершопу з онлайн-записом, галереєю та адаптивним дизайном.</p>
+          <span class="p-case__link">Відкрити сайт →</span>
         </div>
+      </a>
 
-        <button class="gallery-arrow gallery-arrow--prev" id="galleryPrev" aria-label="Попередній майстер">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button class="gallery-arrow gallery-arrow--next" id="galleryNext" aria-label="Наступний майстер">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
+      <!-- Case 2: PM Pvidar -->
+      <a href="https://pm-pvidar.vercel.app/" target="_blank" rel="noopener" class="p-case reveal-up" id="case-pvidar">
+        <div class="p-case__mockup">
+          <div class="p-case__browser">
+            <div class="p-case__browser-bar">
+              <span class="p-case__browser-dot"></span>
+              <span class="p-case__browser-dot"></span>
+              <span class="p-case__browser-dot"></span>
+              <span class="p-case__browser-url">pm-pvidar.vercel.app</span>
+            </div>
+            <div class="p-case__browser-screen">
+              <div class="p-case__screen-placeholder p-case__screen--auto">
+                <div class="p-case__screen-inner">
+                  <div class="p-case__preview-logo">🔧 PM Pvidar</div>
+                  <div class="p-case__preview-tag">Автомайстерня</div>
+                  <div class="p-case__preview-lines">
+                    <div class="p-case__preview-line" style="width:65%"></div>
+                    <div class="p-case__preview-line" style="width:45%"></div>
+                    <div class="p-case__preview-btn"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-case__phone">
+            <div class="p-case__phone-screen p-case__screen--auto-m">
+              <div class="p-case__phone-notch"></div>
+            </div>
+          </div>
+        </div>
+        <div class="p-case__info">
+          <div class="p-case__tags">
+            <span class="p-tag">Веб-каталог</span>
+            <span class="p-tag">Авто</span>
+          </div>
+          <h3 class="p-case__title">PM Pvidar — Автомайстерня</h3>
+          <p class="p-case__desc">Веб-каталог для автомайстерні з переліком послуг, цінами та контактами.</p>
+          <span class="p-case__link">Відкрити сайт →</span>
+        </div>
+      </a>
 
-        <div class="gallery-dots" id="galleryDots" role="tablist" aria-label="Слайди команди"></div>
-      </div>
+      <!-- Case 3: Masag -->
+      <a href="https://masag.vercel.app/" target="_blank" rel="noopener" class="p-case reveal-up" id="case-masag">
+        <div class="p-case__mockup">
+          <div class="p-case__browser">
+            <div class="p-case__browser-bar">
+              <span class="p-case__browser-dot"></span>
+              <span class="p-case__browser-dot"></span>
+              <span class="p-case__browser-dot"></span>
+              <span class="p-case__browser-url">masag.vercel.app</span>
+            </div>
+            <div class="p-case__browser-screen">
+              <div class="p-case__screen-placeholder p-case__screen--massage">
+                <div class="p-case__screen-inner">
+                  <div class="p-case__preview-logo">🌿 Масаж+</div>
+                  <div class="p-case__preview-tag">Студія масажу</div>
+                  <div class="p-case__preview-lines">
+                    <div class="p-case__preview-line" style="width:75%"></div>
+                    <div class="p-case__preview-line" style="width:55%"></div>
+                    <div class="p-case__preview-btn"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-case__phone">
+            <div class="p-case__phone-screen p-case__screen--massage-m">
+              <div class="p-case__phone-notch"></div>
+            </div>
+          </div>
+        </div>
+        <div class="p-case__info">
+          <div class="p-case__tags">
+            <span class="p-tag">Лендінг</span>
+            <span class="p-tag">Краса та здоров'я</span>
+          </div>
+          <h3 class="p-case__title">Масаж+ — Студія масажу</h3>
+          <p class="p-case__desc">Преміальний лендінг для студії масажу з формою запису, командою та прайсом.</p>
+          <span class="p-case__link">Відкрити сайт →</span>
+        </div>
+      </a>
 
-      <div class="gallery-cta reveal">
-        <a href="https://instagram.com/massage_plius" target="_blank" rel="noopener" class="btn btn-outline">
-          Більше у Instagram @massage_plius →
-        </a>
-      </div>
     </div>
-  </section>
 
-  <!-- ABOUT -->
-  <section class="section about-section" id="about">
-    <div class="container about-grid">
-      <div class="about-media reveal">
-        <img src="assets/images/Знімок екрана 2026-07-14 132122.png" alt="Студія масажу Масаж+ — рушники та інструменти" loading="lazy">
+    <div class="p-cases__more reveal-up">
+      <p class="p-cases__more-text">Ще один проєкт в розробці — <strong>онлайн-магазин</strong></p>
+      <span class="p-tag p-tag--soon">Скоро</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ADVANTAGES ========== -->
+<section class="p-section p-section--alt" id="advantages">
+  <div class="p-container">
+    <div class="p-section__head reveal-up">
+      <span class="p-section__tag">Чому я</span>
+      <h2 class="p-section__title">Переваги роботи зі мною</h2>
+    </div>
+
+    <div class="p-advantages">
+
+      <div class="p-adv reveal-up">
+        <div class="p-adv__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3 class="p-adv__title">Чистий, масштабований код</h3>
+        <p class="p-adv__text">Пишу так, щоб сайт можна було легко розширювати. Жодного спагетті-коду — тільки структура.</p>
       </div>
-      <div class="about-content reveal">
-        <h2 class="section-title">«Масаж+» — місце, де тіло і душа відпочивають</h2>
-        <p>
-          Ми — затишна студія масажу у Софіївській Борщагівці, ЖК «Київський Маєток». Наші майстри з медичною освітою і досвідом застосовують індивідуальний підхід — підбирають техніку, інтенсивність і тривалість сеансу саме для вас.
+
+      <div class="p-adv reveal-up">
+        <div class="p-adv__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <h3 class="p-adv__title">ШІ для швидшої розробки</h3>
+        <p class="p-adv__text">Використовую AI-інструменти, щоб здавати швидше без втрати якості. Клієнт отримує результат в рекордні строки.</p>
+      </div>
+
+      <div class="p-adv reveal-up">
+        <div class="p-adv__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+        </div>
+        <h3 class="p-adv__title">Ідеально на будь-якому пристрої</h3>
+        <p class="p-adv__text">Кожен сайт тестую на мобільних, планшетах і комп'ютерах. Адаптивність — це не опція, це стандарт.</p>
+      </div>
+
+      <div class="p-adv reveal-up">
+        <div class="p-adv__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3 class="p-adv__title">Швидкість завантаження</h3>
+        <p class="p-adv__text">Оптимізований код, стиснені зображення, Google PageSpeed 90+. Сайти, які не змушують чекати.</p>
+      </div>
+
+      <div class="p-adv reveal-up">
+        <div class="p-adv__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <h3 class="p-adv__title">SEO з першого рядка коду</h3>
+        <p class="p-adv__text">Семантична розмітка, мета-теги, structured data. Сайт, який Google любить і ранжує вище.</p>
+      </div>
+
+      <div class="p-adv reveal-up">
+        <div class="p-adv__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3 class="p-adv__title">На зв'язку завжди</h3>
+        <p class="p-adv__text">Відповідаю швидко, тримаю в курсі на кожному етапі. Ніяких зникань на тижень — чесна комунікація.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== ABOUT ========== -->
+<section class="p-section" id="about">
+  <div class="p-container">
+    <div class="p-about">
+      <div class="p-about__media reveal-up">
+        <div class="p-about__photo-wrap">
+          <div class="p-about__photo-placeholder">
+            <svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="38" r="20" stroke="currentColor" stroke-width="2" opacity="0.3"/><path d="M15 90c0-19.33 15.67-35 35-35s35 15.67 35 35" stroke="currentColor" stroke-width="2" opacity="0.3"/></svg>
+            <p>Фото скоро</p>
+          </div>
+          <div class="p-about__photo-glow"></div>
+        </div>
+        <div class="p-about__tag-float p-about__tag-float--1"><span>💻 Front-end</span></div>
+        <div class="p-about__tag-float p-about__tag-float--2"><span>🤖 AI-tools</span></div>
+        <div class="p-about__tag-float p-about__tag-float--3"><span>⚡ Vercel</span></div>
+      </div>
+      <div class="p-about__content reveal-up">
+        <span class="p-section__tag">Про мене</span>
+        <h2 class="p-section__title">Денис Залізко — веб-розробник</h2>
+        <p class="p-about__text">
+          Роблю сайти, які не просто гарно виглядають — вони вирішують задачі бізнесу. Від невеликого лендінгу до повноцінного онлайн-магазину з ШІ-інтеграцією.
         </p>
-        <ul class="about-list">
-          <li>Класичний, спортивний, лімфодренажний та релакс масаж</li>
-          <li>Медовий, вакуумно-баночний, масаж у 4 руки</li>
-          <li>Антицелюлітне обгортання та кінезіотейпування</li>
-          <li>Відкриті щодня до 22:00</li>
-        </ul>
-        <div class="about-actions">
-          <a href="#booking" class="btn btn-cta">Записатися</a>
-          <a href="https://instagram.com/massage_plius" target="_blank" rel="noopener" class="btn btn-ghost">
-            @massage_plius
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        <p class="p-about__text">
+          Мій підхід: спочатку розуміємо задачу, потім — дизайн і код. Жодних шаблонних рішень. Кожен проєкт — унікальний продукт.
+        </p>
+        <div class="p-about__stack">
+          <span class="p-stack-tag">HTML / CSS</span>
+          <span class="p-stack-tag">JavaScript</span>
+          <span class="p-stack-tag">Three.js</span>
+          <span class="p-stack-tag">React</span>
+          <span class="p-stack-tag">Node.js</span>
+          <span class="p-stack-tag">Telegram Bot API</span>
+          <span class="p-stack-tag">Vercel</span>
+          <span class="p-stack-tag">GitHub</span>
+        </div>
+        <div class="p-about__actions">
+          <a href="#contact" class="p-btn p-btn--accent">Написати мені</a>
+          <a href="https://instagram.com/denis__zalizko" target="_blank" rel="noopener" class="p-btn p-btn--ghost">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            @denis__zalizko
           </a>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- REVIEWS -->
-  <section class="section reviews-section" id="reviews">
-    <div class="container">
-      <div class="section-head reveal" style="text-align:center; display:flex; flex-direction:column; align-items:center;">
-        <h2 class="section-title">Що кажуть клієнти</h2>
-        <p class="section-desc">4.9 ★ на Google Maps · 68 відгуків від реальних клієнтів</p>
+<!-- ========== SERVICES ========== -->
+<section class="p-section p-section--alt" id="services">
+  <div class="p-container">
+    <div class="p-section__head reveal-up">
+      <span class="p-section__tag">Що я роблю</span>
+      <h2 class="p-section__title">Послуги</h2>
+      <p class="p-section__desc">Від простого лендінгу до складної системи з автоматизацією — знайдемо рішення під твій бізнес.</p>
+    </div>
+
+    <div class="p-services">
+
+      <div class="p-service reveal-up" id="service-landing">
+        <div class="p-service__num">01</div>
+        <div class="p-service__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+        </div>
+        <h3 class="p-service__title">Лендінги</h3>
+        <p class="p-service__text">Одно-сторінкові сайти, що конвертують відвідувачів у клієнтів. Чіткий оффер, красивий дизайн, форма зворотнього зв'язку.</p>
+        <div class="p-service__features">
+          <span>Адаптивний дизайн</span>
+          <span>SEO-оптимізація</span>
+          <span>Форма + CRM</span>
+        </div>
       </div>
 
-      <div class="reviews-row">
-
-        <div class="review-col reveal">
-          <div class="review-avatar-placeholder">В</div>
-          <div class="stars">★★★★★</div>
-          <p class="review-quote">«Хочу від всієї душі подякувати студії масажу за неймовірні емоції і стан після візиту 💜 Це саме те місце, куди приходиш виснаженою, затиснутою, з головою, повною думок — а виходиш наче заново народженою.»</p>
-          <strong class="review-name">Валерія Негуляєва</strong>
+      <div class="p-service reveal-up" id="service-shop">
+        <div class="p-service__num">02</div>
+        <div class="p-service__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         </div>
-
-        <div class="review-col reveal">
-          <div class="review-avatar-placeholder">L</div>
-          <div class="stars">★★★★★</div>
-          <p class="review-quote">«Була на спортивному масажі, записалася за рекомендацією чоловіка. Сказати, що мені сподобалось — це нічого не сказати. Промяли так, ніби каток переїхав 😄 Все якісно і по ділу. Банки теж поставили.»</p>
-          <strong class="review-name">Lily</strong>
+        <h3 class="p-service__title">Онлайн-магазини</h3>
+        <p class="p-service__text">Повноцінні е-commerce рішення: каталог, кошик, оплата, адмін-панель. Зручно для покупця — прибутково для власника.</p>
+        <div class="p-service__features">
+          <span>Каталог товарів</span>
+          <span>Оплата онлайн</span>
+          <span>Адмін-панель</span>
         </div>
+      </div>
 
-        <div class="review-col reveal">
-          <div class="review-avatar-placeholder">О</div>
-          <div class="stars">★★★★★</div>
-          <p class="review-quote">«Відвідала салон вперше і залишилась у захваті! Майстер зробив класичний масаж спини — все напруження як рукою зняло. Атмосфера затишна, музика розслаблююча. Рекомендую всім, хто шукає якісний релакс!»</p>
-          <strong class="review-name">Ольга Дорохова</strong>
+      <div class="p-service reveal-up" id="service-premium">
+        <div class="p-service__num">03</div>
+        <div class="p-service__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
+        <h3 class="p-service__title">Преміальні сайти</h3>
+        <p class="p-service__text">Багатосторінкові сайти з 3D-анімацією, мікро-взаємодіями та вау-ефектом. Для тих, кому важливо виділятись.</p>
+        <div class="p-service__features">
+          <span>3D / WebGL</span>
+          <span>Анімації</span>
+          <span>Преміум-дизайн</span>
+        </div>
+      </div>
 
+      <div class="p-service reveal-up" id="service-ai">
+        <div class="p-service__num">04</div>
+        <div class="p-service__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><circle cx="19" cy="5" r="3"/></svg>
+        </div>
+        <h3 class="p-service__title">ШІ-інтеграції</h3>
+        <p class="p-service__text">Підключаю ChatGPT, Claude та інші AI до твого сайту або бізнесу. Автоматизую рутину, економлю твій час.</p>
+        <div class="p-service__features">
+          <span>ChatGPT API</span>
+          <span>Автовідповіді</span>
+          <span>Чат-боти</span>
+        </div>
+      </div>
+
+      <div class="p-service reveal-up" id="service-tg">
+        <div class="p-service__num">05</div>
+        <div class="p-service__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21.99 4.02L2.99 11.02l7 3 3 7 9-17z"/><path d="M10 14l4-4"/></svg>
+        </div>
+        <h3 class="p-service__title">Telegram-боти</h3>
+        <p class="p-service__text">Боти для продажу, підтримки клієнтів, прийому замовлень і автоматизації бізнес-процесів у Telegram.</p>
+        <div class="p-service__features">
+          <span>Замовлення</span>
+          <span>Сповіщення</span>
+          <span>Платежі</span>
+        </div>
+      </div>
+
+      <div class="p-service reveal-up" id="service-menu">
+        <div class="p-service__num">06</div>
+        <div class="p-service__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3 class="p-service__title">Цифрові меню</h3>
+        <p class="p-service__text">QR-меню для кафе, ресторанів та барів. Легко оновлювати, красиво виглядає, без зайвих витрат на друк.</p>
+        <div class="p-service__features">
+          <span>QR-код</span>
+          <span>Легке оновлення</span>
+          <span>Мобільна версія</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== PROCESS ========== -->
+<section class="p-section" id="process">
+  <div class="p-container">
+    <div class="p-section__head reveal-up">
+      <span class="p-section__tag">Як це працює</span>
+      <h2 class="p-section__title">Процес роботи</h2>
+      <p class="p-section__desc">4 кроки від ідеї до готового сайту. Ніякої невизначеності — ти знаєш що відбувається на кожному етапі.</p>
+    </div>
+
+    <div class="p-process">
+      <div class="p-process__line" id="processLine" aria-hidden="true"></div>
+
+      <div class="p-process__step reveal-up" id="step-1">
+        <div class="p-process__step-num">01</div>
+        <div class="p-process__step-content">
+          <div class="p-process__step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3 class="p-process__step-title">Бриф</h3>
+          <p class="p-process__step-text">Розбираємось у твоєму бізнесі, цілях і конкурентах. Я ставлю правильні питання, щоб зрозуміти що потрібно зробити.</p>
+          <span class="p-process__step-time">~1 день</span>
+        </div>
+      </div>
+
+      <div class="p-process__step reveal-up" id="step-2">
+        <div class="p-process__step-num">02</div>
+        <div class="p-process__step-content">
+          <div class="p-process__step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+          <h3 class="p-process__step-title">Дизайн</h3>
+          <p class="p-process__step-text">Розробляю структуру і дизайн. Показую концепт, отримую зворотній зв'язок і коригую до ідеалу.</p>
+          <span class="p-process__step-time">2–3 дні</span>
+        </div>
+      </div>
+
+      <div class="p-process__step reveal-up" id="step-3">
+        <div class="p-process__step-num">03</div>
+        <div class="p-process__step-content">
+          <div class="p-process__step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3 class="p-process__step-title">Код</h3>
+          <p class="p-process__step-text">Верстка, анімації, адаптивність, форми, інтеграції. Чистий і швидкий код від першого рядка до останнього.</p>
+          <span class="p-process__step-time">3–7 днів</span>
+        </div>
+      </div>
+
+      <div class="p-process__step reveal-up" id="step-4">
+        <div class="p-process__step-num">04</div>
+        <div class="p-process__step-content">
+          <div class="p-process__step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3 class="p-process__step-title">Запуск</h3>
+          <p class="p-process__step-text">Деплой на хостинг, підключення домену, тестування. Сайт живе і приносить клієнтів. Я на зв'язку після запуску.</p>
+          <span class="p-process__step-time">1 день</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<section class="p-section p-section--contact" id="contact">
+  <div class="p-contact__bg" aria-hidden="true"></div>
+  <div class="p-container">
+    <div class="p-contact">
+      <div class="p-contact__info reveal-up">
+        <span class="p-section__tag">Контакти</span>
+        <h2 class="p-section__title">Готовий до нового проєкту?</h2>
+        <p class="p-contact__desc">Розкажи про свою ідею — разом розберемось що тобі потрібно і скільки це коштуватиме. Перша консультація безкоштовна.</p>
+        <div class="p-contact__links">
+          <a href="https://t.me/absolutikdenchik" target="_blank" rel="noopener" class="p-contact__link" id="tg-link">
+            <div class="p-contact__link-icon p-contact__link-icon--tg">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            </div>
+            <div>
+              <strong>Telegram</strong>
+              <span>@absolutikdenchik</span>
+            </div>
+          </a>
+          <a href="https://instagram.com/denis__zalizko" target="_blank" rel="noopener" class="p-contact__link" id="insta-link">
+            <div class="p-contact__link-icon p-contact__link-icon--insta">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </div>
+            <div>
+              <strong>Instagram</strong>
+              <span>@denis__zalizko</span>
+            </div>
+          </a>
+          <a href="mailto:zalizkodenis12@gmail.com" class="p-contact__link" id="email-link">
+            <div class="p-contact__link-icon p-contact__link-icon--email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <strong>Email</strong>
+              <span>zalizkodenis12@gmail.com</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="p-contact__form-wrap reveal-up">
+        <form class="p-form" id="contactForm" novalidate>
+          <div class="p-form__field">
+            <label for="cf-name">Ім'я *</label>
+            <input type="text" id="cf-name" name="name" placeholder="Як тебе звати?" required autocomplete="name">
+            <span class="p-form__error" role="alert"></span>
+          </div>
+          <div class="p-form__field">
+            <label for="cf-phone">Телефон або Telegram *</label>
+            <input type="text" id="cf-phone" name="phone" placeholder="+380 або @нік" required>
+            <span class="p-form__error" role="alert"></span>
+          </div>
+          <div class="p-form__field">
+            <label for="cf-project">Коротко про проєкт *</label>
+            <textarea id="cf-project" name="project" rows="4" placeholder="Що за бізнес, який тип сайту, є референси?" required></textarea>
+            <span class="p-form__error" role="alert"></span>
+          </div>
+          <button type="submit" class="p-btn p-btn--accent p-btn--block" id="cfSubmit">
+            Відправити заявку
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <p class="p-form__status" id="cfStatus" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </div>
-  </section>
-
-  <!-- BOOKING -->
-  <section class="section booking-section" id="booking">
-    <div class="booking-bg">
-      <img src="assets/images/Знімок екрана 2026-07-14 132122.png" alt="" loading="lazy">
-      <div class="booking-scrim"></div>
-    </div>
-    <div class="ghost-watermark" aria-hidden="true">МАСАЖ+</div>
-
-    <div class="container booking-inner reveal">
-      <div class="booking-logo">
-        <img src="assets/images/лого.png" alt="Масаж+ логотип">
-      </div>
-      <h2 class="section-title center">Запишіться на масаж сьогодні</h2>
-      <p class="section-desc center">Залиште заявку — майстер зв'яжеться з вами найближчим часом.</p>
-
-      <form class="booking-form" id="bookingForm" novalidate>
-        <div class="form-row">
-          <div class="field">
-            <label for="f-name">Ім'я*</label>
-            <input type="text" id="f-name" name="name" autocomplete="name" placeholder="Ваше ім'я" required>
-            <span class="field-error" role="alert"></span>
-          </div>
-          <div class="field">
-            <label for="f-phone">Телефон*</label>
-            <input type="tel" id="f-phone" name="phone" autocomplete="tel" placeholder="+380 XX XXX XX XX" required>
-            <span class="field-error" role="alert"></span>
-          </div>
-        </div>
-        <div class="field">
-          <label for="f-master">Майстер</label>
-          <input type="text" id="f-master" name="master" autocomplete="off" placeholder="Мар'яна, Денис, Валентина або будь-який вільний">
-        </div>
-        <div class="field">
-          <label for="f-comment">Який масаж хочете?</label>
-          <textarea id="f-comment" name="comment" rows="3" placeholder="Наприклад: класичний масаж спини 60 хв, або спортивний масаж для відновлення після тренувань"></textarea>
-        </div>
-        <button type="submit" class="btn btn-cta btn-block" id="bookingSubmit">Записатися</button>
-        <p class="booking-status" id="bookingStatus" role="status" aria-live="polite"></p>
-      </form>
-
-      <p class="booking-secondary">
-        або зателефонуйте: <a href="tel:+380938964929">093 896 4929</a>
-        · <a href="https://instagram.com/massage_plius" target="_blank" rel="noopener">@massage_plius в Instagram</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- MAP / CONTACTS -->
-  <section class="section contacts-section" id="contacts">
-    <div class="container contacts-grid">
-      <div class="map-wrap reveal">
-        <iframe
-          src="https://www.google.com/maps?q=50.4034526,30.3385588&z=16&output=embed"
-          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade" title="Студія масажу Масаж+ на карті"></iframe>
-      </div>
-      <div class="contacts-info reveal">
-        <h3>Студія масажу «Масаж+»</h3>
-        <dl>
-          <div class="info-row">
-            <dt>Адреса</dt>
-            <dd>вул. Бишівська, 14, ЖК «Київський Маєток», Софіївська Борщагівка, Київська область, 08147</dd>
-          </div>
-          <div class="info-row">
-            <dt>Телефон</dt>
-            <dd><a href="tel:+380938964929">093 896 4929</a></dd>
-          </div>
-          <div class="info-row">
-            <dt>Instagram</dt>
-            <dd><a href="https://instagram.com/massage_plius" target="_blank" rel="noopener">@massage_plius</a></dd>
-          </div>
-          <div class="info-row">
-            <dt>Партнер</dt>
-            <dd><a href="https://instagram.com/vayya.beauty" target="_blank" rel="noopener">Студія краси @vayya.beauty</a></dd>
-          </div>
-          <div class="info-row">
-            <dt>Графік</dt>
-            <dd>Відкриті щодня до 22:00</dd>
-          </div>
-        </dl>
-        <a href="https://www.google.com/maps/place/%D0%A1%D1%82%D1%83%D0%B4%D1%96%D1%8F+%D0%BC%D0%B0%D1%81%D0%B0%D0%B6%D1%83+%22%D0%9C%D0%B0%D1%81%D0%B0%D0%B6+%2B%22/@50.4034526,30.3385588,17z" target="_blank" rel="noopener" class="btn btn-cta">Прокласти маршрут →</a>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
 </main>
 
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <a href="#top" class="logo">
-      <span class="logo-mark" id="logoMarkFooter">
-        <img src="assets/images/лого.png" alt="Масаж+ логотип">
-      </span>
-      <span class="logo-text"><strong>Масаж+</strong></span>
+<!-- ========== FOOTER ========== -->
+<footer class="p-footer">
+  <div class="p-container p-footer__inner">
+    <a href="#hero" class="p-logo">
+      <span class="p-logo__mark">DZ</span>
+      <span class="p-logo__text">Denys Zalizko</span>
     </a>
-    <nav class="footer-nav">
+    <nav class="p-footer__nav">
+      <a href="#cases">Кейси</a>
       <a href="#services">Послуги</a>
-      <a href="#gallery">Майстри</a>
-      <a href="#about">Про нас</a>
-      <a href="#reviews">Відгуки</a>
-      <a href="#contacts">Контакти</a>
+      <a href="#process">Процес</a>
+      <a href="#contact">Контакти</a>
     </nav>
-    <div class="footer-socials">
-      <a href="https://instagram.com/massage_plius" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    <div class="p-footer__socials">
+      <a href="https://t.me/absolutikdenchik" target="_blank" rel="noopener" aria-label="Telegram" id="footer-tg">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
       </a>
-      <a href="tel:+380938964929" aria-label="Телефон">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <a href="https://instagram.com/denis__zalizko" target="_blank" rel="noopener" aria-label="Instagram" id="footer-insta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="mailto:zalizkodenis12@gmail.com" aria-label="Email" id="footer-email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       </a>
     </div>
   </div>
-  <div class="container footer-bottom">
-    <span>© 2026 Студія масажу «Масаж+». Всі права захищено.</span>
-    <span>вул. Бишівська, 14, Софіївська Борщагівка, Київська область</span>
+  <div class="p-container p-footer__bottom">
+    <span>© 2026 Денис Залізко. Всі права захищено.</span>
+    <span>Зроблено з ❤️ в Україні</span>
   </div>
 </footer>
 
-<a href="tel:+380938964929" class="mobile-cta">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-  Записатися
+<!-- Floating CTA mobile -->
+<a href="https://t.me/absolutikdenchik" target="_blank" rel="noopener" class="p-mobile-cta" id="mobileCta">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+  Написати в Telegram
 </a>
 
-<script src="assets/js/config.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>

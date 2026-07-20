@@ -1,0 +1,24 @@
+# Службові файли агентів
+.claude/
+.agents/
+.gemini/
+
+# Стара папка масажного сайту (окремий проєкт)
+Масаж+_site/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Node (на майбутнє)
+node_modules/
+dist/
+.env
+.env.local
