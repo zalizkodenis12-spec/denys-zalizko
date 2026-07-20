@@ -347,7 +347,7 @@ if (casesMoreBtn) {
 })();
 
 /* ---- MINI 3D FIGURES ---- */
-function initMini3D(canvasId, geoType, colorHex) {
+function initMini3D(canvasId) {
   const canvas = document.getElementById(canvasId);
   if (!canvas || typeof THREE === 'undefined') return;
 
@@ -361,31 +361,76 @@ function initMini3D(canvasId, geoType, colorHex) {
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
-  camera.position.z = 4.5;
+  camera.position.z = 22; // Pulled back for cluster view
 
-  scene.add(new THREE.AmbientLight(0xffffff, 0.8));
-  const dLight = new THREE.DirectionalLight(0xffffff, 1.2);
-  dLight.position.set(5, 5, 5);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+  const dLight = new THREE.DirectionalLight(0xFF5C00, 1.4);
+  dLight.position.set(4, 6, 4);
   scene.add(dLight);
+  
+  const d2 = new THREE.DirectionalLight(0x0057B7, 1);
+  d2.position.set(-4, -3, 2);
+  scene.add(d2);
 
-  let geo;
-  if (geoType === 'torus') geo = new THREE.TorusGeometry(1, 0.4, 16, 32);
-  else if (geoType === 'icosahedron') geo = new THREE.IcosahedronGeometry(1.2, 0);
-  else geo = new THREE.OctahedronGeometry(1.2);
+  /* Shapes */
+  const shapes = [];
+  const spread = 12;
+  const defs = [
+    { geo: new THREE.IcosahedronGeometry(1.8, 0), x: (Math.random() - 0.5) * spread, y: (Math.random() - 0.5) * spread, z: (Math.random() - 0.5) * spread },
+    { geo: new THREE.OctahedronGeometry(1.3, 0),  x: (Math.random() - 0.5) * spread, y: (Math.random() - 0.5) * spread, z: (Math.random() - 0.5) * spread },
+    { geo: new THREE.TorusGeometry(1.1, .35, 12, 48), x: (Math.random() - 0.5) * spread, y: (Math.random() - 0.5) * spread, z: (Math.random() - 0.5) * spread },
+    { geo: new THREE.IcosahedronGeometry(.9, 0),   x: (Math.random() - 0.5) * spread, y: (Math.random() - 0.5) * spread, z: (Math.random() - 0.5) * spread },
+    { geo: new THREE.TetrahedronGeometry(1.2, 0),  x: (Math.random() - 0.5) * spread, y: (Math.random() - 0.5) * spread, z: (Math.random() - 0.5) * spread },
+    { geo: new THREE.OctahedronGeometry(.7, 0),    x: (Math.random() - 0.5) * spread, y: (Math.random() - 0.5) * spread, z: (Math.random() - 0.5) * spread },
+  ];
+  
+  const mats = [
+    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: true,  transparent: true, opacity: .6 }),
+    new THREE.MeshStandardMaterial({ color: 0xE64D00, wireframe: false, transparent: true, opacity: .4, metalness: .8, roughness: .2 }),
+    new THREE.MeshStandardMaterial({ color: 0x1a1a1a, wireframe: true,  transparent: true, opacity: .3 }),
+    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: false, transparent: true, opacity: .3, metalness: .9, roughness: .1 }),
+  ];
 
-  const mat = new THREE.MeshStandardMaterial({
-    color: colorHex,
-    metalness: 0.9,
-    roughness: 0.1
+  defs.forEach((d, i) => {
+    const mesh = new THREE.Mesh(d.geo, mats[i % mats.length]);
+    mesh.position.set(d.x, d.y, d.z);
+    mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
+    mesh.userData = {
+      rx: (Math.random() - .5) * .02,
+      ry: (Math.random() - .5) * .02,
+      amp: .3 + Math.random() * .5,
+      spd: .4 + Math.random() * .4,
+      ph: Math.random() * Math.PI * 2,
+      by: d.y,
+    };
+    scene.add(mesh);
+    shapes.push(mesh);
   });
 
-  const mesh = new THREE.Mesh(geo, mat);
-  scene.add(mesh);
+  /* Particles */
+  const pGeo = new THREE.BufferGeometry();
+  const pPos = new Float32Array(100 * 3);
+  for (let i = 0; i < 100; i++) {
+    pPos[i*3]   = (Math.random() - .5) * 20;
+    pPos[i*3+1] = (Math.random() - .5) * 20;
+    pPos[i*3+2] = (Math.random() - .5) * 15;
+  }
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+  const pts = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xFF5C00, size: .09, transparent: true, opacity: .5 }));
+  scene.add(pts);
 
+  let t = 0;
   function animate() {
     requestAnimationFrame(animate);
-    mesh.rotation.x += 0.005;
-    mesh.rotation.y += 0.01;
+    t += 0.01;
+    pts.rotation.y = t * 0.05;
+
+    shapes.forEach(s => {
+      s.rotation.x += s.userData.rx;
+      s.rotation.y += s.userData.ry;
+      s.position.y = s.userData.by + Math.sin(t * s.userData.spd + s.userData.ph) * s.userData.amp;
+    });
+
     renderer.render(scene, camera);
   }
   animate();
@@ -398,6 +443,6 @@ function initMini3D(canvasId, geoType, colorHex) {
   });
 }
 
-initMini3D('canvas-about-top', 'torus', 0xFF5C00); // Orange Torus
-initMini3D('canvas-about-bottom', 'icosahedron', 0xffffff); // Chrome/White Icosahedron
-initMini3D('canvas-process', 'torus', 0xFF5C00); // Orange Torus
+initMini3D('canvas-about-top');
+initMini3D('canvas-about-bottom');
+initMini3D('canvas-process');
