@@ -982,6 +982,7 @@ body.dark-theme .theme-toggle {
     scrollbar-width: none !important; 
     grid-template-columns: none !important;
   }
+  .cases-grid--hidden { display: none !important; }
   .cases-grid::-webkit-scrollbar, .adv-grid--clean::-webkit-scrollbar, .services-grid::-webkit-scrollbar { display: none !important; }
   
   .cases-grid .case, .adv-clean, .svc { 
