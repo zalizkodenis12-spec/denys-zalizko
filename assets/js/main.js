@@ -169,17 +169,50 @@ if (form) {
     btn.disabled = true;
     btn.textContent = 'Відправляємо...';
 
-    const name    = document.getElementById('cf-name').value.trim();
-    const phone   = document.getElementById('cf-phone').value.trim();
-    const project = document.getElementById('cf-project').value.trim();
-    const msg = encodeURIComponent(`🚀 Нова заявка!\n\n👤 ${name}\n📞 ${phone}\n📋 ${project}`);
+    const name    = document.querySelector('[name="name"]').value.trim();
+    const phone   = document.querySelector('[name="phone"]').value.trim();
+    const email   = document.querySelector('[name="email"]').value.trim();
+    const project = document.querySelector('[name="project"]').value.trim();
+    const msg = encodeURIComponent(`🚀 Нова заявка!\n\n👤 ${name}\n📞 ${phone}\n📧 ${email}\n📋 ${project}`);
     window.open(`https://t.me/absolutikdenchik?text=${msg}`, '_blank');
 
     setTimeout(() => {
       status.textContent = '✅ Відкрив Telegram — напиши мені там!';
       btn.disabled = false;
-      btn.textContent = 'Відправити заявку';
+      btn.textContent = 'НАДІСЛАТИ';
       form.reset();
     }, 800);
+  });
+}
+
+/* ---- ACCORDION ---- */
+document.querySelectorAll('.acc').forEach(acc => {
+  const head = acc.querySelector('.acc__head');
+  const body = acc.querySelector('.acc__body');
+  
+  // Click anywhere on head opens/closes it
+  head.addEventListener('click', () => {
+    const isOpen = acc.dataset.open === 'true';
+    
+    // Toggle current
+    acc.dataset.open = isOpen ? 'false' : 'true';
+    head.setAttribute('aria-expanded', !isOpen);
+    if (!isOpen) {
+      body.classList.remove('acc__body--closed');
+    } else {
+      body.classList.add('acc__body--closed');
+    }
+  });
+});
+
+/* ---- CASES MORE ---- */
+const casesMoreBtn = document.getElementById('casesMoreBtn');
+if (casesMoreBtn) {
+  casesMoreBtn.addEventListener('click', () => {
+    const hidden = document.getElementById('hiddenCases');
+    if (hidden) {
+      hidden.style.display = 'grid';
+      casesMoreBtn.style.display = 'none';
+    }
   });
 }

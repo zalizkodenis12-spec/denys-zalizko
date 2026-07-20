@@ -54,26 +54,12 @@
   <div class="wrap hero__inner">
     <div class="hero__left">
       <h1 class="hero__title rv">
-        Сайти,<br>що<br><span class="accent">продають</span>
+        Сучасні<br>веб-<br><span class="accent">рішення</span>
       </h1>
       <div class="hero__sub rv">
         Проєктую та розробляю лендінги, онлайн-магазини та преміальні сайти з 3D-анімацією — від ідеї до запуску
       </div>
       <a href="#contact" class="btn btn--fill btn--lg rv">Замовити сайт</a>
-      <div class="hero__stats rv">
-        <div class="hero__stat">
-          <strong>3+</strong>
-          <span>Живих проєктів</span>
-        </div>
-        <div class="hero__stat">
-          <strong>ШІ</strong>
-          <span>У розробці</span>
-        </div>
-        <div class="hero__stat">
-          <strong>100%</strong>
-          <span>Адаптивність</span>
-        </div>
-      </div>
     </div>
     <div class="hero__right">
       <canvas id="heroCanvas"></canvas>
@@ -145,6 +131,35 @@
       </a>
 
     </div>
+
+    <div class="cases-grid cases-grid--hidden" id="hiddenCases" style="display: none; margin-top: 24px;">
+      <a href="#" class="case rv">
+        <div class="case__img case__img--barber">
+          <div class="case__img-inner">
+            <div class="case__mock-title">🛒 Онлайн-магазин</div>
+            <div class="case__mock-sub">В розробці</div>
+          </div>
+        </div>
+        <div class="case__meta">
+          <h3 class="case__name">Магазин одягу</h3>
+        </div>
+      </a>
+      <a href="#" class="case rv">
+        <div class="case__img case__img--auto">
+          <div class="case__img-inner">
+            <div class="case__mock-title">⚡ Корпоративний</div>
+            <div class="case__mock-sub">Сайт</div>
+          </div>
+        </div>
+        <div class="case__meta">
+          <h3 class="case__name">Студія дизайну</h3>
+        </div>
+      </a>
+    </div>
+
+    <div class="cases-more-btn rv" style="text-align: center; margin-top: 40px;">
+      <button class="btn btn--out" id="casesMoreBtn">Більше деталей</button>
+    </div>
   </div>
 </section>
 
@@ -152,62 +167,74 @@
 <section class="sec sec--gray" id="advantages">
   <div class="wrap">
     <div class="sec__head rv">
-      <h2 class="sec__title adv__title">Чому обирають мене — <span class="accent">факти, а не слова</span></h2>
+      <h2 class="sec__title adv__title">Чому обирають мене —<br><span class="accent">факти, а не слова</span></h2>
     </div>
 
-    <div class="adv-grid">
+    <div class="adv-grid adv-grid--clean">
 
-      <div class="adv rv">
-        <span class="adv__num">01</span>
-        <div class="adv__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      <div class="adv-clean rv">
+        <div class="adv-clean__top">
+          <span class="adv-clean__num">01</span>
+          <div class="adv-clean__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
         </div>
-        <h3>Чистий код</h3>
+        <h3>ЧИСТИЙ КОД</h3>
         <p>Пишу так, щоб сайт можна було легко розширювати. Ніякого спагетті — тільки структура.</p>
       </div>
 
-      <div class="adv rv">
-        <span class="adv__num">02</span>
-        <div class="adv__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      <div class="adv-clean rv">
+        <div class="adv-clean__top">
+          <span class="adv-clean__num">02</span>
+          <div class="adv-clean__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          </div>
         </div>
-        <h3>ШІ у розробці</h3>
+        <h3>ШІ У РОЗРОБЦІ</h3>
         <p>Використовую AI-інструменти для прискорення без втрати якості. Результат швидше — ціна та сама.</p>
       </div>
 
-      <div class="adv rv">
-        <span class="adv__num">03</span>
-        <div class="adv__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+      <div class="adv-clean rv">
+        <div class="adv-clean__top">
+          <span class="adv-clean__num">03</span>
+          <div class="adv-clean__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+          </div>
         </div>
-        <h3>Адаптивність</h3>
+        <h3>АДАПТИВНІСТЬ</h3>
         <p>Кожен сайт ідеально виглядає на телефоні, планшеті і комп'ютері. Тестую на реальних пристроях.</p>
       </div>
 
-      <div class="adv rv">
-        <span class="adv__num">04</span>
-        <div class="adv__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      <div class="adv-clean rv">
+        <div class="adv-clean__top">
+          <span class="adv-clean__num">04</span>
+          <div class="adv-clean__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
         </div>
-        <h3>Швидкість сайту</h3>
+        <h3>ШВИДКІСТЬ САЙТУ</h3>
         <p>Оптимізований код і зображення. Google PageSpeed 90+. Сайти, які не змушують клієнта чекати.</p>
       </div>
 
-      <div class="adv rv">
-        <span class="adv__num">05</span>
-        <div class="adv__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <div class="adv-clean rv">
+        <div class="adv-clean__top">
+          <span class="adv-clean__num">05</span>
+          <div class="adv-clean__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </div>
         </div>
-        <h3>SEO з нуля</h3>
+        <h3>SEO З НУЛЯ</h3>
         <p>Семантична розмітка, мета-теги, швидке завантаження. Сайт, який Google індексує і ранжує вище.</p>
       </div>
 
-      <div class="adv rv">
-        <span class="adv__num">06</span>
-        <div class="adv__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <div class="adv-clean rv">
+        <div class="adv-clean__top">
+          <span class="adv-clean__num">06</span>
+          <div class="adv-clean__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
         </div>
-        <h3>На зв'язку</h3>
+        <h3>НА ЗВ'ЯЗКУ</h3>
         <p>Відповідаю швидко, тримаю в курсі кожного кроку. Ніяких зникань. Чесна комунікація завжди.</p>
       </div>
 
@@ -241,7 +268,7 @@
 <section class="sec sec--gray" id="services">
   <div class="wrap">
     <div class="sec__head rv sec__head--flex">
-      <h2 class="sec__title">Що я роблю</h2>
+      <h2 class="sec__title">Моя<br>експертиза</h2>
       <p class="sec__desc">Створюю сучасні веб-рішення з фокусом на масштабованість, швидкість роботи та ефективне вирішення завдань вашого бізнесу.</p>
     </div>
 
@@ -286,7 +313,7 @@
       <!-- LEFT -->
       <div class="proc__left rv">
         <h2 class="proc__title">
-          <span class="accent">Процес</span> роботи
+          <span class="accent">Процес</span><br>роботи
         </h2>
         <p class="proc__sub">4 кроки від ідеї до живого сайту. Ніякої невизначеності — ти знаєш що відбувається на кожному етапі.</p>
       </div>
@@ -308,7 +335,7 @@
           </div>
         </div>
 
-        <div class="acc" id="acc-2">
+        <div class="acc" id="acc-2" data-open="false">
           <button class="acc__head" aria-expanded="false" aria-controls="acc-body-2">
             <span class="acc__num">2</span>
             <span class="acc__name">ДЕМОВЕРСІЯ</span>
@@ -317,11 +344,12 @@
             </span>
           </button>
           <div class="acc__body acc__body--closed" id="acc-body-2">
-            <p>Розробка прототипу.</p>
+            <p>Розробка базової версії сайту, де ти вже можеш поклацати і побачити як все працює.</p>
+            <span class="step__time">1-2 дні</span>
           </div>
         </div>
 
-        <div class="acc" id="acc-3">
+        <div class="acc" id="acc-3" data-open="false">
           <button class="acc__head" aria-expanded="false" aria-controls="acc-body-3">
             <span class="acc__num">3</span>
             <span class="acc__name">ПРАВКИ</span>
@@ -330,11 +358,12 @@
             </span>
           </button>
           <div class="acc__body acc__body--closed" id="acc-body-3">
-            <p>Узгодження деталей.</p>
+            <p>Зідзвон, після якого я виправляю всі деталі та повністю підлаштовую проєкт під ваші побажання.</p>
+            <span class="step__time">1 день</span>
           </div>
         </div>
 
-        <div class="acc" id="acc-4">
+        <div class="acc" id="acc-4" data-open="false">
           <button class="acc__head" aria-expanded="false" aria-controls="acc-body-4">
             <span class="acc__num">4</span>
             <span class="acc__name">ЗАПУСК</span>
@@ -343,7 +372,8 @@
             </span>
           </button>
           <div class="acc__body acc__body--closed" id="acc-body-4">
-            <p>Деплой проєкту.</p>
+            <p>Сайт повністю готовий. Я купую та підключаю домен, роблю фінальний запуск (або передаю права).</p>
+            <span class="step__time">1 день</span>
           </div>
         </div>
 
@@ -353,32 +383,31 @@
 </section>
 
 <!-- ========== CONTACT ========== -->
-<section class="sec sec--gray" id="contact">
+<section class="sec" id="contact" style="padding-bottom: 120px;">
   <div class="wrap">
-    <div class="contact">
-      <div class="contact__left rv">
-        <h2 class="sec__title">Готовий до нового проєкту?</h2>
-        <p class="contact__desc">Розкажи про свою ідею — разом розберемось що потрібно і скільки це коштуватиме. Перша консультація безкоштовна.</p>
+    <div class="contact-new">
+      <div class="contact-new__left rv">
+        <h2 class="sec__title">МИ ЗНАЄМО, ЯК<br><span class="contact-new__outline">ВИРІШИТИ</span><br>ПОТРЕБИ БІЗНЕСУ</h2>
+        <p class="contact-new__desc">Розкажіть про свій проєкт - запропонуємо рішення, яке закриє ваші бізнес-задачі.</p>
       </div>
 
-      <div class="contact__right rv">
-        <form class="form" id="contactForm" novalidate>
-          <div class="form__field">
-            <label for="cf-name">Ім'я *</label>
-            <input type="text" id="cf-name" name="name" placeholder="Як тебе звати?" required autocomplete="name">
-            <span class="form__err" role="alert"></span>
+      <div class="contact-new__right rv">
+        <form class="form-new" id="contactForm" novalidate>
+          <input type="text" name="name" placeholder="Ім'я" required>
+          
+          <div class="form-new__phone">
+            <div class="form-new__flag">
+              <div class="form-new__flag-icon"></div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M6 9l6 6 6-6"/></svg>
+              <span>+380</span>
+            </div>
+            <input type="text" name="phone" required>
           </div>
-          <div class="form__field">
-            <label for="cf-phone">Телефон або Telegram *</label>
-            <input type="text" id="cf-phone" name="phone" placeholder="+380 або @нік" required>
-            <span class="form__err" role="alert"></span>
-          </div>
-          <div class="form__field">
-            <label for="cf-project">Про проєкт *</label>
-            <textarea id="cf-project" name="project" rows="4" placeholder="Що за бізнес, який тип сайту, є референси?" required></textarea>
-            <span class="form__err" role="alert"></span>
-          </div>
-          <button type="submit" class="btn btn--fill btn--block" id="cfSubmit">Відправити заявку</button>
+
+          <input type="email" name="email" placeholder="Email" required>
+          <textarea name="project" placeholder="Розкажіть нам про свій проєкт" rows="5" required></textarea>
+          
+          <button type="submit" class="btn-black" id="cfSubmit">НАДІСЛАТИ</button>
           <p class="form__status" id="cfStatus" role="status" aria-live="polite"></p>
         </form>
       </div>
