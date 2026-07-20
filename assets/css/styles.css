@@ -585,8 +585,7 @@ input, textarea { font-family: inherit; }
   align-items: start;
 }
 .proc__left {
-  position: sticky;
-  top: calc(var(--hh) + 40px);
+  /* removed sticky to allow normal scrolling */
 }
 .proc__title {
   font-family: var(--ffh);
@@ -881,19 +880,47 @@ input, textarea { font-family: inherit; }
 .adv-grid--clean {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: var(--r-xl);
-  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
 }
-.adv-clean { background: var(--white); padding: 40px; }
-.adv-clean__top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; }
-.adv-clean__num { font-size: 1.2rem; font-weight: 700; color: var(--light); }
-.adv-clean__icon { width: 32px; height: 32px; color: var(--accent); }
-.adv-clean__icon svg { width: 32px; height: 32px; }
-.adv-clean h3 { font-family: var(--ffh); font-size: 1.05rem; font-weight: 800; margin-bottom: 12px; color: var(--black); }
-.adv-clean p { font-size: .9rem; color: var(--muted); line-height: 1.6; }
+.adv-clean { 
+  background: var(--white); 
+  padding: 40px; 
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  min-height: 380px;
+}
+.adv-clean__num { 
+  font-size: 1.1rem; 
+  font-weight: 600; 
+  color: var(--light); 
+  margin-bottom: auto; /* Pushes the icon down if we wanted, but let's just margin-bottom it */
+}
+.adv-clean__icon { 
+  margin: 40px 0 50px 0;
+  color: #0057B7; /* Blue icon color from screenshot */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.adv-clean__icon svg { 
+  width: 72px; 
+  height: 72px; 
+  stroke-width: 1.2;
+}
+.adv-clean__inline-title { 
+  font-family: var(--ff);
+  font-size: 1.1rem; 
+  font-weight: 700; 
+  color: var(--black); 
+}
+.adv-clean p { 
+  font-size: .95rem; 
+  color: var(--text); 
+  line-height: 1.6; 
+}
 
 .step__time {
   display: inline-block;
