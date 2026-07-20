@@ -700,12 +700,14 @@ input, textarea { font-family: inherit; }
 .sec {
   padding: 140px 0;
   position: relative;
-  z-index: 1; /* Stay above canvas */
+  z-index: 1;
+  background: var(--white); /* Make sections white by default */
 }
 .sec--gray { background: var(--gray); }
-.sec--bordered { border-top: 1px solid var(--border); }
+.sec--bordered { border-top: 1px solid var(--border); background: var(--white); }
+.sec--light { background: var(--white); }
 .sec--dark {
-  background: transparent; /* Changed to transparent so the 3D canvas shows through */
+  background: #0a0a0c; /* Black background only for dark sections */
   color: var(--white);
   border-top: 1px solid rgba(255,255,255,0.1);
 }
@@ -725,6 +727,11 @@ input, textarea { font-family: inherit; }
 .sec--dark .step h3 { color: var(--white); }
 .sec--dark .step p { color: rgba(255,255,255,0.7); }
 .sec--dark .step__time { background: rgba(255,255,255,0.1); color: var(--white); }
+.sec--dark .services-grid { background: transparent; border-color: rgba(255,255,255,0.1); }
+.sec--dark .svc { border-color: rgba(255,255,255,0.1); }
+.sec--dark .svc:hover { background: rgba(255,255,255,0.03); }
+.sec--dark .svc__title { color: var(--white); }
+.sec--dark .svc__text { color: rgba(255,255,255,0.7); }
 
 /* ---- GRAIN NOISE ---- */
 .noise {
@@ -738,14 +745,7 @@ input, textarea { font-family: inherit; }
 
 /* ---- WEBGL CANVAS ---- */
 #webgl-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  pointer-events: none; /* Let clicks pass through to content */
-  background: #0a0a0c; /* Base dark background */
+  display: none; /* Hidden since we are returning to white backgrounds */
 }
 
 /* ---- PREMIUM REVEALS ---- */
