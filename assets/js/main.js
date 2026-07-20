@@ -25,17 +25,15 @@ mobNav.querySelectorAll('a').forEach(a => {
 
 /* ---- SCROLL REVEAL ---- */
 const rvObs = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
+  entries.forEach((e) => {
     if (e.isIntersecting) {
-      const siblings = Array.from(e.target.parentElement.querySelectorAll('.rv'));
-      const idx = siblings.indexOf(e.target);
-      e.target.style.transitionDelay = (idx * 0.07) + 's';
-      e.target.classList.add('in');
+      e.target.classList.add('is-visible');
       rvObs.unobserve(e.target);
     }
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
+
+document.querySelectorAll('.rv, .rv-left, .rv-right, .rv-scale').forEach(el => rvObs.observe(el));
 
 /* ---- THREE.JS HERO (light bg) ---- */
 (function initHero() {
@@ -215,3 +213,135 @@ if (casesMoreBtn) {
     }
   });
 }
+
+/* ---- GLOBAL 3D BACKGROUND ---- */
+(function initGlobal3D() {
+  const canvas = document.getElementById('webgl-canvas');
+  if (!canvas || typeof THREE === 'undefined') return;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  const scene = new THREE.Scene();
+  // Using a slightly dark fog to blend things into the distance
+  scene.fog = new THREE.FogExp2(0x0a0a0c, 0.04);
+
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 100);
+  camera.position.z = 25;
+
+  // Lights for that metallic/chrome look
+  scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+  
+  const dLight1 = new THREE.DirectionalLight(0xffffff, 1.5);
+  dLight1.position.set(10, 10, 10);
+  scene.add(dLight1);
+
+  const dLight2 = new THREE.DirectionalLight(0x0057B7, 2); // Blue tint
+  dLight2.position.set(-10, -10, 10);
+  scene.add(dLight2);
+
+  // Group to hold all our levitating shapes
+  const group = new THREE.Group();
+  scene.add(group);
+
+  // Material: Chrome / wireframe / abstract
+  const metalMat = new THREE.MeshStandardMaterial({
+    color: 0xffffff,
+    metalness: 1.0,
+    roughness: 0.2,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.3
+  });
+
+  const solidMetalMat = new THREE.MeshStandardMaterial({
+    color: 0xffffff,
+    metalness: 0.9,
+    roughness: 0.1
+  });
+
+  // Create random geometries (tetrahedrons, toruses, crosses)
+  const geometries = [
+    new THREE.TetrahedronGeometry(1.5),
+    new THREE.TorusGeometry(1, 0.4, 8, 20),
+    new THREE.OctahedronGeometry(1),
+    new THREE.IcosahedronGeometry(1.2, 0)
+  ];
+
+  const shapes = [];
+  
+  for (let i = 0; i < 30; i++) {
+    const geo = geometries[Math.floor(Math.random() * geometries.length)];
+    // Mix wireframe and solid
+    const mat = Math.random() > 0.5 ? metalMat : solidMetalMat;
+    const mesh = new THREE.Mesh(geo, mat);
+    
+    // Random positions
+    mesh.position.x = (Math.random() - 0.5) * 40;
+    mesh.position.y = (Math.random() - 0.5) * 60; // Spanning height
+    mesh.position.z = (Math.random() - 0.5) * 20 - 5;
+    
+    // Random rotations
+    mesh.rotation.x = Math.random() * Math.PI;
+    mesh.rotation.y = Math.random() * Math.PI;
+
+    // Random speeds
+    mesh.userData = {
+      rx: (Math.random() - 0.5) * 0.01,
+      ry: (Math.random() - 0.5) * 0.01,
+      yOffset: Math.random() * Math.PI * 2,
+      speed: 0.001 + Math.random() * 0.002
+    };
+
+    group.add(mesh);
+    shapes.push(mesh);
+  }
+
+  // Parallax on scroll
+  let targetY = 0;
+  window.addEventListener('scroll', () => {
+    // Parallax effect based on scroll percentage
+    const maxScroll = document.body.scrollHeight - window.innerHeight;
+    const scrollP = window.scrollY / maxScroll;
+    targetY = scrollP * 25; // Moves the camera up as we scroll down
+  });
+
+  // Mouse move effect for subtle 3D rotation
+  let mouseX = 0;
+  let mouseY = 0;
+  window.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+  });
+
+  function animate() {
+    requestAnimationFrame(animate);
+    
+    const time = Date.now() * 0.001;
+
+    // Smoothly interpolate camera position for parallax
+    camera.position.y += (targetY - camera.position.y) * 0.05;
+    
+    // Subtle rotation based on mouse
+    group.rotation.x += (mouseY * 0.1 - group.rotation.x) * 0.05;
+    group.rotation.y += (mouseX * 0.1 - group.rotation.y) * 0.05;
+
+    // Rotate individual shapes
+    shapes.forEach(shape => {
+      shape.rotation.x += shape.userData.rx;
+      shape.rotation.y += shape.userData.ry;
+      shape.position.y += Math.sin(time + shape.userData.yOffset) * 0.01;
+    });
+
+    renderer.render(scene, camera);
+  }
+
+  animate();
+
+  window.addEventListener('resize', () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+  });
+})();

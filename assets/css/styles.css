@@ -696,12 +696,74 @@ input, textarea { font-family: inherit; }
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 18px 22px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  transition: var(--trans);
 }
+.sec {
+  padding: 140px 0;
+  position: relative;
+  z-index: 1; /* Stay above canvas */
+}
+.sec--gray { background: var(--gray); }
+.sec--bordered { border-top: 1px solid var(--border); }
+.sec--dark {
+  background: transparent; /* Changed to transparent so the 3D canvas shows through */
+  color: var(--white);
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.sec--dark .sec__title { color: var(--white); }
+.sec--dark .sec__desc { color: rgba(255,255,255,0.7); }
+.sec--dark .btn--out { border-color: rgba(255,255,255,0.2); color: var(--white); }
+.sec--dark .btn--out:hover { background: rgba(255,255,255,0.1); }
+.sec--dark .adv-clean { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.1); }
+.sec--dark .adv-grid--clean { border-color: rgba(255,255,255,0.1); }
+.sec--dark .adv-clean__num { color: rgba(255,255,255,0.4); }
+.sec--dark h3 { color: var(--white); }
+.sec--dark p { color: rgba(255,255,255,0.7); }
+.sec--dark .acc { border-color: rgba(255,255,255,0.1); }
+.sec--dark .acc__head { color: var(--white); }
+.sec--dark .acc__body p { color: rgba(255,255,255,0.7); }
+.sec--dark .step { border-color: rgba(255,255,255,0.1); }
+.sec--dark .step h3 { color: var(--white); }
+.sec--dark .step p { color: rgba(255,255,255,0.7); }
+.sec--dark .step__time { background: rgba(255,255,255,0.1); color: var(--white); }
+
+/* ---- GRAIN NOISE ---- */
+.noise {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.05;
+  background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+}
+
+/* ---- WEBGL CANVAS ---- */
+#webgl-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none; /* Let clicks pass through to content */
+  background: #0a0a0c; /* Base dark background */
+}
+
+/* ---- PREMIUM REVEALS ---- */
+.rv { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+.rv-left { opacity: 0; transform: translateX(-60px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+.rv-right { opacity: 0; transform: translateX(60px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+.rv-scale { opacity: 0; transform: scale(0.9); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+
+.rv.is-visible, .rv-left.is-visible, .rv-right.is-visible, .rv-scale.is-visible { 
+  opacity: 1; transform: translate(0) scale(1); 
+}
+
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+.delay-6 { transition-delay: 0.6s; }
 .clink:hover {
   border-color: var(--black);
   transform: translateX(6px);

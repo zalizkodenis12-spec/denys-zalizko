@@ -12,6 +12,9 @@
 </head>
 <body>
 
+<canvas id="webgl-canvas"></canvas>
+<div class="noise"></div>
+
 <!-- ========== HEADER ========== -->
 <header class="hdr" id="hdr">
   <div class="wrap hdr__inner">
@@ -138,13 +141,13 @@
 <!-- ========== ADVANTAGES ========== -->
 <section class="sec sec--gray" id="advantages">
   <div class="wrap">
-    <div class="sec__head rv">
+    <div class="sec__head rv-left">
       <h2 class="sec__title adv__title">Чому обирають мене —<br><span class="accent">факти, а не слова</span></h2>
     </div>
 
     <div class="adv-grid adv-grid--clean">
 
-      <div class="adv-clean rv">
+      <div class="adv-clean rv delay-1">
         <div class="adv-clean__num">01</div>
         <div class="adv-clean__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -152,7 +155,7 @@
         <p><strong class="adv-clean__inline-title">Чистий код:</strong> пишу так, щоб сайт можна було легко розширювати. Ніякого спагетті — тільки структура.</p>
       </div>
 
-      <div class="adv-clean rv">
+      <div class="adv-clean rv delay-2">
         <div class="adv-clean__num">02</div>
         <div class="adv-clean__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><line x1="12" y1="15" x2="12" y2="17"/></svg>
@@ -160,7 +163,7 @@
         <p><strong class="adv-clean__inline-title">ШІ у розробці:</strong> використовую AI-інструменти для прискорення без втрати якості. Результат швидше — ціна та сама.</p>
       </div>
 
-      <div class="adv-clean rv">
+      <div class="adv-clean rv delay-3">
         <div class="adv-clean__num">03</div>
         <div class="adv-clean__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="6"/><line x1="2" y1="12" x2="22" y2="12"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>
@@ -168,7 +171,7 @@
         <p><strong class="adv-clean__inline-title">Адаптивність:</strong> ідеальний вигляд на телефонах, планшетах і ПК. Завжди тестую на реальних пристроях.</p>
       </div>
 
-      <div class="adv-clean rv">
+      <div class="adv-clean rv delay-4">
         <div class="adv-clean__num">04</div>
         <div class="adv-clean__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
@@ -176,7 +179,7 @@
         <p><strong class="adv-clean__inline-title">Швидкість сайту:</strong> оптимізований код і зображення. Google PageSpeed 90+. Сайти, які не змушують клієнта чекати.</p>
       </div>
 
-      <div class="adv-clean rv">
+      <div class="adv-clean rv delay-5">
         <div class="adv-clean__num">05</div>
         <div class="adv-clean__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -184,7 +187,7 @@
         <p><strong class="adv-clean__inline-title">SEO з нуля:</strong> семантична розмітка, мета-теги, швидке завантаження. Сайт, який Google індексує і ранжує вище.</p>
       </div>
 
-      <div class="adv-clean rv">
+      <div class="adv-clean rv delay-6">
         <div class="adv-clean__num">06</div>
         <div class="adv-clean__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
@@ -200,7 +203,7 @@
 <section class="sec sec--bordered" id="about">
   <div class="wrap">
     <div class="about">
-      <div class="about__left rv">
+      <div class="about__left rv-left">
         <h2 class="sec__title">Денис Залізко — веб-розробник</h2>
         <p class="about__text">Роблю сайти, які не просто гарно виглядають — вони вирішують задачі бізнесу. Від невеликого лендінгу до повноцінного онлайн-магазину з ШІ-інтеграцією.</p>
         <div class="about__actions">
@@ -208,7 +211,7 @@
           <a href="https://instagram.com/denis__zalizko" target="_blank" rel="noopener" class="btn btn--out">@denis__zalizko</a>
         </div>
       </div>
-      <div class="about__right rv">
+      <div class="about__right rv-right">
         <div class="about__photo" style="background: transparent;">
           <img src="assets/images/selfie.jpg" alt="Денис Залізко" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--r-xl);">
         </div>
