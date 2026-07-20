@@ -896,11 +896,10 @@ input, textarea { font-family: inherit; }
   font-size: 1.1rem; 
   font-weight: 600; 
   color: var(--light); 
-  margin-bottom: auto; /* Pushes the icon down if we wanted, but let's just margin-bottom it */
 }
 .adv-clean__icon { 
   margin: 40px 0 50px 0;
-  color: #0057B7; /* Blue icon color from screenshot */
+  color: var(--accent); /* Matched to global accent color */
   display: flex;
   align-items: center;
   justify-content: flex-start;
