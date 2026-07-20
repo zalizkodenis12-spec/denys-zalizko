@@ -171,9 +171,8 @@ if (form) {
 
     const name    = document.querySelector('[name="name"]').value.trim();
     const phone   = document.querySelector('[name="phone"]').value.trim();
-    const email   = document.querySelector('[name="email"]').value.trim();
     const project = document.querySelector('[name="project"]').value.trim();
-    const msg = encodeURIComponent(`🚀 Нова заявка!\n\n👤 ${name}\n📞 ${phone}\n📧 ${email}\n📋 ${project}`);
+    const msg = encodeURIComponent(`🚀 Нова заявка!\n\n👤 ${name}\n📞 ${phone}\n📋 ${project}`);
     window.open(`https://t.me/absolutikdenchik?text=${msg}`, '_blank');
 
     setTimeout(() => {

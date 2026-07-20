@@ -16,8 +16,7 @@
 <header class="hdr" id="hdr">
   <div class="wrap hdr__inner">
     <a href="#hero" class="logo" id="pLogo">
-      <span class="logo__mark">DZ</span>
-      <span class="logo__name">Denys Zalizko</span>
+      <span class="logo__name" style="font-family: var(--ffh); font-weight: 900; font-size: 1.5rem; letter-spacing: -0.5px;">Denys Zalizko</span>
     </a>
     <nav class="hdr__nav" id="hdrNav">
       <a href="#cases">Кейси</a>
@@ -76,17 +75,29 @@
 
     <div class="cases-grid">
 
+      <a href="https://sto-vidar.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-vidar">
+        <div class="case__img">
+          <img src="assets/images/site1.png" alt="STO Vidar" style="width: 100%; height: 100%; object-fit: cover;">
+          <div class="case__hover-label">Відкрити сайт →</div>
+        </div>
+        <div class="case__meta">
+          <h3 class="case__name">STO Vidar — СТО</h3>
+        </div>
+      </a>
+
+      <a href="https://sto-2-kapitana.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-kapitana">
+        <div class="case__img">
+          <img src="assets/images/site2.png" alt="2 Kapitana" style="width: 100%; height: 100%; object-fit: cover;">
+          <div class="case__hover-label">Відкрити сайт →</div>
+        </div>
+        <div class="case__meta">
+          <h3 class="case__name">2 Капітана — СТО</h3>
+        </div>
+      </a>
+
       <a href="https://elsalvador-barbershop.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-barbershop">
-        <div class="case__img case__img--barber">
-          <div class="case__img-inner">
-            <div class="case__mock-title">✂ El Salvador</div>
-            <div class="case__mock-sub">Barbershop</div>
-            <div class="case__mock-lines">
-              <div style="width:70%"></div>
-              <div style="width:50%"></div>
-            </div>
-            <div class="case__mock-btn"></div>
-          </div>
+        <div class="case__img">
+          <img src="assets/images/maryana.png" alt="El Salvador" style="width: 100%; height: 100%; object-fit: cover;">
           <div class="case__hover-label">Відкрити сайт →</div>
         </div>
         <div class="case__meta">
@@ -94,65 +105,16 @@
         </div>
       </a>
 
-      <a href="https://pm-pvidar.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-pvidar">
-        <div class="case__img case__img--auto">
-          <div class="case__img-inner">
-            <div class="case__mock-title">🔧 PM Pvidar</div>
-            <div class="case__mock-sub">Автомайстерня</div>
-            <div class="case__mock-lines">
-              <div style="width:65%"></div>
-              <div style="width:45%"></div>
-            </div>
-            <div class="case__mock-btn"></div>
-          </div>
-          <div class="case__hover-label">Відкрити сайт →</div>
-        </div>
-        <div class="case__meta">
-          <h3 class="case__name">PM Pvidar — Автомайстерня</h3>
-        </div>
-      </a>
+    </div>
 
+    <div class="cases-grid cases-grid--hidden" id="hiddenCases" style="display: none; margin-top: 24px;">
       <a href="https://masag.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-masag">
-        <div class="case__img case__img--massage">
-          <div class="case__img-inner">
-            <div class="case__mock-title">🌿 Масаж+</div>
-            <div class="case__mock-sub">Студія масажу</div>
-            <div class="case__mock-lines">
-              <div style="width:75%"></div>
-              <div style="width:55%"></div>
-            </div>
-            <div class="case__mock-btn"></div>
-          </div>
+        <div class="case__img">
+          <img src="assets/images/valentyna.png" alt="Massage+" style="width: 100%; height: 100%; object-fit: cover;">
           <div class="case__hover-label">Відкрити сайт →</div>
         </div>
         <div class="case__meta">
           <h3 class="case__name">Масаж+ — Студія масажу</h3>
-        </div>
-      </a>
-
-    </div>
-
-    <div class="cases-grid cases-grid--hidden" id="hiddenCases" style="display: none; margin-top: 24px;">
-      <a href="#" class="case rv">
-        <div class="case__img case__img--barber">
-          <div class="case__img-inner">
-            <div class="case__mock-title">🛒 Онлайн-магазин</div>
-            <div class="case__mock-sub">В розробці</div>
-          </div>
-        </div>
-        <div class="case__meta">
-          <h3 class="case__name">Магазин одягу</h3>
-        </div>
-      </a>
-      <a href="#" class="case rv">
-        <div class="case__img case__img--auto">
-          <div class="case__img-inner">
-            <div class="case__mock-title">⚡ Корпоративний</div>
-            <div class="case__mock-sub">Сайт</div>
-          </div>
-        </div>
-        <div class="case__meta">
-          <h3 class="case__name">Студія дизайну</h3>
         </div>
       </a>
     </div>
@@ -255,9 +217,8 @@
         </div>
       </div>
       <div class="about__right rv">
-        <div class="about__photo">
-          <svg viewBox="0 0 100 120" fill="none"><circle cx="50" cy="42" r="26" stroke="currentColor" stroke-width="1.5" opacity=".2"/><path d="M10 110c0-22.1 17.9-40 40-40s40 17.9 40 40" stroke="currentColor" stroke-width="1.5" opacity=".2"/></svg>
-          <p>Фото<br>скоро</p>
+        <div class="about__photo" style="background: transparent;">
+          <img src="assets/images/denys.png" alt="Денис Залізко" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--r-xl);">
         </div>
       </div>
     </div>
@@ -268,7 +229,7 @@
 <section class="sec sec--gray" id="services">
   <div class="wrap">
     <div class="sec__head rv sec__head--flex">
-      <h2 class="sec__title">Моя<br>експертиза</h2>
+      <h2 class="sec__title">Моя<br><span class="accent">експертиза</span></h2>
       <p class="sec__desc">Створюю сучасні веб-рішення з фокусом на масштабованість, швидкість роботи та ефективне вирішення завдань вашого бізнесу.</p>
     </div>
 
@@ -330,7 +291,7 @@
             </span>
           </button>
           <div class="acc__body" id="acc-body-1">
-            <p>Короткий зідзвон, де я все з'ясовую. Після цього створюється демоверсія сайту абсолютно безкоштовно.</p>
+            <p>Короткий зідзвон (10-15 хвилин), під час якого я детально дізнаюся про ваш бізнес, цілі та побажання. Ми обговорюємо структуру майбутнього сайту, його функціонал та необхідні інтеграції. Після цього я розробляю безкоштовну демоверсію, щоб ви могли одразу побачити мій підхід до роботи.</p>
             <span class="step__time">5-10 хвилин</span>
           </div>
         </div>
@@ -344,7 +305,7 @@
             </span>
           </button>
           <div class="acc__body acc__body--closed" id="acc-body-2">
-            <p>Розробка базової версії сайту, де ти вже можеш поклацати і побачити як все працює.</p>
+            <p>Протягом 1-2 днів я створюю базову версію сайту, яка містить головний екран, структуру та основний дизайн. Ви зможете поклацати її наживо у браузері. Це дозволяє нам зекономити час і переконатися, що ми рухаємося в правильному напрямку, ще до початку повноцінної розробки.</p>
             <span class="step__time">1-2 дні</span>
           </div>
         </div>
@@ -358,7 +319,7 @@
             </span>
           </button>
           <div class="acc__body acc__body--closed" id="acc-body-3">
-            <p>Зідзвон, після якого я виправляю всі деталі та повністю підлаштовую проєкт під ваші побажання.</p>
+            <p>Після перегляду демоверсії ми знову зідзвонюємося. Ви надаєте свої коментарі, і я вношу всі необхідні корективи. Ми повністю адаптуємо дизайн, кольори та шрифти під ваш бренд. Цей етап триває доти, поки ви не будете на 100% задоволені фінальним виглядом проєкту.</p>
             <span class="step__time">1 день</span>
           </div>
         </div>
@@ -372,7 +333,7 @@
             </span>
           </button>
           <div class="acc__body acc__body--closed" id="acc-body-4">
-            <p>Сайт повністю готовий. Я купую та підключаю домен, роблю фінальний запуск (або передаю права).</p>
+            <p>Коли все ідеально, я оптимізую код для швидкого завантаження та налаштовую базову SEO-оптимізацію. Допомагаю з вибором та покупкою домену (назви сайту) і підключаю його. Ви отримуєте повністю готовий до роботи інструмент, який приносить клієнтів.</p>
             <span class="step__time">1 день</span>
           </div>
         </div>
@@ -387,24 +348,14 @@
   <div class="wrap">
     <div class="contact-new">
       <div class="contact-new__left rv">
-        <h2 class="sec__title">МИ ЗНАЄМО, ЯК<br><span class="contact-new__outline">ВИРІШИТИ</span><br>ПОТРЕБИ БІЗНЕСУ</h2>
+        <h2 class="sec__title" style="letter-spacing: -1.5px;">Я ЗНАЮ, ЯК<br><span style="color: var(--accent);">ВИРІШИТИ</span><br>ПОТРЕБИ БІЗНЕСУ</h2>
         <p class="contact-new__desc">Розкажіть про свій проєкт - запропонуємо рішення, яке закриє ваші бізнес-задачі.</p>
       </div>
 
       <div class="contact-new__right rv">
         <form class="form-new" id="contactForm" novalidate>
           <input type="text" name="name" placeholder="Ім'я" required>
-          
-          <div class="form-new__phone">
-            <div class="form-new__flag">
-              <div class="form-new__flag-icon"></div>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M6 9l6 6 6-6"/></svg>
-              <span>+380</span>
-            </div>
-            <input type="text" name="phone" required>
-          </div>
-
-          <input type="email" name="email" placeholder="Email" required>
+          <input type="text" name="phone" placeholder="Телефон" required>
           <textarea name="project" placeholder="Розкажіть нам про свій проєкт" rows="5" required></textarea>
           
           <button type="submit" class="btn-black" id="cfSubmit">НАДІСЛАТИ</button>
@@ -418,31 +369,30 @@
 </main>
 
 <!-- ========== FOOTER ========== -->
-<footer class="footer">
+<footer class="footer" style="background: var(--white); color: var(--black); border-top: 1px solid var(--border);">
   <div class="wrap footer__inner">
     <a href="#hero" class="logo">
-      <span class="logo__mark">DZ</span>
-      <span class="logo__name">Denys Zalizko</span>
+      <span class="logo__name" style="font-family: var(--ffh); font-weight: 900; font-size: 1.5rem; letter-spacing: -0.5px; color: var(--black);">Denys Zalizko</span>
     </a>
-    <nav class="footer__nav">
-      <a href="#cases">Кейси</a>
-      <a href="#services">Послуги</a>
-      <a href="#process">Процес</a>
-      <a href="#contact">Контакти</a>
+    <nav class="footer__nav" style="color: var(--black);">
+      <a href="#cases" style="color: var(--black);">Кейси</a>
+      <a href="#services" style="color: var(--black);">Послуги</a>
+      <a href="#process" style="color: var(--black);">Процес</a>
+      <a href="#contact" style="color: var(--black);">Контакти</a>
     </nav>
     <div class="footer__socials">
-      <a href="https://t.me/absolutikdenchik" target="_blank" rel="noopener" aria-label="Telegram" id="footer-tg">
+      <a href="https://t.me/absolutikdenchik" target="_blank" rel="noopener" aria-label="Telegram" id="footer-tg" style="background: var(--gray); color: var(--black);">
         <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
       </a>
-      <a href="https://instagram.com/denis__zalizko" target="_blank" rel="noopener" aria-label="Instagram" id="footer-insta">
+      <a href="https://instagram.com/denis__zalizko" target="_blank" rel="noopener" aria-label="Instagram" id="footer-insta" style="background: var(--gray); color: var(--black);">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
       </a>
-      <a href="mailto:zalizkodenis12@gmail.com" aria-label="Email" id="footer-email">
+      <a href="mailto:zalizkodenis12@gmail.com" aria-label="Email" id="footer-email" style="background: var(--gray); color: var(--black);">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       </a>
     </div>
   </div>
-  <div class="wrap footer__bottom">
+  <div class="wrap footer__bottom" style="color: var(--muted);">
     <span>© 2026 Денис Залізко. Всі права захищено.</span>
     <span>Зроблено з ❤️ в Україні</span>
   </div>
