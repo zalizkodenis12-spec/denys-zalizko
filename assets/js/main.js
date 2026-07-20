@@ -187,7 +187,8 @@ if (form) {
     inp.addEventListener('input', () => { if (inp.classList.contains('error')) validate(inp); });
   });
 
-  form.addEventListener('submit', e => {
+  /* Form submit */
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     let ok = true;
     form.querySelectorAll('[required]').forEach(inp => { if (!validate(inp)) ok = false; });
@@ -200,15 +201,34 @@ if (form) {
     const name    = document.querySelector('[name="name"]').value.trim();
     const phone   = document.querySelector('[name="phone"]').value.trim();
     const project = document.querySelector('[name="project"]').value.trim();
-    const msg = encodeURIComponent(`🚀 Нова заявка!\n\n👤 ${name}\n📞 ${phone}\n📋 ${project}`);
-    window.open(`https://t.me/absolutikdenchik?text=${msg}`, '_blank');
+    
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, project })
+      });
 
-    setTimeout(() => {
-      status.textContent = '✅ Відкрив Telegram — напиши мені там!';
-      btn.disabled = false;
-      btn.textContent = 'НАДІСЛАТИ';
-      form.reset();
-    }, 800);
+      if (res.ok) {
+        status.textContent = '✅ Заявка успішно відправлена! Скоро зв\'яжусь.';
+        form.reset();
+      } else {
+        status.textContent = '❌ Помилка відправки. Можливо, не налаштований бот.';
+      }
+    } catch (err) {
+      status.textContent = '❌ Сталася помилка. Напишіть мені в Telegram напряму.';
+    } finally {
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = 'НАДІСЛАТИ';
+      }, 2000);
+      
+      setTimeout(() => {
+        if (status.textContent.includes('✅')) {
+          status.textContent = '';
+        }
+      }, 5000);
+    }
   });
 }
 
