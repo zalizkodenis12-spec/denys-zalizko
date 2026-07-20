@@ -258,10 +258,47 @@ if (casesMoreBtn) {
   casesMoreBtn.addEventListener('click', () => {
     const hidden = document.getElementById('hiddenCases');
     if (hidden) {
-      hidden.style.display = 'grid';
+      if (window.innerWidth <= 640) {
+        // На мобільному перекидаємо картки в основний горизонтальний слайдер
+        const mainGrid = document.querySelector('.cases-grid');
+        while (hidden.firstChild) {
+          mainGrid.appendChild(hidden.firstChild);
+        }
+        hidden.remove();
+      } else {
+        hidden.style.display = 'grid';
+      }
       casesMoreBtn.style.display = 'none';
     }
   });
+}
+
+/* ---- SLIDER DOTS ---- */
+const advGrid = document.querySelector('.adv-grid--clean');
+const advDots = document.getElementById('advDots');
+if (advGrid && advDots) {
+  const cards = advGrid.querySelectorAll('.adv-clean');
+  
+  // Створюємо крапки
+  cards.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'slider-dot';
+    if (i === 0) dot.classList.add('active');
+    advDots.appendChild(dot);
+  });
+  
+  // Оновлюємо крапки при скролі
+  advGrid.addEventListener('scroll', () => {
+    const scrollPos = advGrid.scrollLeft;
+    const cardWidth = cards[0].offsetWidth + 16; // width + gap
+    let activeIndex = Math.round(scrollPos / cardWidth);
+    if (activeIndex >= cards.length) activeIndex = cards.length - 1;
+    
+    const dots = advDots.querySelectorAll('.slider-dot');
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === activeIndex);
+    });
+  }, { passive: true });
 }
 
 /* ---- GLOBAL 3D BACKGROUND ---- */
