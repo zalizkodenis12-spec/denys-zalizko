@@ -374,46 +374,62 @@ function initMini3D(canvasId) {
 
   /* Shapes */
   const shapes = [];
-  const spread = 12;
-  const defs = [
-    { geo: new THREE.IcosahedronGeometry(1.8, 0), x: (Math.random() - 0.5) * spread, y: (Math.random() - 0.5) * spread, z: (Math.random() - 0.5) * spread },
-    { geo: new THREE.OctahedronGeometry(1.3, 0),  x: (Math.random() - 0.5) * spread, y: (Math.random() - 0.5) * spread, z: (Math.random() - 0.5) * spread },
-    { geo: new THREE.TorusGeometry(1.1, .35, 12, 48), x: (Math.random() - 0.5) * spread, y: (Math.random() - 0.5) * spread, z: (Math.random() - 0.5) * spread },
-    { geo: new THREE.IcosahedronGeometry(.9, 0),   x: (Math.random() - 0.5) * spread, y: (Math.random() - 0.5) * spread, z: (Math.random() - 0.5) * spread },
-    { geo: new THREE.TetrahedronGeometry(1.2, 0),  x: (Math.random() - 0.5) * spread, y: (Math.random() - 0.5) * spread, z: (Math.random() - 0.5) * spread },
-    { geo: new THREE.OctahedronGeometry(.7, 0),    x: (Math.random() - 0.5) * spread, y: (Math.random() - 0.5) * spread, z: (Math.random() - 0.5) * spread },
+  const spread = 25; // Massive spread to fill space
+  
+  // Base geometries
+  const baseDefs = [
+    { geo: new THREE.IcosahedronGeometry(1.8, 0) },
+    { geo: new THREE.OctahedronGeometry(1.3, 0) },
+    { geo: new THREE.TorusGeometry(1.1, .35, 12, 48) },
+    { geo: new THREE.IcosahedronGeometry(.9, 0) },
+    { geo: new THREE.TetrahedronGeometry(1.2, 0) },
+    { geo: new THREE.OctahedronGeometry(.7, 0) },
+    { geo: new THREE.TorusGeometry(0.8, .2, 8, 32) },
+    { geo: new THREE.BoxGeometry(1, 1, 1) },
+    { geo: new THREE.TetrahedronGeometry(0.8, 0) }
   ];
   
   const mats = [
-    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: true,  transparent: true, opacity: .6 }),
-    new THREE.MeshStandardMaterial({ color: 0xE64D00, wireframe: false, transparent: true, opacity: .4, metalness: .8, roughness: .2 }),
-    new THREE.MeshStandardMaterial({ color: 0x1a1a1a, wireframe: true,  transparent: true, opacity: .3 }),
-    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: false, transparent: true, opacity: .3, metalness: .9, roughness: .1 }),
+    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: true,  transparent: true, opacity: .5 }),
+    new THREE.MeshStandardMaterial({ color: 0xE64D00, wireframe: false, transparent: true, opacity: .3, metalness: .8, roughness: .2 }),
+    new THREE.MeshStandardMaterial({ color: 0x1a1a1a, wireframe: true,  transparent: true, opacity: .2 }),
+    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: false, transparent: true, opacity: .2, metalness: .9, roughness: .1 }),
+    new THREE.MeshStandardMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.1 }),
   ];
 
-  defs.forEach((d, i) => {
-    const mesh = new THREE.Mesh(d.geo, mats[i % mats.length]);
-    mesh.position.set(d.x, d.y, d.z);
+  // Generate 20 random shapes based on the templates
+  for (let i = 0; i < 20; i++) {
+    const base = baseDefs[Math.floor(Math.random() * baseDefs.length)];
+    const mat = mats[Math.floor(Math.random() * mats.length)];
+    const mesh = new THREE.Mesh(base.geo, mat);
+    
+    // Spread them far out
+    const x = (Math.random() - 0.5) * spread;
+    const y = (Math.random() - 0.5) * spread;
+    const z = (Math.random() - 0.5) * 10;
+    
+    mesh.position.set(x, y, z);
     mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
     mesh.userData = {
       rx: (Math.random() - .5) * .02,
       ry: (Math.random() - .5) * .02,
       amp: .3 + Math.random() * .5,
-      spd: .4 + Math.random() * .4,
+      spd: .2 + Math.random() * .3,
       ph: Math.random() * Math.PI * 2,
-      by: d.y,
+      by: y,
     };
     scene.add(mesh);
     shapes.push(mesh);
-  });
+  }
 
   /* Particles */
   const pGeo = new THREE.BufferGeometry();
-  const pPos = new Float32Array(100 * 3);
-  for (let i = 0; i < 100; i++) {
-    pPos[i*3]   = (Math.random() - .5) * 20;
-    pPos[i*3+1] = (Math.random() - .5) * 20;
-    pPos[i*3+2] = (Math.random() - .5) * 15;
+  const numParticles = 300;
+  const pPos = new Float32Array(numParticles * 3);
+  for (let i = 0; i < numParticles; i++) {
+    pPos[i*3]   = (Math.random() - .5) * 40;
+    pPos[i*3+1] = (Math.random() - .5) * 40;
+    pPos[i*3+2] = (Math.random() - .5) * 20;
   }
   pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
   const pts = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xFF5C00, size: .09, transparent: true, opacity: .5 }));
