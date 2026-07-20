@@ -4,299 +4,221 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Денис Залізко — Веб-розробник | Лендінги, Магазини, Telegram-боти</title>
-  <meta name="description" content="Денис Залізко — веб-розробник з України. Створюю лендінги, онлайн-магазини, преміальні сайти з 3D-анімацією та ШІ-інтеграціями. Швидко, чисто, адаптивно.">
-  <meta name="keywords" content="веб-розробник, лендінг, онлайн-магазин, сайт на замовлення, Telegram-бот, ШІ-інтеграція">
-  <meta property="og:title" content="Денис Залізко — Веб-розробник">
-  <meta property="og:description" content="Створюю лендінги, онлайн-магазини та преміальні сайти. Швидко, чисто, результат.">
-  <meta property="og:type" content="website">
+  <meta name="description" content="Денис Залізко — веб-розробник з України. Лендінги, онлайн-магазини, преміальні сайти. Швидко, чисто, адаптивно.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 
-<!-- Cursor glow (desktop) -->
-<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
-
 <!-- ========== HEADER ========== -->
-<header class="p-header" id="pHeader">
-  <div class="p-container p-header__inner">
-    <a href="#hero" class="p-logo" id="pLogo">
-      <span class="p-logo__mark">DZ</span>
-      <span class="p-logo__text">Denys Zalizko</span>
+<header class="hdr" id="hdr">
+  <div class="wrap hdr__inner">
+    <a href="#hero" class="logo" id="pLogo">
+      <span class="logo__mark">DZ</span>
+      <span class="logo__name">Denys Zalizko</span>
     </a>
-    <nav class="p-nav" id="pNav">
-      <a href="#cases" class="p-nav__link">Кейси</a>
-      <a href="#advantages" class="p-nav__link">Переваги</a>
-      <a href="#about" class="p-nav__link">Про мене</a>
-      <a href="#services" class="p-nav__link">Послуги</a>
-      <a href="#process" class="p-nav__link">Процес</a>
-      <a href="#contact" class="p-nav__link">Контакти</a>
+    <nav class="hdr__nav" id="hdrNav">
+      <a href="#cases">Кейси</a>
+      <a href="#advantages">Переваги</a>
+      <a href="#about">Про мене</a>
+      <a href="#services">Послуги</a>
+      <a href="#process">Процес</a>
+      <a href="#contact">Контакти</a>
     </nav>
-    <a href="#contact" class="p-btn p-btn--accent p-header__cta">Замовити сайт</a>
-    <button class="p-burger" id="pBurger" aria-label="Меню" aria-expanded="false">
+    <a href="#contact" class="btn btn--fill" id="hdr-cta">Замовити сайт</a>
+    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
 <!-- MOBILE NAV -->
-<div class="p-mobile-nav" id="pMobileNav">
-  <a href="#cases" class="p-mobile-nav__link">Кейси</a>
-  <a href="#advantages" class="p-mobile-nav__link">Переваги</a>
-  <a href="#about" class="p-mobile-nav__link">Про мене</a>
-  <a href="#services" class="p-mobile-nav__link">Послуги</a>
-  <a href="#process" class="p-mobile-nav__link">Процес</a>
-  <a href="#contact" class="p-mobile-nav__link">Контакти</a>
-  <a href="#contact" class="p-btn p-btn--accent">Замовити сайт</a>
+<div class="mob-nav" id="mobNav">
+  <nav>
+    <a href="#cases">Кейси</a>
+    <a href="#advantages">Переваги</a>
+    <a href="#about">Про мене</a>
+    <a href="#services">Послуги</a>
+    <a href="#process">Процес</a>
+    <a href="#contact">Контакти</a>
+  </nav>
+  <a href="#contact" class="btn btn--fill">Замовити сайт</a>
 </div>
 
 <main>
 
 <!-- ========== HERO ========== -->
-<section class="p-hero" id="hero">
-  <canvas class="p-hero__canvas" id="heroCanvas"></canvas>
-  <div class="p-hero__noise"></div>
-  <div class="p-container p-hero__inner">
-    <div class="p-hero__badge reveal-up">
-      <span class="p-hero__badge-dot"></span>
-      Доступний для нових проєктів
-    </div>
-    <h1 class="p-hero__title reveal-up">
-      Роблю сайти,<br>
-      <span class="p-hero__title-grad">які продають</span>
-    </h1>
-    <p class="p-hero__sub reveal-up">
-      Лендінги, онлайн-магазини та преміальні сайти з 3D-анімацією.<br>
-      Адаптивно, швидко, з увагою до кожного пікселя.
-    </p>
-    <div class="p-hero__actions reveal-up">
-      <a href="#cases" class="p-btn p-btn--accent p-btn--lg">Дивитись кейси</a>
-      <a href="#contact" class="p-btn p-btn--ghost p-btn--lg">Замовити сайт →</a>
-    </div>
-    <div class="p-hero__stats reveal-up">
-      <div class="p-hero__stat">
-        <strong>3+</strong>
-        <span>Живих проєктів</span>
+<section class="hero" id="hero">
+  <div class="wrap hero__inner">
+    <div class="hero__left">
+      <h1 class="hero__title rv">
+        Сайти,<br>що<br><span class="accent">продають</span>
+      </h1>
+      <div class="hero__sub rv">
+        Проєктую та розробляю лендінги, онлайн-магазини та преміальні сайти з 3D-анімацією — від ідеї до запуску
       </div>
-      <div class="p-hero__stat-divider"></div>
-      <div class="p-hero__stat">
-        <strong>ШІ</strong>
-        <span>У розробці</span>
-      </div>
-      <div class="p-hero__stat-divider"></div>
-      <div class="p-hero__stat">
-        <strong>100%</strong>
-        <span>Адаптивність</span>
+      <a href="#contact" class="btn btn--fill btn--lg rv">Замовити сайт</a>
+      <div class="hero__stats rv">
+        <div class="hero__stat">
+          <strong>3+</strong>
+          <span>Живих проєктів</span>
+        </div>
+        <div class="hero__stat">
+          <strong>ШІ</strong>
+          <span>У розробці</span>
+        </div>
+        <div class="hero__stat">
+          <strong>100%</strong>
+          <span>Адаптивність</span>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="p-hero__scroll-hint" aria-hidden="true">
-    <span>Scroll</span>
-    <div class="p-hero__scroll-line"></div>
+    <div class="hero__right">
+      <canvas id="heroCanvas"></canvas>
+    </div>
   </div>
 </section>
 
 <!-- ========== CASES ========== -->
-<section class="p-section" id="cases">
-  <div class="p-container">
-    <div class="p-section__head reveal-up">
-      <span class="p-section__tag">Портфоліо</span>
-      <h2 class="p-section__title">Живі проєкти</h2>
-      <p class="p-section__desc">Клікай — переходиш на реальний сайт. Не просто картинки — це продукти, які вже працюють і приносять клієнтів.</p>
+<section class="sec sec--bordered" id="cases">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <span class="label">Портфоліо</span>
+      <h2 class="sec__title">Кейси</h2>
     </div>
 
-    <div class="p-cases">
+    <div class="cases-grid">
 
-      <!-- Case 1: El Salvador Barbershop -->
-      <a href="https://elsalvador-barbershop.vercel.app/" target="_blank" rel="noopener" class="p-case reveal-up" id="case-barbershop">
-        <div class="p-case__mockup">
-          <div class="p-case__browser">
-            <div class="p-case__browser-bar">
-              <span class="p-case__browser-dot"></span>
-              <span class="p-case__browser-dot"></span>
-              <span class="p-case__browser-dot"></span>
-              <span class="p-case__browser-url">elsalvador-barbershop.vercel.app</span>
+      <a href="https://elsalvador-barbershop.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-barbershop">
+        <div class="case__img case__img--barber">
+          <div class="case__img-inner">
+            <div class="case__mock-title">✂ El Salvador</div>
+            <div class="case__mock-sub">Barbershop</div>
+            <div class="case__mock-lines">
+              <div style="width:70%"></div>
+              <div style="width:50%"></div>
             </div>
-            <div class="p-case__browser-screen">
-              <div class="p-case__screen-placeholder p-case__screen--barber">
-                <div class="p-case__screen-inner">
-                  <div class="p-case__preview-logo">✂ El Salvador</div>
-                  <div class="p-case__preview-tag">Barbershop</div>
-                  <div class="p-case__preview-lines">
-                    <div class="p-case__preview-line" style="width:70%"></div>
-                    <div class="p-case__preview-line" style="width:50%"></div>
-                    <div class="p-case__preview-btn"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div class="case__mock-btn"></div>
           </div>
-          <div class="p-case__phone">
-            <div class="p-case__phone-screen p-case__screen--barber-m">
-              <div class="p-case__phone-notch"></div>
-            </div>
-          </div>
+          <div class="case__hover-label">Відкрити сайт →</div>
         </div>
-        <div class="p-case__info">
-          <div class="p-case__tags">
-            <span class="p-tag">Лендінг</span>
-            <span class="p-tag">Барбершоп</span>
-          </div>
-          <h3 class="p-case__title">El Salvador Barbershop</h3>
-          <p class="p-case__desc">Преміальний лендінг для барбершопу з онлайн-записом, галереєю та адаптивним дизайном.</p>
-          <span class="p-case__link">Відкрити сайт →</span>
+        <div class="case__meta">
+          <h3 class="case__name">El Salvador Barbershop</h3>
+          <p class="case__desc">Преміальний лендінг для барбершопу з онлайн-записом та адаптивним дизайном</p>
         </div>
       </a>
 
-      <!-- Case 2: PM Pvidar -->
-      <a href="https://pm-pvidar.vercel.app/" target="_blank" rel="noopener" class="p-case reveal-up" id="case-pvidar">
-        <div class="p-case__mockup">
-          <div class="p-case__browser">
-            <div class="p-case__browser-bar">
-              <span class="p-case__browser-dot"></span>
-              <span class="p-case__browser-dot"></span>
-              <span class="p-case__browser-dot"></span>
-              <span class="p-case__browser-url">pm-pvidar.vercel.app</span>
+      <a href="https://pm-pvidar.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-pvidar">
+        <div class="case__img case__img--auto">
+          <div class="case__img-inner">
+            <div class="case__mock-title">🔧 PM Pvidar</div>
+            <div class="case__mock-sub">Автомайстерня</div>
+            <div class="case__mock-lines">
+              <div style="width:65%"></div>
+              <div style="width:45%"></div>
             </div>
-            <div class="p-case__browser-screen">
-              <div class="p-case__screen-placeholder p-case__screen--auto">
-                <div class="p-case__screen-inner">
-                  <div class="p-case__preview-logo">🔧 PM Pvidar</div>
-                  <div class="p-case__preview-tag">Автомайстерня</div>
-                  <div class="p-case__preview-lines">
-                    <div class="p-case__preview-line" style="width:65%"></div>
-                    <div class="p-case__preview-line" style="width:45%"></div>
-                    <div class="p-case__preview-btn"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div class="case__mock-btn"></div>
           </div>
-          <div class="p-case__phone">
-            <div class="p-case__phone-screen p-case__screen--auto-m">
-              <div class="p-case__phone-notch"></div>
-            </div>
-          </div>
+          <div class="case__hover-label">Відкрити сайт →</div>
         </div>
-        <div class="p-case__info">
-          <div class="p-case__tags">
-            <span class="p-tag">Веб-каталог</span>
-            <span class="p-tag">Авто</span>
-          </div>
-          <h3 class="p-case__title">PM Pvidar — Автомайстерня</h3>
-          <p class="p-case__desc">Веб-каталог для автомайстерні з переліком послуг, цінами та контактами.</p>
-          <span class="p-case__link">Відкрити сайт →</span>
+        <div class="case__meta">
+          <h3 class="case__name">PM Pvidar — Автомайстерня</h3>
+          <p class="case__desc">Веб-каталог з переліком послуг, цінами та контактами</p>
         </div>
       </a>
 
-      <!-- Case 3: Masag -->
-      <a href="https://masag.vercel.app/" target="_blank" rel="noopener" class="p-case reveal-up" id="case-masag">
-        <div class="p-case__mockup">
-          <div class="p-case__browser">
-            <div class="p-case__browser-bar">
-              <span class="p-case__browser-dot"></span>
-              <span class="p-case__browser-dot"></span>
-              <span class="p-case__browser-dot"></span>
-              <span class="p-case__browser-url">masag.vercel.app</span>
+      <a href="https://masag.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-masag">
+        <div class="case__img case__img--massage">
+          <div class="case__img-inner">
+            <div class="case__mock-title">🌿 Масаж+</div>
+            <div class="case__mock-sub">Студія масажу</div>
+            <div class="case__mock-lines">
+              <div style="width:75%"></div>
+              <div style="width:55%"></div>
             </div>
-            <div class="p-case__browser-screen">
-              <div class="p-case__screen-placeholder p-case__screen--massage">
-                <div class="p-case__screen-inner">
-                  <div class="p-case__preview-logo">🌿 Масаж+</div>
-                  <div class="p-case__preview-tag">Студія масажу</div>
-                  <div class="p-case__preview-lines">
-                    <div class="p-case__preview-line" style="width:75%"></div>
-                    <div class="p-case__preview-line" style="width:55%"></div>
-                    <div class="p-case__preview-btn"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div class="case__mock-btn"></div>
           </div>
-          <div class="p-case__phone">
-            <div class="p-case__phone-screen p-case__screen--massage-m">
-              <div class="p-case__phone-notch"></div>
-            </div>
-          </div>
+          <div class="case__hover-label">Відкрити сайт →</div>
         </div>
-        <div class="p-case__info">
-          <div class="p-case__tags">
-            <span class="p-tag">Лендінг</span>
-            <span class="p-tag">Краса та здоров'я</span>
-          </div>
-          <h3 class="p-case__title">Масаж+ — Студія масажу</h3>
-          <p class="p-case__desc">Преміальний лендінг для студії масажу з формою запису, командою та прайсом.</p>
-          <span class="p-case__link">Відкрити сайт →</span>
+        <div class="case__meta">
+          <h3 class="case__name">Масаж+ — Студія масажу</h3>
+          <p class="case__desc">Лендінг з формою запису, командою та прайсом</p>
         </div>
       </a>
 
     </div>
 
-    <div class="p-cases__more reveal-up">
-      <p class="p-cases__more-text">Ще один проєкт в розробці — <strong>онлайн-магазин</strong></p>
-      <span class="p-tag p-tag--soon">Скоро</span>
+    <div class="cases-more rv">
+      <span class="label label--outline">Скоро</span>
+      <p>Ще один проєкт в розробці — <strong>онлайн-магазин</strong></p>
     </div>
   </div>
 </section>
 
 <!-- ========== ADVANTAGES ========== -->
-<section class="p-section p-section--alt" id="advantages">
-  <div class="p-container">
-    <div class="p-section__head reveal-up">
-      <span class="p-section__tag">Чому я</span>
-      <h2 class="p-section__title">Переваги роботи зі мною</h2>
+<section class="sec sec--gray" id="advantages">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <span class="label">Наші переваги</span>
+      <h2 class="sec__title adv__title">Чому обирають мене — <span class="accent">факти, а не слова</span></h2>
     </div>
 
-    <div class="p-advantages">
+    <div class="adv-grid">
 
-      <div class="p-adv reveal-up">
-        <div class="p-adv__icon">
+      <div class="adv rv">
+        <span class="adv__num">01</span>
+        <div class="adv__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
         </div>
-        <h3 class="p-adv__title">Чистий, масштабований код</h3>
-        <p class="p-adv__text">Пишу так, щоб сайт можна було легко розширювати. Жодного спагетті-коду — тільки структура.</p>
+        <h3>Чистий код</h3>
+        <p>Пишу так, щоб сайт можна було легко розширювати. Ніякого спагетті — тільки структура.</p>
       </div>
 
-      <div class="p-adv reveal-up">
-        <div class="p-adv__icon">
+      <div class="adv rv">
+        <span class="adv__num">02</span>
+        <div class="adv__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
         </div>
-        <h3 class="p-adv__title">ШІ для швидшої розробки</h3>
-        <p class="p-adv__text">Використовую AI-інструменти, щоб здавати швидше без втрати якості. Клієнт отримує результат в рекордні строки.</p>
+        <h3>ШІ у розробці</h3>
+        <p>Використовую AI-інструменти для прискорення без втрати якості. Результат швидше — ціна та сама.</p>
       </div>
 
-      <div class="p-adv reveal-up">
-        <div class="p-adv__icon">
+      <div class="adv rv">
+        <span class="adv__num">03</span>
+        <div class="adv__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
         </div>
-        <h3 class="p-adv__title">Ідеально на будь-якому пристрої</h3>
-        <p class="p-adv__text">Кожен сайт тестую на мобільних, планшетах і комп'ютерах. Адаптивність — це не опція, це стандарт.</p>
+        <h3>Адаптивність</h3>
+        <p>Кожен сайт ідеально виглядає на телефоні, планшеті і комп'ютері. Тестую на реальних пристроях.</p>
       </div>
 
-      <div class="p-adv reveal-up">
-        <div class="p-adv__icon">
+      <div class="adv rv">
+        <span class="adv__num">04</span>
+        <div class="adv__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         </div>
-        <h3 class="p-adv__title">Швидкість завантаження</h3>
-        <p class="p-adv__text">Оптимізований код, стиснені зображення, Google PageSpeed 90+. Сайти, які не змушують чекати.</p>
+        <h3>Швидкість сайту</h3>
+        <p>Оптимізований код і зображення. Google PageSpeed 90+. Сайти, які не змушують клієнта чекати.</p>
       </div>
 
-      <div class="p-adv reveal-up">
-        <div class="p-adv__icon">
+      <div class="adv rv">
+        <span class="adv__num">05</span>
+        <div class="adv__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         </div>
-        <h3 class="p-adv__title">SEO з першого рядка коду</h3>
-        <p class="p-adv__text">Семантична розмітка, мета-теги, structured data. Сайт, який Google любить і ранжує вище.</p>
+        <h3>SEO з нуля</h3>
+        <p>Семантична розмітка, мета-теги, швидке завантаження. Сайт, який Google індексує і ранжує вище.</p>
       </div>
 
-      <div class="p-adv reveal-up">
-        <div class="p-adv__icon">
+      <div class="adv rv">
+        <span class="adv__num">06</span>
+        <div class="adv__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
-        <h3 class="p-adv__title">На зв'язку завжди</h3>
-        <p class="p-adv__text">Відповідаю швидко, тримаю в курсі на кожному етапі. Ніяких зникань на тижень — чесна комунікація.</p>
+        <h3>На зв'язку</h3>
+        <p>Відповідаю швидко, тримаю в курсі кожного кроку. Ніяких зникань. Чесна комунікація завжди.</p>
       </div>
 
     </div>
@@ -304,85 +226,77 @@
 </section>
 
 <!-- ========== ABOUT ========== -->
-<section class="p-section" id="about">
-  <div class="p-container">
-    <div class="p-about">
-      <div class="p-about__media reveal-up">
-        <div class="p-about__photo-wrap">
-          <div class="p-about__photo-placeholder">
-            <svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="38" r="20" stroke="currentColor" stroke-width="2" opacity="0.3"/><path d="M15 90c0-19.33 15.67-35 35-35s35 15.67 35 35" stroke="currentColor" stroke-width="2" opacity="0.3"/></svg>
-            <p>Фото скоро</p>
-          </div>
-          <div class="p-about__photo-glow"></div>
+<section class="sec sec--bordered" id="about">
+  <div class="wrap">
+    <div class="about">
+      <div class="about__left rv">
+        <span class="label">Про мене</span>
+        <h2 class="sec__title">Денис Залізко —<br>веб-розробник</h2>
+        <p class="about__text">Роблю сайти, які не просто гарно виглядають — вони вирішують задачі бізнесу. Від невеликого лендінгу до повноцінного онлайн-магазину з ШІ-інтеграцією.</p>
+        <p class="about__text">Мій підхід: спочатку розуміємо задачу, потім — дизайн і код. Жодних шаблонних рішень.</p>
+        <div class="about__stack">
+          <span>HTML / CSS</span>
+          <span>JavaScript</span>
+          <span>Three.js</span>
+          <span>React</span>
+          <span>Node.js</span>
+          <span>Telegram Bot API</span>
+          <span>Vercel</span>
+          <span>GitHub</span>
         </div>
-        <div class="p-about__tag-float p-about__tag-float--1"><span>💻 Front-end</span></div>
-        <div class="p-about__tag-float p-about__tag-float--2"><span>🤖 AI-tools</span></div>
-        <div class="p-about__tag-float p-about__tag-float--3"><span>⚡ Vercel</span></div>
+        <div class="about__actions">
+          <a href="#contact" class="btn btn--fill">Написати мені</a>
+          <a href="https://instagram.com/denis__zalizko" target="_blank" rel="noopener" class="btn btn--out">@denis__zalizko</a>
+        </div>
       </div>
-      <div class="p-about__content reveal-up">
-        <span class="p-section__tag">Про мене</span>
-        <h2 class="p-section__title">Денис Залізко — веб-розробник</h2>
-        <p class="p-about__text">
-          Роблю сайти, які не просто гарно виглядають — вони вирішують задачі бізнесу. Від невеликого лендінгу до повноцінного онлайн-магазину з ШІ-інтеграцією.
-        </p>
-        <p class="p-about__text">
-          Мій підхід: спочатку розуміємо задачу, потім — дизайн і код. Жодних шаблонних рішень. Кожен проєкт — унікальний продукт.
-        </p>
-        <div class="p-about__stack">
-          <span class="p-stack-tag">HTML / CSS</span>
-          <span class="p-stack-tag">JavaScript</span>
-          <span class="p-stack-tag">Three.js</span>
-          <span class="p-stack-tag">React</span>
-          <span class="p-stack-tag">Node.js</span>
-          <span class="p-stack-tag">Telegram Bot API</span>
-          <span class="p-stack-tag">Vercel</span>
-          <span class="p-stack-tag">GitHub</span>
+      <div class="about__right rv">
+        <div class="about__photo">
+          <svg viewBox="0 0 100 120" fill="none"><circle cx="50" cy="42" r="26" stroke="currentColor" stroke-width="1.5" opacity=".2"/><path d="M10 110c0-22.1 17.9-40 40-40s40 17.9 40 40" stroke="currentColor" stroke-width="1.5" opacity=".2"/></svg>
+          <p>Фото<br>скоро</p>
         </div>
-        <div class="p-about__actions">
-          <a href="#contact" class="p-btn p-btn--accent">Написати мені</a>
-          <a href="https://instagram.com/denis__zalizko" target="_blank" rel="noopener" class="p-btn p-btn--ghost">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            @denis__zalizko
-          </a>
-        </div>
+        <div class="about__float about__float--1">💻 Front-end</div>
+        <div class="about__float about__float--2">🤖 AI-tools</div>
+        <div class="about__float about__float--3">⚡ Vercel</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ========== SERVICES ========== -->
-<section class="p-section p-section--alt" id="services">
-  <div class="p-container">
-    <div class="p-section__head reveal-up">
-      <span class="p-section__tag">Що я роблю</span>
-      <h2 class="p-section__title">Послуги</h2>
-      <p class="p-section__desc">Від простого лендінгу до складної системи з автоматизацією — знайдемо рішення під твій бізнес.</p>
+<section class="sec sec--gray" id="services">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <span class="label">Що я роблю</span>
+      <h2 class="sec__title">Послуги</h2>
     </div>
 
-    <div class="p-services">
+    <div class="services-grid">
 
-      <div class="p-service reveal-up" id="service-landing">
-        <div class="p-service__icon">
+      <div class="svc rv" id="service-landing">
+        <div class="svc__num">01</div>
+        <div class="svc__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
         </div>
-        <h3 class="p-service__title">Лендінги</h3>
-        <p class="p-service__text">Одно-сторінкові сайти, що перетворюють відвідувачів на клієнтів. Чіткий оффер, преміальний дизайн, форма зворотного зв'язку та SEO з нуля.</p>
+        <h3 class="svc__title">Лендінги</h3>
+        <p class="svc__text">Одно-сторінкові сайти, що перетворюють відвідувачів на клієнтів. Чіткий оффер, чистий дизайн, SEO та форма зворотного зв'язку з нуля.</p>
       </div>
 
-      <div class="p-service reveal-up" id="service-shop">
-        <div class="p-service__icon">
+      <div class="svc rv" id="service-shop">
+        <div class="svc__num">02</div>
+        <div class="svc__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         </div>
-        <h3 class="p-service__title">Онлайн-магазини</h3>
-        <p class="p-service__text">Повноцінні e-commerce рішення з каталогом, кошиком і онлайн-оплатою. Зручно для покупця — прибутково для власника.</p>
+        <h3 class="svc__title">Онлайн-магазини</h3>
+        <p class="svc__text">Повноцінні e-commerce рішення з каталогом, кошиком і онлайн-оплатою. Зручно для покупця — прибутково для власника.</p>
       </div>
 
-      <div class="p-service reveal-up" id="service-premium">
-        <div class="p-service__icon">
+      <div class="svc rv" id="service-premium">
+        <div class="svc__num">03</div>
+        <div class="svc__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
-        <h3 class="p-service__title">Преміальні сайти</h3>
-        <p class="p-service__text">Багатосторінкові сайти з 3D-анімацією, WebGL та мікро-взаємодіями. Для тих, хто хоче виглядати на рівні топових студій.</p>
+        <h3 class="svc__title">Преміальні сайти</h3>
+        <p class="svc__text">Багатосторінкові сайти з 3D-анімацією, WebGL та мікро-взаємодіями. Для тих, хто хоче виглядати на рівні топових студій.</p>
       </div>
 
     </div>
@@ -390,63 +304,53 @@
 </section>
 
 <!-- ========== PROCESS ========== -->
-<section class="p-section" id="process">
-  <div class="p-container">
-    <div class="p-section__head reveal-up">
-      <span class="p-section__tag">Як це працює</span>
-      <h2 class="p-section__title">Процес роботи</h2>
-      <p class="p-section__desc">4 кроки від ідеї до готового сайту. Ніякої невизначеності — ти знаєш що відбувається на кожному етапі.</p>
+<section class="sec sec--bordered" id="process">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <span class="label">Як це працює</span>
+      <h2 class="sec__title">Процес роботи</h2>
+      <p class="sec__desc">4 кроки від ідеї до готового сайту. Ніякої невизначеності — ти знаєш що відбувається на кожному етапі.</p>
     </div>
+    <div class="process-grid">
 
-    <div class="p-process">
-      <div class="p-process__line" id="processLine" aria-hidden="true"></div>
-
-      <div class="p-process__step reveal-up" id="step-1">
-        <div class="p-process__step-num">01</div>
-        <div class="p-process__step-content">
-          <div class="p-process__step-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <h3 class="p-process__step-title">Бриф</h3>
-          <p class="p-process__step-text">Розбираємось у твоєму бізнесі, цілях і конкурентах. Я ставлю правильні питання, щоб зрозуміти що потрібно зробити.</p>
-          <span class="p-process__step-time">~1 день</span>
+      <div class="step rv" id="step-1">
+        <span class="step__num">01</span>
+        <div class="step__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
+        <h3 class="step__title">Бриф</h3>
+        <p class="step__text">Розбираємось у твоєму бізнесі, цілях і конкурентах. Ставлю правильні питання — щоб зрозуміти що потрібно.</p>
+        <span class="step__time">~1 день</span>
       </div>
 
-      <div class="p-process__step reveal-up" id="step-2">
-        <div class="p-process__step-num">02</div>
-        <div class="p-process__step-content">
-          <div class="p-process__step-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          </div>
-          <h3 class="p-process__step-title">Дизайн</h3>
-          <p class="p-process__step-text">Розробляю структуру і дизайн. Показую концепт, отримую зворотній зв'язок і коригую до ідеалу.</p>
-          <span class="p-process__step-time">2–3 дні</span>
+      <div class="step rv" id="step-2">
+        <span class="step__num">02</span>
+        <div class="step__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
         </div>
+        <h3 class="step__title">Дизайн</h3>
+        <p class="step__text">Розробляю структуру і дизайн. Показую концепт, отримую зворотній зв'язок і коригую до ідеалу.</p>
+        <span class="step__time">2–3 дні</span>
       </div>
 
-      <div class="p-process__step reveal-up" id="step-3">
-        <div class="p-process__step-num">03</div>
-        <div class="p-process__step-content">
-          <div class="p-process__step-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          </div>
-          <h3 class="p-process__step-title">Код</h3>
-          <p class="p-process__step-text">Верстка, анімації, адаптивність, форми, інтеграції. Чистий і швидкий код від першого рядка до останнього.</p>
-          <span class="p-process__step-time">3–7 днів</span>
+      <div class="step rv" id="step-3">
+        <span class="step__num">03</span>
+        <div class="step__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         </div>
+        <h3 class="step__title">Код</h3>
+        <p class="step__text">Верстка, анімації, адаптивність, форми, інтеграції. Чистий і швидкий код від першого рядка до останнього.</p>
+        <span class="step__time">3–7 днів</span>
       </div>
 
-      <div class="p-process__step reveal-up" id="step-4">
-        <div class="p-process__step-num">04</div>
-        <div class="p-process__step-content">
-          <div class="p-process__step-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <h3 class="p-process__step-title">Запуск</h3>
-          <p class="p-process__step-text">Деплой на хостинг, підключення домену, тестування. Сайт живе і приносить клієнтів. Я на зв'язку після запуску.</p>
-          <span class="p-process__step-time">1 день</span>
+      <div class="step rv" id="step-4">
+        <span class="step__num">04</span>
+        <div class="step__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
+        <h3 class="step__title">Запуск</h3>
+        <p class="step__text">Деплой, підключення домену, тестування. Сайт живе і приносить клієнтів. Я на зв'язку після запуску.</p>
+        <span class="step__time">1 день</span>
       </div>
 
     </div>
@@ -454,17 +358,16 @@
 </section>
 
 <!-- ========== CONTACT ========== -->
-<section class="p-section p-section--contact" id="contact">
-  <div class="p-contact__bg" aria-hidden="true"></div>
-  <div class="p-container">
-    <div class="p-contact">
-      <div class="p-contact__info reveal-up">
-        <span class="p-section__tag">Контакти</span>
-        <h2 class="p-section__title">Готовий до нового проєкту?</h2>
-        <p class="p-contact__desc">Розкажи про свою ідею — разом розберемось що тобі потрібно і скільки це коштуватиме. Перша консультація безкоштовна.</p>
-        <div class="p-contact__links">
-          <a href="https://t.me/absolutikdenchik" target="_blank" rel="noopener" class="p-contact__link" id="tg-link">
-            <div class="p-contact__link-icon p-contact__link-icon--tg">
+<section class="sec sec--gray" id="contact">
+  <div class="wrap">
+    <div class="contact">
+      <div class="contact__left rv">
+        <span class="label">Контакти</span>
+        <h2 class="sec__title">Готовий до нового проєкту?</h2>
+        <p class="contact__desc">Розкажи про свою ідею — разом розберемось що потрібно і скільки це коштуватиме. Перша консультація безкоштовна.</p>
+        <div class="contact__links">
+          <a href="https://t.me/absolutikdenchik" target="_blank" rel="noopener" class="clink" id="tg-link">
+            <div class="clink__icon clink__icon--tg">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
             </div>
             <div>
@@ -472,8 +375,8 @@
               <span>@absolutikdenchik</span>
             </div>
           </a>
-          <a href="https://instagram.com/denis__zalizko" target="_blank" rel="noopener" class="p-contact__link" id="insta-link">
-            <div class="p-contact__link-icon p-contact__link-icon--insta">
+          <a href="https://instagram.com/denis__zalizko" target="_blank" rel="noopener" class="clink" id="insta-link">
+            <div class="clink__icon clink__icon--ig">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
             </div>
             <div>
@@ -481,8 +384,8 @@
               <span>@denis__zalizko</span>
             </div>
           </a>
-          <a href="mailto:zalizkodenis12@gmail.com" class="p-contact__link" id="email-link">
-            <div class="p-contact__link-icon p-contact__link-icon--email">
+          <a href="mailto:zalizkodenis12@gmail.com" class="clink" id="email-link">
+            <div class="clink__icon clink__icon--em">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </div>
             <div>
@@ -493,28 +396,25 @@
         </div>
       </div>
 
-      <div class="p-contact__form-wrap reveal-up">
-        <form class="p-form" id="contactForm" novalidate>
-          <div class="p-form__field">
+      <div class="contact__right rv">
+        <form class="form" id="contactForm" novalidate>
+          <div class="form__field">
             <label for="cf-name">Ім'я *</label>
             <input type="text" id="cf-name" name="name" placeholder="Як тебе звати?" required autocomplete="name">
-            <span class="p-form__error" role="alert"></span>
+            <span class="form__err" role="alert"></span>
           </div>
-          <div class="p-form__field">
+          <div class="form__field">
             <label for="cf-phone">Телефон або Telegram *</label>
             <input type="text" id="cf-phone" name="phone" placeholder="+380 або @нік" required>
-            <span class="p-form__error" role="alert"></span>
+            <span class="form__err" role="alert"></span>
           </div>
-          <div class="p-form__field">
-            <label for="cf-project">Коротко про проєкт *</label>
+          <div class="form__field">
+            <label for="cf-project">Про проєкт *</label>
             <textarea id="cf-project" name="project" rows="4" placeholder="Що за бізнес, який тип сайту, є референси?" required></textarea>
-            <span class="p-form__error" role="alert"></span>
+            <span class="form__err" role="alert"></span>
           </div>
-          <button type="submit" class="p-btn p-btn--accent p-btn--block" id="cfSubmit">
-            Відправити заявку
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-          <p class="p-form__status" id="cfStatus" role="status" aria-live="polite"></p>
+          <button type="submit" class="btn btn--fill btn--block" id="cfSubmit">Відправити заявку</button>
+          <p class="form__status" id="cfStatus" role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>
@@ -524,19 +424,19 @@
 </main>
 
 <!-- ========== FOOTER ========== -->
-<footer class="p-footer">
-  <div class="p-container p-footer__inner">
-    <a href="#hero" class="p-logo">
-      <span class="p-logo__mark">DZ</span>
-      <span class="p-logo__text">Denys Zalizko</span>
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <a href="#hero" class="logo">
+      <span class="logo__mark">DZ</span>
+      <span class="logo__name">Denys Zalizko</span>
     </a>
-    <nav class="p-footer__nav">
+    <nav class="footer__nav">
       <a href="#cases">Кейси</a>
       <a href="#services">Послуги</a>
       <a href="#process">Процес</a>
       <a href="#contact">Контакти</a>
     </nav>
-    <div class="p-footer__socials">
+    <div class="footer__socials">
       <a href="https://t.me/absolutikdenchik" target="_blank" rel="noopener" aria-label="Telegram" id="footer-tg">
         <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
       </a>
@@ -548,15 +448,14 @@
       </a>
     </div>
   </div>
-  <div class="p-container p-footer__bottom">
+  <div class="wrap footer__bottom">
     <span>© 2026 Денис Залізко. Всі права захищено.</span>
     <span>Зроблено з ❤️ в Україні</span>
   </div>
 </footer>
 
-<!-- Floating CTA mobile -->
-<a href="https://t.me/absolutikdenchik" target="_blank" rel="noopener" class="p-mobile-cta" id="mobileCta">
-  <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+<!-- Mobile CTA -->
+<a href="https://t.me/absolutikdenchik" target="_blank" rel="noopener" class="mob-cta" id="mobCta">
   Написати в Telegram
 </a>
 

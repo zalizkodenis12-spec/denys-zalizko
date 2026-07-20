@@ -1,99 +1,43 @@
-/* ============================================
-   DENYS ZALIZKO — PORTFOLIO JS
-   Three.js hero · Scroll reveal · Mobile nav
-   Form validation · Process line animation
-   ============================================ */
-
 'use strict';
 
-/* ---- CURSOR GLOW ---- */
-(function() {
-  const glow = document.getElementById('cursorGlow');
-  if (!glow) return;
-  let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
-  let tx = cx, ty = cy;
-  document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
-  (function loop() {
-    cx += (tx - cx) * 0.1;
-    cy += (ty - cy) * 0.1;
-    glow.style.left = cx + 'px';
-    glow.style.top  = cy + 'px';
-    requestAnimationFrame(loop);
-  })();
-})();
-
 /* ---- HEADER SCROLL ---- */
-const header = document.getElementById('pHeader');
+const hdr = document.getElementById('hdr');
 window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 40);
+  hdr.classList.toggle('scrolled', window.scrollY > 30);
 }, { passive: true });
 
-/* ---- MOBILE BURGER ---- */
-const burger = document.getElementById('pBurger');
-const mobileNav = document.getElementById('pMobileNav');
+/* ---- BURGER ---- */
+const burger = document.getElementById('burger');
+const mobNav = document.getElementById('mobNav');
 
 burger.addEventListener('click', () => {
-  const isOpen = mobileNav.classList.toggle('open');
-  burger.classList.toggle('active', isOpen);
-  burger.setAttribute('aria-expanded', String(isOpen));
+  const open = mobNav.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', String(open));
 });
-
-// Close mobile nav on link click
-mobileNav.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    mobileNav.classList.remove('open');
-    burger.classList.remove('active');
+mobNav.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    mobNav.classList.remove('open');
+    burger.classList.remove('open');
     burger.setAttribute('aria-expanded', 'false');
   });
 });
 
-/* ---- SMOOTH ACTIVE NAV ---- */
-const navLinks = document.querySelectorAll('.p-nav__link');
-const sections = document.querySelectorAll('section[id]');
-
-const navObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinks.forEach(l => l.classList.remove('active'));
-      const active = document.querySelector(`.p-nav__link[href="#${entry.target.id}"]`);
-      if (active) active.classList.add('active');
-    }
-  });
-}, { rootMargin: '-40% 0px -50% 0px' });
-
-sections.forEach(s => navObserver.observe(s));
-
 /* ---- SCROLL REVEAL ---- */
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
+const rvObs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      const siblings = Array.from(e.target.parentElement.querySelectorAll('.rv'));
+      const idx = siblings.indexOf(e.target);
+      e.target.style.transitionDelay = (idx * 0.07) + 's';
+      e.target.classList.add('in');
+      rvObs.unobserve(e.target);
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
 
-document.querySelectorAll('.reveal-up').forEach((el, i) => {
-  // Stagger children within same parent
-  const siblings = el.parentElement.querySelectorAll('.reveal-up');
-  const idx = Array.from(siblings).indexOf(el);
-  el.style.transitionDelay = `${idx * 0.08}s`;
-  revealObserver.observe(el);
-});
-
-/* ---- PROCESS LINE ANIMATION ---- */
-const processLine = document.getElementById('processLine');
-if (processLine) {
-  const lineObserver = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) {
-      processLine.classList.add('animated');
-      lineObserver.disconnect();
-    }
-  }, { threshold: 0.3 });
-  lineObserver.observe(processLine.parentElement);
-}
-
-/* ---- THREE.JS HERO ---- */
+/* ---- THREE.JS HERO (light bg) ---- */
 (function initHero() {
   const canvas = document.getElementById('heroCanvas');
   if (!canvas || typeof THREE === 'undefined') return;
@@ -107,197 +51,135 @@ if (processLine) {
   renderer.setClearColor(0x000000, 0);
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(60, W() / H(), 0.1, 100);
-  camera.position.set(0, 0, 18);
+  const camera = new THREE.PerspectiveCamera(55, W() / H(), 0.1, 100);
+  camera.position.z = 16;
 
-  /* Ambient + directional light */
-  scene.add(new THREE.AmbientLight(0xffffff, 0.4));
-  const dirLight = new THREE.DirectionalLight(0x6366F1, 1.2);
-  dirLight.position.set(5, 5, 5);
-  scene.add(dirLight);
-  const dirLight2 = new THREE.DirectionalLight(0xA855F7, 0.8);
-  dirLight2.position.set(-5, -3, 3);
-  scene.add(dirLight2);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+  const d1 = new THREE.DirectionalLight(0xFF5C00, 1.4);
+  d1.position.set(4, 6, 4);
+  scene.add(d1);
+  const d2 = new THREE.DirectionalLight(0x1a1a2e, 0.5);
+  d2.position.set(-4, -3, 2);
+  scene.add(d2);
 
-  /* ----- PARTICLES FIELD ----- */
-  const PARTICLE_COUNT = 280;
-  const pGeo = new THREE.BufferGeometry();
-  const pos = new Float32Array(PARTICLE_COUNT * 3);
-  const sizes = new Float32Array(PARTICLE_COUNT);
-  const phasesArr = new Float32Array(PARTICLE_COUNT);
-
-  for (let i = 0; i < PARTICLE_COUNT; i++) {
-    pos[i * 3]     = (Math.random() - .5) * 60;
-    pos[i * 3 + 1] = (Math.random() - .5) * 40;
-    pos[i * 3 + 2] = (Math.random() - .5) * 30;
-    sizes[i] = Math.random() * 2 + .5;
-    phasesArr[i] = Math.random() * Math.PI * 2;
-  }
-  pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-  pGeo.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-
-  const pMat = new THREE.PointsMaterial({
-    color: 0x6366F1,
-    size: .12,
-    transparent: true,
-    opacity: 0.4,
-    sizeAttenuation: true,
-  });
-  const particles = new THREE.Points(pGeo, pMat);
-  scene.add(particles);
-
-  /* ----- FLOATING SHAPES ----- */
+  /* Shapes */
   const shapes = [];
-  const shapeDefs = [
-    { geo: new THREE.IcosahedronGeometry(1.6, 0), x: -8, y: 3, z: -4 },
-    { geo: new THREE.OctahedronGeometry(1.2, 0),   x: 9,  y: -2, z: -6 },
-    { geo: new THREE.TorusGeometry(.9, .3, 12, 48), x: -6, y: -4, z: -2 },
-    { geo: new THREE.TetrahedronGeometry(1.1, 0),   x: 7,  y: 4,  z: -3 },
-    { geo: new THREE.IcosahedronGeometry(.8, 1),    x: 0,  y: -5, z: -8 },
-    { geo: new THREE.OctahedronGeometry(.6, 0),     x: -10,y: 0,  z: -5 },
-    { geo: new THREE.TorusGeometry(.5, .18, 8, 32), x: 10, y: -5, z: -4 },
+  const defs = [
+    { geo: new THREE.IcosahedronGeometry(1.8, 0), x: -6, y: 2, z: -3 },
+    { geo: new THREE.OctahedronGeometry(1.3, 0),  x: 6,  y: -1, z: -5 },
+    { geo: new THREE.TorusGeometry(1.1, .35, 12, 48), x: -4, y: -3.5, z: -1 },
+    { geo: new THREE.IcosahedronGeometry(.9, 0),   x: 7,  y: 3.5, z: -2 },
+    { geo: new THREE.TetrahedronGeometry(1.2, 0),  x: 0,  y: -4, z: -6 },
+    { geo: new THREE.OctahedronGeometry(.7, 0),    x: -8, y: .5, z: -4 },
+    { geo: new THREE.TorusGeometry(.6, .2, 8, 32), x: 8,  y: -4, z: -3 },
   ];
-
-  const matOptions = [
-    { color: 0x6366F1, wireframe: true,  transparent: true, opacity: 0.35 },
-    { color: 0xA855F7, wireframe: false, transparent: true, opacity: 0.12, metalness: .8, roughness: .2 },
-    { color: 0x818CF8, wireframe: true,  transparent: true, opacity: 0.25 },
-    { color: 0x6366F1, wireframe: false, transparent: true, opacity: 0.08, metalness: .9, roughness: .1 },
+  const mats = [
+    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: true,  transparent: true, opacity: .45 }),
+    new THREE.MeshStandardMaterial({ color: 0xE64D00, wireframe: false, transparent: true, opacity: .15, metalness: .8, roughness: .2 }),
+    new THREE.MeshStandardMaterial({ color: 0x1a1a1a, wireframe: true,  transparent: true, opacity: .2 }),
+    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: false, transparent: true, opacity: .1,  metalness: .9, roughness: .1 }),
   ];
-
-  shapeDefs.forEach((def, i) => {
-    const mOpt = matOptions[i % matOptions.length];
-    const mat = mOpt.metalness !== undefined
-      ? new THREE.MeshStandardMaterial(mOpt)
-      : new THREE.MeshBasicMaterial(mOpt);
-    const mesh = new THREE.Mesh(def.geo, mat);
-    mesh.position.set(def.x, def.y, def.z);
-    mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+  defs.forEach((d, i) => {
+    const mesh = new THREE.Mesh(d.geo, mats[i % mats.length]);
+    mesh.position.set(d.x, d.y, d.z);
+    mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
     mesh.userData = {
-      rotX: (Math.random() - .5) * .006,
-      rotY: (Math.random() - .5) * .006,
-      rotZ: (Math.random() - .5) * .003,
-      floatAmp: .3 + Math.random() * .4,
-      floatSpeed: .4 + Math.random() * .4,
-      floatPhase: Math.random() * Math.PI * 2,
-      baseY: def.y,
+      rx: (Math.random() - .5) * .007,
+      ry: (Math.random() - .5) * .007,
+      amp: .3 + Math.random() * .5,
+      spd: .4 + Math.random() * .4,
+      ph: Math.random() * Math.PI * 2,
+      by: d.y,
     };
     scene.add(mesh);
     shapes.push(mesh);
   });
 
-  /* ----- MOUSE PARALLAX ----- */
-  let mouseX = 0, mouseY = 0;
-  let targetX = 0, targetY = 0;
+  /* Particles */
+  const pGeo = new THREE.BufferGeometry();
+  const pPos = new Float32Array(200 * 3);
+  for (let i = 0; i < 200; i++) {
+    pPos[i*3]   = (Math.random() - .5) * 50;
+    pPos[i*3+1] = (Math.random() - .5) * 35;
+    pPos[i*3+2] = (Math.random() - .5) * 25;
+  }
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+  const pts = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xFF5C00, size: .09, transparent: true, opacity: .35 }));
+  scene.add(pts);
 
+  let mx = 0, my = 0, tx = 0, ty = 0;
   document.addEventListener('mousemove', e => {
-    mouseX = (e.clientX / window.innerWidth  - .5) * 2;
-    mouseY = (e.clientY / window.innerHeight - .5) * 2;
+    mx = (e.clientX / window.innerWidth  - .5) * 2;
+    my = (e.clientY / window.innerHeight - .5) * 2;
   });
 
-  /* Touch support */
-  document.addEventListener('touchmove', e => {
-    const t = e.touches[0];
-    mouseX = (t.clientX / window.innerWidth  - .5) * 2;
-    mouseY = (t.clientY / window.innerHeight - .5) * 2;
-  }, { passive: true });
-
-  /* ----- RESIZE ----- */
   window.addEventListener('resize', () => {
     renderer.setSize(W(), H());
     camera.aspect = W() / H();
     camera.updateProjectionMatrix();
   });
 
-  /* ----- ANIMATION LOOP ----- */
-  let clock = 0;
-  function animate() {
-    requestAnimationFrame(animate);
-    clock += 0.016;
-
-    // Smooth mouse follow
-    targetX += (mouseX - targetX) * .035;
-    targetY += (mouseY - targetY) * .035;
-
-    // Camera subtle parallax
-    camera.position.x = targetX * 1.5;
-    camera.position.y = -targetY * 1.0;
-
-    // Particles slow drift
-    particles.rotation.y = clock * 0.02;
-    particles.rotation.x = clock * 0.008;
-
-    // Animate shapes
-    shapes.forEach(mesh => {
-      const d = mesh.userData;
-      mesh.rotation.x += d.rotX + targetY * .001;
-      mesh.rotation.y += d.rotY + targetX * .001;
-      mesh.rotation.z += d.rotZ;
-      mesh.position.y = d.baseY + Math.sin(clock * d.floatSpeed + d.floatPhase) * d.floatAmp;
+  let t = 0;
+  (function loop() {
+    requestAnimationFrame(loop);
+    t += .016;
+    tx += (mx - tx) * .04;
+    ty += (my - ty) * .04;
+    camera.position.x = tx * 1.2;
+    camera.position.y = -ty * .8;
+    pts.rotation.y = t * .015;
+    shapes.forEach(m => {
+      m.rotation.x += m.userData.rx;
+      m.rotation.y += m.userData.ry;
+      m.position.y = m.userData.by + Math.sin(t * m.userData.spd + m.userData.ph) * m.userData.amp;
     });
-
     renderer.render(scene, camera);
-  }
-
-  animate();
+  })();
 })();
 
 /* ---- CONTACT FORM ---- */
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-  const statusEl = document.getElementById('cfStatus');
+const form = document.getElementById('contactForm');
+if (form) {
+  const status = document.getElementById('cfStatus');
 
-  function validateField(input) {
-    const errEl = input.closest('.p-form__field').querySelector('.p-form__error');
-    if (!input.value.trim()) {
-      input.classList.add('error');
-      errEl.textContent = 'Це поле обов\'язкове';
+  function validate(inp) {
+    const err = inp.closest('.form__field').querySelector('.form__err');
+    if (!inp.value.trim()) {
+      inp.classList.add('error');
+      err.textContent = "Обов'язкове поле";
       return false;
     }
-    input.classList.remove('error');
-    errEl.textContent = '';
+    inp.classList.remove('error');
+    err.textContent = '';
     return true;
   }
 
-  contactForm.querySelectorAll('[required]').forEach(input => {
-    input.addEventListener('blur', () => validateField(input));
-    input.addEventListener('input', () => {
-      if (input.classList.contains('error')) validateField(input);
-    });
+  form.querySelectorAll('[required]').forEach(inp => {
+    inp.addEventListener('blur', () => validate(inp));
+    inp.addEventListener('input', () => { if (inp.classList.contains('error')) validate(inp); });
   });
 
-  contactForm.addEventListener('submit', e => {
+  form.addEventListener('submit', e => {
     e.preventDefault();
-    const fields = contactForm.querySelectorAll('[required]');
-    let valid = true;
-    fields.forEach(f => { if (!validateField(f)) valid = false; });
-    if (!valid) return;
+    let ok = true;
+    form.querySelectorAll('[required]').forEach(inp => { if (!validate(inp)) ok = false; });
+    if (!ok) return;
 
     const btn = document.getElementById('cfSubmit');
     btn.disabled = true;
     btn.textContent = 'Відправляємо...';
 
-    // Build Telegram message
-    const name    = contactForm.querySelector('#cf-name').value.trim();
-    const phone   = contactForm.querySelector('#cf-phone').value.trim();
-    const project = contactForm.querySelector('#cf-project').value.trim();
-
-    const msg = encodeURIComponent(
-      `🚀 Нова заявка з сайту!\n\n` +
-      `👤 Ім'я: ${name}\n` +
-      `📞 Контакт: ${phone}\n` +
-      `📋 Проєкт: ${project}`
-    );
-
-    // Open Telegram with pre-filled message
+    const name    = document.getElementById('cf-name').value.trim();
+    const phone   = document.getElementById('cf-phone').value.trim();
+    const project = document.getElementById('cf-project').value.trim();
+    const msg = encodeURIComponent(`🚀 Нова заявка!\n\n👤 ${name}\n📞 ${phone}\n📋 ${project}`);
     window.open(`https://t.me/absolutikdenchik?text=${msg}`, '_blank');
 
     setTimeout(() => {
-      statusEl.textContent = '✅ Дякуємо! Відкрив Telegram — напиши мені там.';
-      statusEl.style.color = '#22C55E';
+      status.textContent = '✅ Відкрив Telegram — напиши мені там!';
       btn.disabled = false;
-      btn.innerHTML = 'Відправити заявку <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
-      contactForm.reset();
+      btn.textContent = 'Відправити заявку';
+      form.reset();
     }, 800);
   });
 }
