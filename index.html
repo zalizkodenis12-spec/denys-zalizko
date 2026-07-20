@@ -203,20 +203,27 @@
 <section class="sec sec--bordered" id="about">
   <div class="wrap">
     <div class="about">
-      <div class="about__left rv-left">
+      <div class="about__left rv-left" style="position: relative;">
+        
+        <div style="position: absolute; top: -60px; right: 0; width: 120px; height: 120px; z-index: -1;">
+          <canvas id="canvas-about-top" style="width: 100%; height: 100%;"></canvas>
+        </div>
+
         <h2 class="sec__title">Денис Залізко — веб-розробник</h2>
         <p class="about__text">Роблю сайти, які не просто гарно виглядають — вони вирішують задачі бізнесу. Від невеликого лендінгу до повноцінного онлайн-магазину з ШІ-інтеграцією.</p>
+        
         <div class="about__actions">
           <a href="#contact" class="btn btn--fill">Написати мені</a>
           <a href="https://instagram.com/denis__zalizko" target="_blank" rel="noopener" class="btn btn--out">@denis__zalizko</a>
+        </div>
+
+        <div style="position: absolute; bottom: -80px; left: 40px; width: 150px; height: 150px; z-index: -1;">
+          <canvas id="canvas-about-bottom" style="width: 100%; height: 100%;"></canvas>
         </div>
       </div>
       <div class="about__right rv-right">
         <div class="about__photo" style="background: transparent; position: relative;">
           <img src="assets/images/selfie.jpg" alt="Денис Залізко" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--r-xl);">
-          <div class="about__float about__float--1">Fullstack</div>
-          <div class="about__float about__float--2">UX/UI Design</div>
-          <div class="about__float about__float--3">SEO & Speed</div>
         </div>
       </div>
     </div>
@@ -270,16 +277,14 @@
     <div class="proc">
 
       <!-- LEFT -->
-      <div class="proc__left rv">
+      <div class="proc__left rv" style="position: relative;">
         <h2 class="proc__title">
           <span class="accent">Процес</span><br>роботи
         </h2>
         <p class="proc__sub">4 кроки від ідеї до живого сайту. Ніякої невизначеності — ти знаєш що відбувається на кожному етапі.</p>
         
-        <div class="proc__floats" style="position: relative; height: 120px; margin-top: 40px; display: flex; align-items: center; justify-content: center;">
-          <div class="about__float about__float--1" style="position: static; animation: fl1 4s ease-in-out infinite; margin: 0 10px;">Прототип</div>
-          <div class="about__float about__float--2" style="position: static; animation: fl2 4.5s ease-in-out infinite; margin: 0 10px; transform: translateY(15px);">Код</div>
-          <div class="about__float about__float--3" style="position: static; animation: fl1 5s ease-in-out infinite; margin: 0 10px;">Реліз</div>
+        <div class="proc__3d-container" style="height: 200px; width: 100%; margin-top: 30px; position: relative;">
+          <canvas id="canvas-process" style="width: 100%; height: 100%;"></canvas>
         </div>
       </div>
 

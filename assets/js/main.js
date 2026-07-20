@@ -345,3 +345,59 @@ if (casesMoreBtn) {
     camera.updateProjectionMatrix();
   });
 })();
+
+/* ---- MINI 3D FIGURES ---- */
+function initMini3D(canvasId, geoType, colorHex) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas || typeof THREE === 'undefined') return;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const updateSize = () => {
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  };
+  updateSize();
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+  camera.position.z = 4.5;
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+  const dLight = new THREE.DirectionalLight(0xffffff, 1.2);
+  dLight.position.set(5, 5, 5);
+  scene.add(dLight);
+
+  let geo;
+  if (geoType === 'torus') geo = new THREE.TorusGeometry(1, 0.4, 16, 32);
+  else if (geoType === 'icosahedron') geo = new THREE.IcosahedronGeometry(1.2, 0);
+  else geo = new THREE.OctahedronGeometry(1.2);
+
+  const mat = new THREE.MeshStandardMaterial({
+    color: colorHex,
+    metalness: 0.9,
+    roughness: 0.1
+  });
+
+  const mesh = new THREE.Mesh(geo, mat);
+  scene.add(mesh);
+
+  function animate() {
+    requestAnimationFrame(animate);
+    mesh.rotation.x += 0.005;
+    mesh.rotation.y += 0.01;
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    if(!canvas.clientWidth) return;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+    updateSize();
+  });
+}
+
+initMini3D('canvas-about-top', 'torus', 0xFF5C00); // Orange Torus
+initMini3D('canvas-about-bottom', 'icosahedron', 0xffffff); // Chrome/White Icosahedron
+initMini3D('canvas-process', 'torus', 0xFF5C00); // Orange Torus
