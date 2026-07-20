@@ -6,6 +6,22 @@
 
 'use strict';
 
+/* ---- CURSOR GLOW ---- */
+(function() {
+  const glow = document.getElementById('cursorGlow');
+  if (!glow) return;
+  let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+  let tx = cx, ty = cy;
+  document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
+  (function loop() {
+    cx += (tx - cx) * 0.1;
+    cy += (ty - cy) * 0.1;
+    glow.style.left = cx + 'px';
+    glow.style.top  = cy + 'px';
+    requestAnimationFrame(loop);
+  })();
+})();
+
 /* ---- HEADER SCROLL ---- */
 const header = document.getElementById('pHeader');
 window.addEventListener('scroll', () => {

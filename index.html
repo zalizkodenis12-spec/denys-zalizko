@@ -16,6 +16,9 @@
 </head>
 <body>
 
+<!-- Cursor glow (desktop) -->
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
 <!-- ========== HEADER ========== -->
 <header class="p-header" id="pHeader">
   <div class="p-container p-header__inner">
@@ -359,87 +362,27 @@
     <div class="p-services">
 
       <div class="p-service reveal-up" id="service-landing">
-        <div class="p-service__num">01</div>
         <div class="p-service__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
         </div>
         <h3 class="p-service__title">Лендінги</h3>
-        <p class="p-service__text">Одно-сторінкові сайти, що конвертують відвідувачів у клієнтів. Чіткий оффер, красивий дизайн, форма зворотнього зв'язку.</p>
-        <div class="p-service__features">
-          <span>Адаптивний дизайн</span>
-          <span>SEO-оптимізація</span>
-          <span>Форма + CRM</span>
-        </div>
+        <p class="p-service__text">Одно-сторінкові сайти, що перетворюють відвідувачів на клієнтів. Чіткий оффер, преміальний дизайн, форма зворотного зв'язку та SEO з нуля.</p>
       </div>
 
       <div class="p-service reveal-up" id="service-shop">
-        <div class="p-service__num">02</div>
         <div class="p-service__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         </div>
         <h3 class="p-service__title">Онлайн-магазини</h3>
-        <p class="p-service__text">Повноцінні е-commerce рішення: каталог, кошик, оплата, адмін-панель. Зручно для покупця — прибутково для власника.</p>
-        <div class="p-service__features">
-          <span>Каталог товарів</span>
-          <span>Оплата онлайн</span>
-          <span>Адмін-панель</span>
-        </div>
+        <p class="p-service__text">Повноцінні e-commerce рішення з каталогом, кошиком і онлайн-оплатою. Зручно для покупця — прибутково для власника.</p>
       </div>
 
       <div class="p-service reveal-up" id="service-premium">
-        <div class="p-service__num">03</div>
         <div class="p-service__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
         <h3 class="p-service__title">Преміальні сайти</h3>
-        <p class="p-service__text">Багатосторінкові сайти з 3D-анімацією, мікро-взаємодіями та вау-ефектом. Для тих, кому важливо виділятись.</p>
-        <div class="p-service__features">
-          <span>3D / WebGL</span>
-          <span>Анімації</span>
-          <span>Преміум-дизайн</span>
-        </div>
-      </div>
-
-      <div class="p-service reveal-up" id="service-ai">
-        <div class="p-service__num">04</div>
-        <div class="p-service__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><circle cx="19" cy="5" r="3"/></svg>
-        </div>
-        <h3 class="p-service__title">ШІ-інтеграції</h3>
-        <p class="p-service__text">Підключаю ChatGPT, Claude та інші AI до твого сайту або бізнесу. Автоматизую рутину, економлю твій час.</p>
-        <div class="p-service__features">
-          <span>ChatGPT API</span>
-          <span>Автовідповіді</span>
-          <span>Чат-боти</span>
-        </div>
-      </div>
-
-      <div class="p-service reveal-up" id="service-tg">
-        <div class="p-service__num">05</div>
-        <div class="p-service__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21.99 4.02L2.99 11.02l7 3 3 7 9-17z"/><path d="M10 14l4-4"/></svg>
-        </div>
-        <h3 class="p-service__title">Telegram-боти</h3>
-        <p class="p-service__text">Боти для продажу, підтримки клієнтів, прийому замовлень і автоматизації бізнес-процесів у Telegram.</p>
-        <div class="p-service__features">
-          <span>Замовлення</span>
-          <span>Сповіщення</span>
-          <span>Платежі</span>
-        </div>
-      </div>
-
-      <div class="p-service reveal-up" id="service-menu">
-        <div class="p-service__num">06</div>
-        <div class="p-service__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
-        <h3 class="p-service__title">Цифрові меню</h3>
-        <p class="p-service__text">QR-меню для кафе, ресторанів та барів. Легко оновлювати, красиво виглядає, без зайвих витрат на друк.</p>
-        <div class="p-service__features">
-          <span>QR-код</span>
-          <span>Легке оновлення</span>
-          <span>Мобільна версія</span>
-        </div>
+        <p class="p-service__text">Багатосторінкові сайти з 3D-анімацією, WebGL та мікро-взаємодіями. Для тих, хто хоче виглядати на рівні топових студій.</p>
       </div>
 
     </div>
