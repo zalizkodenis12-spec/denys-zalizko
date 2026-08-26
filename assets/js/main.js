@@ -252,28 +252,72 @@ document.querySelectorAll('.acc').forEach(acc => {
   });
 });
 
-/* ---- CASES MORE ---- */
-const casesMoreBtn = document.getElementById('casesMoreBtn');
-if (casesMoreBtn) {
-  casesMoreBtn.addEventListener('click', () => {
-    const hidden = document.getElementById('hiddenCases');
-    if (hidden) {
-      if (window.innerWidth <= 640) {
-        // На мобільному перекидаємо картки в основний горизонтальний слайдер
-        const mainGrid = document.querySelector('.cases-grid');
-        while (hidden.firstChild) {
-          mainGrid.appendChild(hidden.firstChild);
-        }
-        hidden.remove();
-      } else {
-        hidden.style.display = 'grid';
-      }
-      casesMoreBtn.style.display = 'none';
-    }
-  });
-}
+/* ---- CASES MOBILE AUTO-CAROUSEL ---- */
+(function initCasesCarousel() {
+  const grid = document.getElementById('casesGrid');
+  const dotsWrap = document.getElementById('casesMobDots');
+  if (!grid || !dotsWrap) return;
 
-/* ---- SLIDER DOTS ---- */
+  const cards = Array.from(grid.querySelectorAll('.case'));
+  if (!cards.length) return;
+
+  // Build dots
+  cards.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'cases-mob-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+
+  const dots = () => dotsWrap.querySelectorAll('.cases-mob-dot');
+
+  let current = 0;
+  let autoTimer = null;
+  let isTouch = false;
+
+  function goTo(idx) {
+    current = (idx + cards.length) % cards.length;
+    // Scroll grid to card
+    const cardW = cards[0].offsetWidth + parseInt(getComputedStyle(grid).gap || '16');
+    grid.scrollTo({ left: current * cardW, behavior: 'smooth' });
+    dots().forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  function startAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => {
+      if (!isTouch) goTo(current + 1);
+    }, 3000);
+  }
+
+  // Update active dot on manual swipe
+  grid.addEventListener('scroll', () => {
+    const cardW = cards[0].offsetWidth + parseInt(getComputedStyle(grid).gap || '16');
+    const idx = Math.round(grid.scrollLeft / cardW);
+    current = Math.min(Math.max(idx, 0), cards.length - 1);
+    dots().forEach((d, i) => d.classList.toggle('active', i === current));
+  }, { passive: true });
+
+  // Pause auto on touch, resume on release
+  grid.addEventListener('touchstart', () => { isTouch = true; }, { passive: true });
+  grid.addEventListener('touchend',   () => {
+    isTouch = false;
+    startAuto();
+  }, { passive: true });
+
+  // Only run carousel on mobile
+  function maybeStart() {
+    if (window.innerWidth <= 640) {
+      startAuto();
+    } else {
+      clearInterval(autoTimer);
+    }
+  }
+  maybeStart();
+  window.addEventListener('resize', maybeStart);
+})();
+
+/* ---- SLIDER DOTS (advantages) ---- */
 const advGrid = document.querySelector('.adv-grid--clean');
 const advDots = document.getElementById('advDots');
 if (advGrid && advDots) {
@@ -300,6 +344,7 @@ if (advGrid && advDots) {
     });
   }, { passive: true });
 }
+
 
 /* ---- GLOBAL 3D BACKGROUND ---- */
 (function initGlobal3D() {

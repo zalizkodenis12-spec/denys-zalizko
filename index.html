@@ -82,65 +82,73 @@
       <h2 class="sec__title">Кейси</h2>
     </div>
 
-    <div class="cases-grid">
+    <div class="cases-grid" id="casesGrid">
 
-      <a href="https://sto-vidar.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-vidar">
+      <a href="https://hard-clean-vinnitsa.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-hardclean">
         <div class="case__img">
-          <img src="assets/images/case1.png" alt="STO Vidar" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+          <img src="assets/images/case1.png" alt="Hard Clean Vinnytsia" style="width:100%;height:100%;object-fit:cover;object-position:top;">
           <div class="case__hover-label">Відкрити сайт →</div>
         </div>
         <div class="case__meta">
-          <h3 class="case__name">STO Vidar — СТО</h3>
+          <h3 class="case__name">Hard Clean — Хімчистка</h3>
         </div>
       </a>
 
-      <a href="https://sto-2-kapitana.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-kapitana">
+      <a href="https://d-d-flowers-n-cofee.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-flowers">
         <div class="case__img">
-          <img src="assets/images/case2.png" alt="2 Kapitana" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+          <img src="assets/images/case2.png" alt="D&D Flowers & Coffee" style="width:100%;height:100%;object-fit:cover;object-position:top;">
           <div class="case__hover-label">Відкрити сайт →</div>
         </div>
         <div class="case__meta">
-          <h3 class="case__name">2 Капітана — СТО</h3>
+          <h3 class="case__name">D&amp;D Flowers &amp; Coffee</h3>
         </div>
       </a>
 
-      <a href="https://elsalvador-barbershop.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-barbershop">
+      <a href="https://castom-barbershop.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-castom">
         <div class="case__img">
-          <img src="assets/images/case3.png" alt="El Salvador" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+          <img src="assets/images/case3.png" alt="Castom Barbershop" style="width:100%;height:100%;object-fit:cover;object-position:top;">
           <div class="case__hover-label">Відкрити сайт →</div>
         </div>
         <div class="case__meta">
-          <h3 class="case__name">El Salvador Barbershop</h3>
+          <h3 class="case__name">Castom Barbershop</h3>
         </div>
       </a>
 
-    </div>
+      <a href="https://ali-ro-site-c2rj.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-aliro">
+        <div class="case__img">
+          <img src="assets/images/case4.png" alt="Ali-Ro" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+          <div class="case__hover-label">Відкрити сайт →</div>
+        </div>
+        <div class="case__meta">
+          <h3 class="case__name">Ali-Ro — Студія краси</h3>
+        </div>
+      </a>
 
-    <div class="cases-grid cases-grid--hidden" id="hiddenCases" style="display: none; margin-top: 24px;">
+      <a href="https://maxi-dent-mu.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-maxident">
+        <div class="case__img">
+          <img src="assets/images/case5.png" alt="Maxi Dent" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+          <div class="case__hover-label">Відкрити сайт →</div>
+        </div>
+        <div class="case__meta">
+          <h3 class="case__name">Maxi Dent — Стоматологія</h3>
+        </div>
+      </a>
+
       <a href="https://masag.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-masag">
         <div class="case__img">
-          <img src="assets/images/case4.png" alt="Massage+" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+          <img src="assets/images/case6.png" alt="Масаж+" style="width:100%;height:100%;object-fit:cover;object-position:top;">
           <div class="case__hover-label">Відкрити сайт →</div>
         </div>
         <div class="case__meta">
           <h3 class="case__name">Масаж+ — Студія масажу</h3>
         </div>
       </a>
-      
-      <a href="https://pm-pvidar.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-pvidar">
-        <div class="case__img">
-          <img src="assets/images/case5.png" alt="PM Pvidar" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
-          <div class="case__hover-label">Відкрити сайт →</div>
-        </div>
-        <div class="case__meta">
-          <h3 class="case__name">PM Pvidar — Автомайстерня</h3>
-        </div>
-      </a>
+
     </div>
 
-    <div class="cases-more-btn rv" style="text-align: center; margin-top: 40px;">
-      <button class="btn btn--out" id="casesMoreBtn">Більше деталей</button>
-    </div>
+    <!-- Mobile carousel dots -->
+    <div class="cases-mob-dots" id="casesMobDots"></div>
+
   </div>
 </section>
 
@@ -148,7 +156,7 @@
 <section class="sec sec--gray" id="advantages">
   <div class="wrap">
     <div class="sec__head rv-left">
-      <h2 class="sec__title adv__title">Чому обирають мене —<br><span class="accent">факти, а не слова</span></h2>
+      <h2 class="sec__title adv__title">Чому обирають нас —<br><span class="accent">факти, а не слова</span></h2>
     </div>
 
     <div class="adv-grid adv-grid--clean">
@@ -158,7 +166,7 @@
         <div class="adv-clean__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
         </div>
-        <p><strong class="adv-clean__inline-title">Чистий код:</strong> пишу так, щоб сайт можна було легко розширювати. Ніякого спагетті — тільки структура.</p>
+        <p><strong class="adv-clean__inline-title">Чистий код:</strong> пишемо так, щоб сайт можна було легко розширювати. Ніякого спагетті — тільки структура.</p>
       </div>
 
       <div class="adv-clean rv delay-2">
@@ -166,7 +174,7 @@
         <div class="adv-clean__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><line x1="12" y1="15" x2="12" y2="17"/></svg>
         </div>
-        <p><strong class="adv-clean__inline-title">ШІ у розробці:</strong> використовую AI-інструменти для прискорення без втрати якості. Результат швидше — ціна та сама.</p>
+        <p><strong class="adv-clean__inline-title">ШІ у розробці:</strong> використовуємо AI-інструменти для прискорення без втрати якості. Результат швидше — ціна та сама.</p>
       </div>
 
       <div class="adv-clean rv delay-3">
@@ -198,7 +206,7 @@
         <div class="adv-clean__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
-        <p><strong class="adv-clean__inline-title">На зв'язку:</strong> відповідаю швидко, тримаю в курсі кожного кроку. Ніяких зникань. Чесна комунікація завжди.</p>
+        <p><strong class="adv-clean__inline-title">На зв'язку:</strong> відповідаємо швидко, тримаємо в курсі кожного кроку. Ніяких зникань. Чесна комунікація завжди.</p>
       </div>
 
     </div>
