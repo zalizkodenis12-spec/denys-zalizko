@@ -624,38 +624,43 @@ input, textarea { font-family: inherit; }
 /* ============================================================
    PROCESS — ACCORDION
    ============================================================ */
-.proc__3d-strip {
-  width: 100%;
-  height: 180px;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 20px;
-  pointer-events: none;
-  opacity: 0.85;
+.proc {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
 }
-.proc__3d-strip canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
+.proc__left {
+  position: relative;
 }
 .proc__title {
   font-family: var(--ffh);
-  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
   font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -2px;
+  line-height: 1.0;
+  letter-spacing: -2.5px;
   color: var(--black);
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 .proc__sub {
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--muted);
   line-height: 1.75;
-  max-width: 600px;
+  max-width: 380px;
 }
-.proc__steps {
-  max-width: 860px;
-  margin: 0 auto;
+.proc__3d-container {
+  height: 500px;
+  width: 100%;
+  position: relative;
+  margin-top: -50px;
+  margin-bottom: -150px;
+  z-index: -1;
+  opacity: 0.8;
+  pointer-events: none;
+}
+.proc__3d-container canvas {
+  width: 100%;
+  height: 100%;
 }
 
 /* Accordion */
@@ -1168,8 +1173,41 @@ body.dark-theme .theme-toggle {
   .sec__head--flex .sec__title { text-align: left !important; }
   .sec__head--flex .sec__desc { text-align: left !important; max-width: 100% !important; margin-left: 0 !important; }
 
-  .proc { gap: 28px; }
-  .proc__title { font-size: 2.4rem; letter-spacing: -1.5px; }
+  /* Process Section Mobile Reordering: 3D figures top -> Title + subtitle -> Steps */
+  .proc {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+  .proc__left {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .proc__left .proc__3d-container {
+    order: -1 !important;
+    height: 140px !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+    margin-bottom: 12px !important;
+    position: relative !important;
+    z-index: 1 !important;
+    opacity: 0.85 !important;
+  }
+  .proc__left .proc__title {
+    order: 1 !important;
+    font-size: 2.4rem !important;
+    letter-spacing: -1.5px !important;
+    margin-bottom: 10px !important;
+  }
+  .proc__left .proc__sub {
+    order: 2 !important;
+    max-width: 100% !important;
+    margin-bottom: 4px !important;
+  }
+  .proc__right {
+    order: 3 !important;
+    width: 100% !important;
+  }
   
   /* About Section Reordering */
   .about { display: flex !important; flex-direction: column !important; gap: 20px !important; }
@@ -1181,11 +1219,6 @@ body.dark-theme .theme-toggle {
   .about__left .about__actions { order: 4 !important; }
   .about-canvas-bottom { order: 5 !important; }
 
-  /* Compact 3D canvases placed cleanly under content on mobile */
-  .proc__3d-strip { 
-    height: 140px !important; 
-    margin-bottom: 12px !important; 
-  }
   #canvas-about-top, #canvas-about-bottom { height: 300px !important; margin-bottom: -50px !important; }
   
   #advDots { display: flex !important; }

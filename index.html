@@ -300,93 +300,95 @@
 
 <!-- ========== PROCESS ========== -->
 <section class="sec sec--bordered" id="process">
-  <!-- 1) 3D Figures Strip -->
-  <div class="proc__3d-strip rv">
-    <canvas id="canvas-process"></canvas>
-  </div>
-
   <div class="wrap">
-    <!-- 2) Heading + Subtitle -->
-    <div class="sec__head rv sec__head--center" style="max-width: 760px; margin: 0 auto 52px; text-align: center;">
-      <h2 class="sec__title">
-        <span class="accent">Процес</span> роботи
-      </h2>
-      <p class="sec__desc">5 кроків від ідеї до живого сайту. Ніякої невизначеності — ви знаєте що відбувається на кожному етапі.</p>
-    </div>
+    <div class="proc">
 
-    <!-- 3) 5 Accordion Steps -->
-    <div class="proc__steps rv">
-
-      <div class="acc" id="acc-1" data-open="true">
-        <button class="acc__head" aria-expanded="true" aria-controls="acc-body-1">
-          <span class="acc__num">1</span>
-          <span class="acc__name">БРИФ</span>
-          <span class="acc__arrow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><polyline points="18 15 12 9 6 15"/></svg>
-          </span>
-        </button>
-        <div class="acc__body" id="acc-body-1">
-          <p>Короткий зідзвон (10-15 хвилин), під час якого ми детально дізнаємося про ваш бізнес, цілі та побажання. Ми обговорюємо структуру майбутнього сайту, його функціонал та необхідні інтеграції. Після цього ми розробляємо безкоштовну демоверсію, щоб ви могли одразу побачити наш підхід до роботи.</p>
-          <span class="step__time">10-15 хвилин</span>
+      <!-- LEFT -->
+      <div class="proc__left rv">
+        <h2 class="proc__title">
+          <span class="accent">Процес</span><br>роботи
+        </h2>
+        <p class="proc__sub">5 кроків від ідеї до живого сайту. Ніякої невизначеності — ви знаєте що відбувається на кожному етапі.</p>
+        
+        <div class="proc__3d-container">
+          <canvas id="canvas-process"></canvas>
         </div>
       </div>
 
-      <div class="acc" id="acc-2" data-open="false">
-        <button class="acc__head" aria-expanded="false" aria-controls="acc-body-2">
-          <span class="acc__num">2</span>
-          <span class="acc__name">АВАНС</span>
-          <span class="acc__arrow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
-          </span>
-        </button>
-        <div class="acc__body acc__body--closed" id="acc-body-2">
-          <p>Для взаємної довіри здійснюється аванс у розмірі 1/10 вартості сайту (наприклад, з 12 000 грн — 1 200 грн).</p>
-          <span class="step__time">~15 хвилин</span>
-        </div>
-      </div>
+      <!-- RIGHT — accordion (5 steps) -->
+      <div class="proc__right rv">
 
-      <div class="acc" id="acc-3" data-open="false">
-        <button class="acc__head" aria-expanded="false" aria-controls="acc-body-3">
-          <span class="acc__num">3</span>
-          <span class="acc__name">ДЕМОВЕРСІЯ</span>
-          <span class="acc__arrow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
-          </span>
-        </button>
-        <div class="acc__body acc__body--closed" id="acc-body-3">
-          <p>Протягом 1-2 днів ми створюємо базову версію сайту, яка містить головний екран, структуру та основний дизайн. Ви зможете поклацати її наживо у браузері. Це дозволяє нам зекономити час і переконатися, що ми рухаємося в правильному напрямку, ще до початку повноцінної розробки.</p>
-          <span class="step__time">1-2 дні</span>
+        <div class="acc" id="acc-1" data-open="true">
+          <button class="acc__head" aria-expanded="true" aria-controls="acc-body-1">
+            <span class="acc__num">1</span>
+            <span class="acc__name">БРИФ</span>
+            <span class="acc__arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><polyline points="18 15 12 9 6 15"/></svg>
+            </span>
+          </button>
+          <div class="acc__body" id="acc-body-1">
+            <p>Короткий зідзвон (10-15 хвилин), під час якого ми детально дізнаємося про ваш бізнес, цілі та побажання. Ми обговорюємо структуру майбутнього сайту, його функціонал та необхідні інтеграції. Після цього ми розробляємо безкоштовну демоверсію, щоб ви могли одразу побачити наш підхід до роботи.</p>
+            <span class="step__time">10-15 хвилин</span>
+          </div>
         </div>
-      </div>
 
-      <div class="acc" id="acc-4" data-open="false">
-        <button class="acc__head" aria-expanded="false" aria-controls="acc-body-4">
-          <span class="acc__num">4</span>
-          <span class="acc__name">ПРАВКИ</span>
-          <span class="acc__arrow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
-          </span>
-        </button>
-        <div class="acc__body acc__body--closed" id="acc-body-4">
-          <p>Після перегляду демоверсії ми знову зідзвонюємося. Ви надаєте свої коментарі, і ми вносимо всі необхідні корективи. Ми повністю адаптуємо дизайн, кольори та шрифти під ваш бренд. Цей етап триває доти, поки ви не будете на 100% задоволені фінальним виглядом проєкту.</p>
-          <span class="step__time">1 день</span>
+        <div class="acc" id="acc-2" data-open="false">
+          <button class="acc__head" aria-expanded="false" aria-controls="acc-body-2">
+            <span class="acc__num">2</span>
+            <span class="acc__name">АВАНС</span>
+            <span class="acc__arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="acc__body acc__body--closed" id="acc-body-2">
+            <p>Для взаємної довіри здійснюється аванс у розмірі 1/10 вартості сайту (наприклад, з 12 000 грн — 1 200 грн).</p>
+            <span class="step__time">~15 хвилин</span>
+          </div>
         </div>
-      </div>
 
-      <div class="acc" id="acc-5" data-open="false">
-        <button class="acc__head" aria-expanded="false" aria-controls="acc-body-5">
-          <span class="acc__num">5</span>
-          <span class="acc__name">ЗАПУСК</span>
-          <span class="acc__arrow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
-          </span>
-        </button>
-        <div class="acc__body acc__body--closed" id="acc-body-5">
-          <p>На цьому етапі здійснюється повна оплата. Коли все ідеально, ми оптимізуємо код для швидкого завантаження та налаштовуємо базову SEO-оптимізацію. Допомагаємо з вибором та покупкою домену (назви сайту) і підключаємо його. Ви отримуєте повністю готовий до роботи інструмент, який приносить клієнтів.</p>
-          <span class="step__time">1 день</span>
+        <div class="acc" id="acc-3" data-open="false">
+          <button class="acc__head" aria-expanded="false" aria-controls="acc-body-3">
+            <span class="acc__num">3</span>
+            <span class="acc__name">ДЕМОВЕРСІЯ</span>
+            <span class="acc__arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="acc__body acc__body--closed" id="acc-body-3">
+            <p>Протягом 1-2 днів ми створюємо базову версію сайту, яка містить головний екран, структуру та основний дизайн. Ви зможете поклацати її наживо у браузері. Це дозволяє нам зекономити час і переконатися, що ми рухаємося в правильному напрямку, ще до початку повноцінної розробки.</p>
+            <span class="step__time">1-2 дні</span>
+          </div>
         </div>
-      </div>
 
+        <div class="acc" id="acc-4" data-open="false">
+          <button class="acc__head" aria-expanded="false" aria-controls="acc-body-4">
+            <span class="acc__num">4</span>
+            <span class="acc__name">ПРАВКИ</span>
+            <span class="acc__arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="acc__body acc__body--closed" id="acc-body-4">
+            <p>Після перегляду демоверсії ми знову зідзвонюємося. Ви надаєте свої коментарі, і ми вносимо всі необхідні корективи. Ми повністю адаптуємо дизайн, кольори та шрифти під ваш бренд. Цей етап триває доти, поки ви не будете на 100% задоволені фінальним виглядом проєкту.</p>
+            <span class="step__time">1 день</span>
+          </div>
+        </div>
+
+        <div class="acc" id="acc-5" data-open="false">
+          <button class="acc__head" aria-expanded="false" aria-controls="acc-body-5">
+            <span class="acc__num">5</span>
+            <span class="acc__name">ЗАПУСК</span>
+            <span class="acc__arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="acc__body acc__body--closed" id="acc-body-5">
+            <p>На цьому етапі здійснюється повна оплата. Коли все ідеально, ми оптимізуємо код для швидкого завантаження та налаштовуємо базову SEO-оптимізацію. Допомагаємо з вибором та покупкою домену (назви сайту) і підключаємо його. Ви отримуєте повністю готовий до роботи інструмент, який приносить клієнтів.</p>
+            <span class="step__time">1 день</span>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
