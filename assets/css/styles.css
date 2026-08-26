@@ -305,19 +305,15 @@ input, textarea { font-family: inherit; }
   flex-wrap: wrap;
 }
 
-/* Mobile 3D strips inside hero — hidden by default, shown on mobile */
-.hero__mob3d {
+/* Mobile 3D full-hero canvas — hidden on desktop, absolute overlay on mobile */
+.hero__mob-canvas {
   display: none;
-  width: 100%;
-  height: 200px;
-  position: relative;
-  pointer-events: none;
-  overflow: hidden;
-}
-.hero__mob3d canvas {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  display: block;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ============================================================
@@ -1036,21 +1032,21 @@ body.dark-theme .theme-toggle {
     justify-content: center;
   }
 
-  /* ---- MOBILE 3D: top + bottom strips ---- */
+  /* ---- MOBILE 3D: full-hero scattered canvas ---- */
   .hero__right {
-    display: none !important; /* hero canvas hidden on mobile since we use global shapes */
+    display: none !important;
   }
-  /* Reveal 3D canvases in about section at reduced heights */
-
-  /* Show mobile 3D strips in hero */
-  .hero__mob3d {
+  .hero__mob-canvas {
     display: block;
   }
-  .hero__mob3d--top {
-    order: -1;
+  /* hero must be relative for absolute canvas */
+  .hero {
+    position: relative;
   }
-  .hero__mob3d--bottom {
-    order: 1;
+  /* inner content above canvas */
+  .hero__inner {
+    position: relative;
+    z-index: 1;
   }
 
   .cases-grid, .adv-grid--clean, .services-grid { 

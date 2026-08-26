@@ -550,97 +550,128 @@ initMini3D('canvas-about-top');
 initMini3D('canvas-about-bottom');
 initMini3D('canvas-process');
 
-/* ---- MOBILE HERO 3D (top + bottom strips) ---- */
+/* ---- MOBILE HERO 3D (full-hero, scattered, parallax) ---- */
 (function initHeroMobile() {
   if (typeof THREE === 'undefined') return;
-  // Only init on mobile
-  const isMobile = window.innerWidth <= 640;
-  if (!isMobile) return;
+  if (window.innerWidth > 768) return; // desktop has own heroCanvas
 
-  function initStrip(canvasId, positionTop) {
-    const canvas = document.getElementById(canvasId);
-    if (!canvas) return;
+  const canvas = document.getElementById('heroMobCanvas');
+  if (!canvas) return;
 
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setClearColor(0x000000, 0);
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
 
-    const W = () => canvas.clientWidth || window.innerWidth;
-    const H = () => canvas.clientHeight || 200;
-    renderer.setSize(W(), H());
+  const W = () => canvas.offsetWidth  || window.innerWidth;
+  const H = () => canvas.offsetHeight || window.innerHeight;
+  renderer.setSize(W(), H());
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, W() / H(), 0.1, 100);
-    camera.position.z = 18;
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, W() / H(), 0.1, 100);
+  camera.position.z = 20;
 
-    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
-    const dLight = new THREE.DirectionalLight(0xFF5C00, 1.2);
-    dLight.position.set(4, 6, 4);
-    scene.add(dLight);
-    const dLight2 = new THREE.DirectionalLight(0x0057B7, 0.8);
-    dLight2.position.set(-4, -3, 2);
-    scene.add(dLight2);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+  const dL1 = new THREE.DirectionalLight(0xFF5C00, 1.3);
+  dL1.position.set(5, 7, 5);
+  scene.add(dL1);
+  const dL2 = new THREE.DirectionalLight(0x0057B7, 0.9);
+  dL2.position.set(-5, -4, 3);
+  scene.add(dL2);
 
-    const mats = [
-      new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: true, transparent: true, opacity: 0.5 }),
-      new THREE.MeshStandardMaterial({ color: 0xE64D00, wireframe: false, transparent: true, opacity: 0.2, metalness: 0.8, roughness: 0.2 }),
-      new THREE.MeshStandardMaterial({ color: 0x1a1a1a, wireframe: true, transparent: true, opacity: 0.2 }),
-    ];
+  /* Materials */
+  const mats = [
+    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: true,  transparent: true, opacity: 0.55 }),
+    new THREE.MeshStandardMaterial({ color: 0xE64D00, wireframe: false, transparent: true, opacity: 0.18, metalness: 0.85, roughness: 0.15 }),
+    new THREE.MeshStandardMaterial({ color: 0x1a1a1a, wireframe: true,  transparent: true, opacity: 0.22 }),
+    new THREE.MeshStandardMaterial({ color: 0x0066FF, wireframe: true,  transparent: true, opacity: 0.18 }),
+    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: false, transparent: true, opacity: 0.12, metalness: 0.9, roughness: 0.1 }),
+  ];
 
-    // Shapes distributed: top strip — shapes near top, bottom strip — shapes near bottom
-    const geos = [
-      new THREE.IcosahedronGeometry(1.4, 0),
-      new THREE.TorusGeometry(0.9, 0.3, 10, 40),
-      new THREE.TetrahedronGeometry(1.1, 0),
-      new THREE.OctahedronGeometry(1.0, 0),
-      new THREE.IcosahedronGeometry(0.7, 0),
-    ];
+  /* Geometry pool */
+  const geoPool = [
+    new THREE.IcosahedronGeometry(1, 0),
+    new THREE.TorusGeometry(0.8, 0.3, 10, 40),
+    new THREE.TetrahedronGeometry(1, 0),
+    new THREE.OctahedronGeometry(0.9, 0),
+    new THREE.IcosahedronGeometry(0.7, 0),
+    new THREE.TorusGeometry(0.55, 0.18, 8, 32),
+    new THREE.OctahedronGeometry(1.2, 0),
+    new THREE.TetrahedronGeometry(0.75, 0),
+  ];
 
-    const shapes = [];
-    const count = 5;
-    for (let i = 0; i < count; i++) {
-      const geo = geos[i % geos.length];
-      const mat = mats[i % mats.length];
-      const mesh = new THREE.Mesh(geo, mat);
-      // Spread horizontally, position vertically based on which strip
-      const xSpread = 20;
-      const x = (i / (count - 1) - 0.5) * xSpread;
-      const y = positionTop ? 0.5 : -0.5;
-      const z = (Math.random() - 0.5) * 4;
-      mesh.position.set(x, y, z);
-      mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
-      mesh.userData = {
-        rx: (Math.random() - 0.5) * 0.015,
-        ry: (Math.random() - 0.5) * 0.015,
-        amp: 0.2 + Math.random() * 0.3,
-        spd: 0.3 + Math.random() * 0.3,
-        ph: Math.random() * Math.PI * 2,
-        by: y,
-      };
-      scene.add(mesh);
-      shapes.push(mesh);
-    }
+  /* Random scales — makes them look unequal */
+  const scaleSet = [0.45, 0.65, 0.9, 1.1, 1.35, 1.6, 0.55, 1.8, 0.75, 1.25, 0.5, 1.0];
 
-    let t = 0;
-    (function loop() {
-      requestAnimationFrame(loop);
-      t += 0.016;
-      shapes.forEach(m => {
-        m.rotation.x += m.userData.rx;
-        m.rotation.y += m.userData.ry;
-        m.position.y = m.userData.by + Math.sin(t * m.userData.spd + m.userData.ph) * m.userData.amp;
-      });
-      renderer.render(scene, camera);
-    })();
+  /* Calc visible bounds from camera */
+  const fovRad = (60 * Math.PI) / 180;
+  const vH = 2 * Math.tan(fovRad / 2) * camera.position.z; // ~23
+  const getVW = () => vH * (W() / H());
 
-    window.addEventListener('resize', () => {
-      if (!canvas.clientWidth) return;
-      renderer.setSize(W(), H());
-      camera.aspect = W() / H();
-      camera.updateProjectionMatrix();
-    });
+  const shapes = [];
+  const COUNT = 12;
+
+  for (let i = 0; i < COUNT; i++) {
+    const geo = geoPool[i % geoPool.length];
+    const mat = mats[i % mats.length];
+    const mesh = new THREE.Mesh(geo, mat);
+
+    const sc = scaleSet[i % scaleSet.length];
+    mesh.scale.setScalar(sc);
+
+    /* Scatter randomly across full hero */
+    const vw = getVW();
+    const x = (Math.random() - 0.5) * vw * 0.92;
+    const y = (Math.random() - 0.5) * vH * 0.88;
+    const z = (Math.random() - 0.5) * 8 - 1;
+
+    mesh.position.set(x, y, z);
+    mesh.rotation.set(
+      Math.random() * Math.PI * 2,
+      Math.random() * Math.PI * 2,
+      Math.random() * Math.PI
+    );
+
+    mesh.userData = {
+      rx:     (Math.random() - 0.5) * 0.014,
+      ry:     (Math.random() - 0.5) * 0.014,
+      amp:    0.12 + Math.random() * 0.28,   // float amplitude
+      spd:    0.2  + Math.random() * 0.4,    // float speed
+      ph:     Math.random() * Math.PI * 2,
+      baseY:  y,
+      pxSpd: (0.003 + Math.random() * 0.01) * (Math.random() < 0.5 ? 1 : -1), // parallax speed (some go up, some down)
+    };
+
+    scene.add(mesh);
+    shapes.push(mesh);
   }
 
-  initStrip('heroMobTop', true);
-  initStrip('heroMobBottom', false);
-})();
+  /* Scroll parallax */
+  let scrollY = window.scrollY;
+  window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
+
+  let t = 0;
+  (function loop() {
+    requestAnimationFrame(loop);
+    t += 0.016;
+
+    shapes.forEach(m => {
+      m.rotation.x += m.userData.rx;
+      m.rotation.y += m.userData.ry;
+      /* float + parallax combined */
+      m.position.y =
+        m.userData.baseY
+        + Math.sin(t * m.userData.spd + m.userData.ph) * m.userData.amp
+        - scrollY * m.userData.pxSpd;
+    });
+
+    renderer.render(scene, camera);
+  })();
+
+  window.addEventListener('resize', () => {
+    if (!canvas.offsetWidth) return;
+    renderer.setSize(W(), H());
+    camera.aspect = W() / H();
+    camera.updateProjectionMatrix();
+  });
+})();
+
