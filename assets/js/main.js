@@ -252,69 +252,98 @@ document.querySelectorAll('.acc').forEach(acc => {
   });
 });
 
+/* ---- CASES MORE BUTTON ---- */
+const casesMoreBtn = document.getElementById('casesMoreBtn');
+const casesGrid = document.getElementById('casesGrid');
+const casesMoreWrap = document.getElementById('casesMoreWrap');
+
+if (casesMoreBtn && casesGrid) {
+  casesMoreBtn.addEventListener('click', () => {
+    casesGrid.classList.add('show-all');
+    if (casesMoreWrap) {
+      casesMoreWrap.style.display = 'none';
+    }
+    const extraCases = casesGrid.querySelectorAll('.case--extra');
+    extraCases.forEach(item => {
+      item.classList.add('is-visible');
+    });
+  });
+}
+
 /* ---- CASES MOBILE AUTO-CAROUSEL ---- */
 (function initCasesCarousel() {
   const grid = document.getElementById('casesGrid');
-  const dotsWrap = document.getElementById('casesMobDots');
-  if (!grid || !dotsWrap) return;
-
-  const cards = Array.from(grid.querySelectorAll('.case'));
-  if (!cards.length) return;
-
-  // Build dots
-  cards.forEach((_, i) => {
-    const dot = document.createElement('div');
-    dot.className = 'cases-mob-dot' + (i === 0 ? ' active' : '');
-    dot.addEventListener('click', () => goTo(i));
-    dotsWrap.appendChild(dot);
-  });
-
-  const dots = () => dotsWrap.querySelectorAll('.cases-mob-dot');
+  if (!grid) return;
 
   let current = 0;
   let autoTimer = null;
   let isTouch = false;
+  let resumeTimer = null;
+
+  function getCards() {
+    return Array.from(grid.querySelectorAll('.case')).filter(c => {
+      return window.getComputedStyle(c).display !== 'none';
+    });
+  }
 
   function goTo(idx) {
+    const cards = getCards();
+    if (cards.length <= 1) return;
     current = (idx + cards.length) % cards.length;
-    // Scroll grid to card
-    const cardW = cards[0].offsetWidth + parseInt(getComputedStyle(grid).gap || '16');
+    const cardW = cards[0].offsetWidth + 16;
     grid.scrollTo({ left: current * cardW, behavior: 'smooth' });
-    dots().forEach((d, i) => d.classList.toggle('active', i === current));
   }
 
   function startAuto() {
     clearInterval(autoTimer);
     autoTimer = setInterval(() => {
-      if (!isTouch) goTo(current + 1);
+      if (!isTouch && window.innerWidth <= 640) {
+        goTo(current + 1);
+      }
     }, 3000);
   }
 
-  // Update active dot on manual swipe
+  function stopAuto() {
+    if (autoTimer) {
+      clearInterval(autoTimer);
+      autoTimer = null;
+    }
+  }
+
+  // Update current index on manual swipe
   grid.addEventListener('scroll', () => {
-    const cardW = cards[0].offsetWidth + parseInt(getComputedStyle(grid).gap || '16');
+    const cards = getCards();
+    if (!cards.length) return;
+    const cardW = cards[0].offsetWidth + 16;
     const idx = Math.round(grid.scrollLeft / cardW);
     current = Math.min(Math.max(idx, 0), cards.length - 1);
-    dots().forEach((d, i) => d.classList.toggle('active', i === current));
   }, { passive: true });
 
-  // Pause auto on touch, resume on release
-  grid.addEventListener('touchstart', () => { isTouch = true; }, { passive: true });
-  grid.addEventListener('touchend',   () => {
-    isTouch = false;
-    startAuto();
+  // Pause auto on touch, resume after user stops interacting
+  grid.addEventListener('touchstart', () => {
+    isTouch = true;
+    clearTimeout(resumeTimer);
+  }, { passive: true });
+
+  grid.addEventListener('touchend', () => {
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => {
+      isTouch = false;
+      startAuto();
+    }, 2000);
   }, { passive: true });
 
   // Only run carousel on mobile
-  function maybeStart() {
+  function checkScreen() {
     if (window.innerWidth <= 640) {
       startAuto();
     } else {
-      clearInterval(autoTimer);
+      stopAuto();
     }
   }
-  maybeStart();
-  window.addEventListener('resize', maybeStart);
+
+  checkScreen();
+  window.addEventListener('resize', checkScreen);
 })();
 
 /* ---- SLIDER DOTS (advantages) ---- */
