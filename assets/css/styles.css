@@ -391,7 +391,7 @@ input, textarea { font-family: inherit; }
   box-shadow: 0 20px 60px rgba(0,0,0,.1);
   transform: translateY(-6px);
 }
-/* ---- CASE PREVIEW (Pure Clean Minimalist Box with Centered Icon) ---- */
+/* ---- CASE PREVIEW (Pure Clean Minimalist Solid Block) ---- */
 .case__preview {
   aspect-ratio: 16 / 10;
   position: relative;
@@ -403,41 +403,11 @@ input, textarea { font-family: inherit; }
   justify-content: center;
   transition: background var(--trans), border-color var(--trans);
 }
-.case__icon-wrap {
-  width: 76px;
-  height: 76px;
-  border-radius: 20px;
-  background: #F6F6F2;
-  border: 1px solid #EAEAEA;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--black);
-  transition: transform var(--trans), background var(--trans), border-color var(--trans);
-}
-.case__icon-wrap svg {
-  width: 36px;
-  height: 36px;
-}
-.case:hover .case__icon-wrap {
-  transform: scale(1.12);
-  background: #FFFFFF;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-}
 
 /* Dark theme: pure clean dark background */
 body.dark-theme .case__preview {
   background: #141414 !important;
   border-bottom-color: #222222;
-}
-body.dark-theme .case__icon-wrap {
-  background: #1C1C1C;
-  border-color: #2A2A2A;
-  color: #FFFFFF;
-}
-body.dark-theme .case:hover .case__icon-wrap {
-  background: #242424;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
 .case__hover-label {
