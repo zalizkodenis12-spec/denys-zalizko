@@ -297,6 +297,29 @@ input, textarea { font-family: inherit; }
   height: 100%;
 }
 
+/* Hero buttons row */
+.hero__btns {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Mobile 3D strips inside hero — hidden by default, shown on mobile */
+.hero__mob3d {
+  display: none;
+  width: 100%;
+  height: 200px;
+  position: relative;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero__mob3d canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 /* ============================================================
    SECTIONS BASE
    ============================================================ */
@@ -972,6 +995,64 @@ body.dark-theme .theme-toggle {
   .sec { padding: 72px 0; }
   .hero__title { letter-spacing: -2px; }
   .hero__right { height: 280px; }
+
+  /* ---- MOBILE HERO CENTERING ---- */
+  .hero {
+    align-items: center;
+    justify-content: center;
+    min-height: 100svh;
+    flex-direction: column;
+  }
+  .hero__inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    align-items: center;
+    justify-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
+    min-height: calc(100svh - var(--hh));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+  }
+  .hero__left {
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+  }
+  .hero__sub {
+    text-align: center;
+    max-width: 100%;
+  }
+  .hero__btns {
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  .hero__btns .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ---- MOBILE 3D: top + bottom strips ---- */
+  .hero__right {
+    display: none !important; /* hero canvas hidden on mobile since we use global shapes */
+  }
+  /* Reveal 3D canvases in about section at reduced heights */
+
+  /* Show mobile 3D strips in hero */
+  .hero__mob3d {
+    display: block;
+  }
+  .hero__mob3d--top {
+    order: -1;
+  }
+  .hero__mob3d--bottom {
+    order: 1;
+  }
+
   .cases-grid, .adv-grid--clean, .services-grid { 
     display: flex !important; 
     flex-wrap: nowrap !important;
@@ -992,6 +1073,7 @@ body.dark-theme .theme-toggle {
     scroll-snap-align: start !important; 
     border-radius: var(--r) !important;
   }
+
   
   .adv-grid { grid-template-columns: 1fr; }
   .adv { border-right: none; }

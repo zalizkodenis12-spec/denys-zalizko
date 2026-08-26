@@ -19,7 +19,7 @@
 <header class="hdr" id="hdr">
   <div class="wrap hdr__inner">
     <a href="#hero" class="logo" id="pLogo">
-      <span class="logo__name" style="font-family: var(--ffh); font-weight: 900; font-size: 1.5rem; letter-spacing: -0.5px;">Denys Zalizko</span>
+      <span class="logo__name" style="font-family: var(--ffh); font-weight: 900; font-size: 1.5rem; letter-spacing: -0.5px;">DenisWeb Studio</span>
     </a>
     <nav class="hdr__nav" id="hdrNav">
       <a href="#cases">Кейси</a>
@@ -53,19 +53,32 @@
 
 <!-- ========== HERO ========== -->
 <section class="hero" id="hero">
+  <!-- Mobile 3D top strip -->
+  <div class="hero__mob3d hero__mob3d--top">
+    <canvas id="heroMobTop"></canvas>
+  </div>
+
   <div class="wrap hero__inner">
     <div class="hero__left">
       <h1 class="hero__title rv">
         Сучасні<br>веб-<br><span class="accent">рішення</span>
       </h1>
       <div class="hero__sub rv">
-        Проєктую та розробляю лендінги, онлайн-магазини та преміальні сайти з 3D-анімацією — від ідеї до запуску
+        Проєктую та розробляю лендінги, онлайн-магазини та преміальні сайти з 3D-анімацією — від першого дзвінка та безкоштовної демоверсії, через узгодження дизайну й правки, до повноцінного запуску з SEO-оптимізацією та підключеним доменом.
       </div>
-      <a href="#contact" class="btn btn--fill btn--lg rv">Замовити сайт</a>
+      <div class="hero__btns rv">
+        <a href="#contact" class="btn btn--fill btn--lg">Замовити сайт</a>
+        <a href="#cases" class="btn btn--out btn--lg">Приклади робіт</a>
+      </div>
     </div>
     <div class="hero__right">
       <canvas id="heroCanvas"></canvas>
     </div>
+  </div>
+
+  <!-- Mobile 3D bottom strip -->
+  <div class="hero__mob3d hero__mob3d--bottom">
+    <canvas id="heroMobBottom"></canvas>
   </div>
 </section>
 
@@ -383,7 +396,7 @@
 <footer class="footer" style="background: var(--white); color: var(--black); border-top: 1px solid var(--border);">
   <div class="wrap footer__inner">
     <a href="#hero" class="logo">
-      <span class="logo__name" style="font-family: var(--ffh); font-weight: 900; font-size: 1.5rem; letter-spacing: -0.5px; color: var(--black);">Denys Zalizko</span>
+      <span class="logo__name" style="font-family: var(--ffh); font-weight: 900; font-size: 1.5rem; letter-spacing: -0.5px; color: var(--black);">DenisWeb Studio</span>
     </a>
     <nav class="footer__nav" style="color: var(--black);">
       <a href="#cases" style="color: var(--black);">Кейси</a>
