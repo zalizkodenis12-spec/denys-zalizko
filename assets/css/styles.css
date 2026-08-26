@@ -578,14 +578,14 @@ input, textarea { font-family: inherit; }
    ============================================================ */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   border: 1px solid var(--border);
   border-radius: var(--r-xl);
   overflow: hidden;
   background: var(--white);
 }
 .svc {
-  padding: 48px 40px;
+  padding: 48px 32px;
   border-right: 1px solid var(--border);
   transition: var(--trans);
   position: relative;
@@ -647,6 +647,20 @@ input, textarea { font-family: inherit; }
   color: var(--muted);
   line-height: 1.75;
   max-width: 380px;
+}
+.proc__3d-container {
+  height: 500px;
+  width: 100%;
+  position: relative;
+  margin-top: -50px;
+  margin-bottom: -150px;
+  z-index: -1;
+  opacity: 0.8;
+  pointer-events: none;
+}
+.proc__3d-container canvas {
+  width: 100%;
+  height: 100%;
 }
 
 /* Accordion */
@@ -1066,7 +1080,7 @@ body.dark-theme .theme-toggle {
     z-index: 1;
   }
 
-  .cases-grid, .adv-grid--clean, .services-grid { 
+  .cases-grid, .adv-grid--clean { 
     display: flex !important; 
     flex-wrap: nowrap !important;
     overflow-x: auto !important; 
@@ -1077,9 +1091,9 @@ body.dark-theme .theme-toggle {
     grid-template-columns: none !important;
   }
   .cases-grid--hidden { display: none !important; }
-  .cases-grid::-webkit-scrollbar, .adv-grid--clean::-webkit-scrollbar, .services-grid::-webkit-scrollbar { display: none !important; }
+  .cases-grid::-webkit-scrollbar, .adv-grid--clean::-webkit-scrollbar { display: none !important; }
   
-  .cases-grid .case, .adv-clean, .svc { 
+  .cases-grid .case, .adv-clean { 
     flex: 0 0 calc(100vw - 40px) !important;
     max-width: calc(100vw - 40px) !important;
     min-width: calc(100vw - 40px) !important;
@@ -1093,6 +1107,56 @@ body.dark-theme .theme-toggle {
     display: none !important;
   }
 
+  /* ---- MOBILE SERVICES: VERTICAL STACKED STICKY CARDS ---- */
+  .services-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 18px !important;
+    overflow: visible !important;
+    border: none !important;
+    background: transparent !important;
+    padding-bottom: 40px !important;
+    padding-top: 10px !important;
+  }
+
+  .svc {
+    position: sticky !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    min-height: 230px !important;
+    background: #151515 !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: var(--r-xl) !important;
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.8) !important;
+    padding: 36px 28px !important;
+    margin-bottom: 16px !important;
+    scroll-snap-align: none !important;
+    transform: none !important;
+  }
+  .svc.is-visible {
+    transform: none !important;
+  }
+
+  .svc:nth-child(1) {
+    top: calc(var(--hh) + 12px) !important;
+    z-index: 1 !important;
+  }
+  .svc:nth-child(2) {
+    top: calc(var(--hh) + 28px) !important;
+    z-index: 2 !important;
+  }
+  .svc:nth-child(3) {
+    top: calc(var(--hh) + 44px) !important;
+    z-index: 3 !important;
+  }
+  .svc:nth-child(4) {
+    top: calc(var(--hh) + 60px) !important;
+    z-index: 4 !important;
+  }
   
   .adv-grid { grid-template-columns: 1fr; }
   .adv { border-right: none; }
@@ -1101,10 +1165,6 @@ body.dark-theme .theme-toggle {
   .adv-clean { 
     border: 1px solid var(--border) !important; 
     min-height: auto; 
-  }
-
-  .svc { 
-    border: 1px solid rgba(255,255,255,0.1) !important; 
   }
   
   .hide-mob { display: none !important; }
@@ -1126,8 +1186,15 @@ body.dark-theme .theme-toggle {
   .about__left .about__actions { order: 4 !important; }
   .about-canvas-bottom { order: 5 !important; }
 
-  /* Shrink massive 3D canvases on mobile */
-  .proc__3d-container { height: 300px !important; margin-bottom: -50px !important; margin-top: -20px !important; }
+  /* Compact 3D canvases placed cleanly under content on mobile */
+  .proc__3d-container { 
+    height: 180px !important; 
+    margin-top: 20px !important; 
+    margin-bottom: 0 !important; 
+    position: relative !important;
+    z-index: 1 !important;
+    opacity: 0.85 !important;
+  }
   #canvas-about-top, #canvas-about-bottom { height: 300px !important; margin-bottom: -50px !important; }
   
   #advDots { display: flex !important; }
