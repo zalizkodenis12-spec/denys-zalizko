@@ -18,9 +18,14 @@
 <!-- ========== HEADER ========== -->
 <header class="hdr" id="hdr">
   <div class="wrap hdr__inner">
+    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    
     <a href="#hero" class="logo" id="pLogo">
       <span class="logo__name" style="font-family: var(--ffh); font-weight: 900; font-size: 1.5rem; letter-spacing: -0.5px;">DenisWeb Studio</span>
     </a>
+    
     <nav class="hdr__nav" id="hdrNav">
       <a href="#cases">Кейси</a>
       <a href="#advantages">Переваги</a>
@@ -29,9 +34,12 @@
       <a href="#process">Процес</a>
       <a href="#contact">Контакти</a>
     </nav>
+    
     <a href="#contact" class="btn btn--fill" id="hdr-cta">Замовити сайт</a>
-    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">
-      <span></span><span></span><span></span>
+    
+    <button id="themeToggle" class="theme-toggle" aria-label="Змінити тему">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
   </div>
 </header>
@@ -84,60 +92,186 @@
 
     <div class="cases-grid" id="casesGrid">
 
+      <!-- Case 1 -->
       <a href="https://hard-clean-vinnitsa.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-hardclean">
-        <div class="case__img">
-          <img src="assets/images/case1.png" alt="Hard Clean Vinnytsia" style="width:100%;height:100%;object-fit:cover;object-position:top;">
-          <div class="case__hover-label">Відкрити сайт →</div>
+        <div class="case__preview">
+          <div class="case__browser-bar">
+            <div class="case__browser-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="case__browser-url">hard-clean-vinnitsa.vercel.app</div>
+          </div>
+          <div class="case__mockup-body">
+            <div class="case__mockup-top">
+              <span class="case__mockup-tag">Хімчистка</span>
+              <span class="case__mockup-status"><span class="status-dot"></span>Live</span>
+            </div>
+            <h4 class="case__mockup-title">Hard Clean</h4>
+            <p class="case__mockup-sub">Професійний клінінг та хімчистка меблів у Вінниці</p>
+            <div class="case__mockup-lines">
+              <div class="case__mockup-line" style="width: 85%;"></div>
+              <div class="case__mockup-line" style="width: 55%;"></div>
+            </div>
+            <div class="case__mockup-footer">
+              <span class="case__mockup-action">Переглянути сайт →</span>
+            </div>
+          </div>
+          <div class="case__hover-label">Відкрити сайт ↗</div>
         </div>
         <div class="case__meta">
           <h3 class="case__name">Hard Clean — Хімчистка</h3>
         </div>
       </a>
 
+      <!-- Case 2 -->
       <a href="https://d-d-flowers-n-cofee.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-flowers">
-        <div class="case__img">
-          <img src="assets/images/case2.png" alt="D&D Flowers & Coffee" style="width:100%;height:100%;object-fit:cover;object-position:top;">
-          <div class="case__hover-label">Відкрити сайт →</div>
+        <div class="case__preview">
+          <div class="case__browser-bar">
+            <div class="case__browser-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="case__browser-url">d-d-flowers-n-cofee.vercel.app</div>
+          </div>
+          <div class="case__mockup-body">
+            <div class="case__mockup-top">
+              <span class="case__mockup-tag" style="color: #EC4899; background: rgba(236,72,153,0.1);">Квіти &amp; Кава</span>
+              <span class="case__mockup-status"><span class="status-dot"></span>Live</span>
+            </div>
+            <h4 class="case__mockup-title">D&amp;D Flowers</h4>
+            <p class="case__mockup-sub">Авторські свіжі букети та ароматна кава</p>
+            <div class="case__mockup-lines">
+              <div class="case__mockup-line" style="width: 85%;"></div>
+              <div class="case__mockup-line" style="width: 55%;"></div>
+            </div>
+            <div class="case__mockup-footer">
+              <span class="case__mockup-action" style="color: #EC4899;">Переглянути сайт →</span>
+            </div>
+          </div>
+          <div class="case__hover-label">Відкрити сайт ↗</div>
         </div>
         <div class="case__meta">
           <h3 class="case__name">D&amp;D Flowers &amp; Coffee</h3>
         </div>
       </a>
 
+      <!-- Case 3 -->
       <a href="https://castom-barbershop.vercel.app/" target="_blank" rel="noopener" class="case rv" id="case-castom">
-        <div class="case__img">
-          <img src="assets/images/case3.png" alt="Castom Barbershop" style="width:100%;height:100%;object-fit:cover;object-position:top;">
-          <div class="case__hover-label">Відкрити сайт →</div>
+        <div class="case__preview">
+          <div class="case__browser-bar">
+            <div class="case__browser-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="case__browser-url">castom-barbershop.vercel.app</div>
+          </div>
+          <div class="case__mockup-body">
+            <div class="case__mockup-top">
+              <span class="case__mockup-tag" style="color: #F59E0B; background: rgba(245,158,11,0.1);">Барбершоп</span>
+              <span class="case__mockup-status"><span class="status-dot"></span>Live</span>
+            </div>
+            <h4 class="case__mockup-title">Castom Barbershop</h4>
+            <p class="case__mockup-sub">Стильні чоловічі стрижки та преміальний догляд</p>
+            <div class="case__mockup-lines">
+              <div class="case__mockup-line" style="width: 85%;"></div>
+              <div class="case__mockup-line" style="width: 55%;"></div>
+            </div>
+            <div class="case__mockup-footer">
+              <span class="case__mockup-action" style="color: #F59E0B;">Переглянути сайт →</span>
+            </div>
+          </div>
+          <div class="case__hover-label">Відкрити сайт ↗</div>
         </div>
         <div class="case__meta">
           <h3 class="case__name">Castom Barbershop</h3>
         </div>
       </a>
 
+      <!-- Case 4 -->
       <a href="https://ali-ro-site-c2rj.vercel.app/" target="_blank" rel="noopener" class="case case--extra rv" id="case-aliro">
-        <div class="case__img">
-          <img src="assets/images/case4.png" alt="Ali-Ro" style="width:100%;height:100%;object-fit:cover;object-position:top;">
-          <div class="case__hover-label">Відкрити сайт →</div>
+        <div class="case__preview">
+          <div class="case__browser-bar">
+            <div class="case__browser-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="case__browser-url">ali-ro-site.vercel.app</div>
+          </div>
+          <div class="case__mockup-body">
+            <div class="case__mockup-top">
+              <span class="case__mockup-tag" style="color: #8B5CF6; background: rgba(139,92,246,0.1);">Студія краси</span>
+              <span class="case__mockup-status"><span class="status-dot"></span>Live</span>
+            </div>
+            <h4 class="case__mockup-title">Ali-Ro Studio</h4>
+            <p class="case__mockup-sub">Преміальні косметологічні та б'юті послуги</p>
+            <div class="case__mockup-lines">
+              <div class="case__mockup-line" style="width: 85%;"></div>
+              <div class="case__mockup-line" style="width: 55%;"></div>
+            </div>
+            <div class="case__mockup-footer">
+              <span class="case__mockup-action" style="color: #8B5CF6;">Переглянути сайт →</span>
+            </div>
+          </div>
+          <div class="case__hover-label">Відкрити сайт ↗</div>
         </div>
         <div class="case__meta">
           <h3 class="case__name">Ali-Ro — Студія краси</h3>
         </div>
       </a>
 
+      <!-- Case 5 -->
       <a href="https://maxi-dent-mu.vercel.app/" target="_blank" rel="noopener" class="case case--extra rv" id="case-maxident">
-        <div class="case__img">
-          <img src="assets/images/case5.png" alt="Maxi Dent" style="width:100%;height:100%;object-fit:cover;object-position:top;">
-          <div class="case__hover-label">Відкрити сайт →</div>
+        <div class="case__preview">
+          <div class="case__browser-bar">
+            <div class="case__browser-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="case__browser-url">maxi-dent-mu.vercel.app</div>
+          </div>
+          <div class="case__mockup-body">
+            <div class="case__mockup-top">
+              <span class="case__mockup-tag" style="color: #06B6D4; background: rgba(6,182,212,0.1);">Стоматологія</span>
+              <span class="case__mockup-status"><span class="status-dot"></span>Live</span>
+            </div>
+            <h4 class="case__mockup-title">Maxi Dent</h4>
+            <p class="case__mockup-sub">Сучасна стоматологічна допомога для всієї родини</p>
+            <div class="case__mockup-lines">
+              <div class="case__mockup-line" style="width: 85%;"></div>
+              <div class="case__mockup-line" style="width: 55%;"></div>
+            </div>
+            <div class="case__mockup-footer">
+              <span class="case__mockup-action" style="color: #06B6D4;">Переглянути сайт →</span>
+            </div>
+          </div>
+          <div class="case__hover-label">Відкрити сайт ↗</div>
         </div>
         <div class="case__meta">
           <h3 class="case__name">Maxi Dent — Стоматологія</h3>
         </div>
       </a>
 
+      <!-- Case 6 -->
       <a href="https://masag.vercel.app/" target="_blank" rel="noopener" class="case case--extra rv" id="case-masag">
-        <div class="case__img">
-          <img src="assets/images/case6.png" alt="Масаж+" style="width:100%;height:100%;object-fit:cover;object-position:top;">
-          <div class="case__hover-label">Відкрити сайт →</div>
+        <div class="case__preview">
+          <div class="case__browser-bar">
+            <div class="case__browser-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="case__browser-url">masag.vercel.app</div>
+          </div>
+          <div class="case__mockup-body">
+            <div class="case__mockup-top">
+              <span class="case__mockup-tag" style="color: #10B981; background: rgba(16,185,129,0.1);">Студія масажу</span>
+              <span class="case__mockup-status"><span class="status-dot"></span>Live</span>
+            </div>
+            <h4 class="case__mockup-title">Масаж+</h4>
+            <p class="case__mockup-sub">Оздоровчий, лімфодренажний та релакс масаж</p>
+            <div class="case__mockup-lines">
+              <div class="case__mockup-line" style="width: 85%;"></div>
+              <div class="case__mockup-line" style="width: 55%;"></div>
+            </div>
+            <div class="case__mockup-footer">
+              <span class="case__mockup-action" style="color: #10B981;">Переглянути сайт →</span>
+            </div>
+          </div>
+          <div class="case__hover-label">Відкрити сайт ↗</div>
         </div>
         <div class="case__meta">
           <h3 class="case__name">Масаж+ — Студія масажу</h3>
@@ -456,12 +590,6 @@
 <a href="https://t.me/absolutikdenchik" target="_blank" rel="noopener" class="mob-cta" id="mobCta">
   Написати в Telegram
 </a>
-
-<!-- Theme Toggle -->
-<button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">
-  <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-  <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-</button>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="assets/js/main.js"></script>

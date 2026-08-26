@@ -36,31 +36,75 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.rv, .rv-left, .rv-right, .rv-scale').forEach(el => observer.observe(el));
 
-  // Theme Toggle
+  // Theme Toggle with MagicUI Circular Expanding Ripple
   const themeToggleBtn = document.getElementById('themeToggle');
   if (themeToggleBtn) {
     const sunIcon = themeToggleBtn.querySelector('.sun-icon');
     const moonIcon = themeToggleBtn.querySelector('.moon-icon');
 
-    // Check localStorage
+    const updateIcons = (isDark) => {
+      if (sunIcon && moonIcon) {
+        sunIcon.style.display = isDark ? 'none' : 'block';
+        moonIcon.style.display = isDark ? 'block' : 'none';
+      }
+    };
+
+    // Check saved theme
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+    if (initDark) {
       document.body.classList.add('dark-theme');
-      sunIcon.style.display = 'none';
-      moonIcon.style.display = 'block';
+      updateIcons(true);
+    } else {
+      document.body.classList.remove('dark-theme');
+      updateIcons(false);
     }
 
-    themeToggleBtn.addEventListener('click', () => {
-      const isDark = document.body.classList.toggle('dark-theme');
-      if (isDark) {
-        sunIcon.style.display = 'none';
-        moonIcon.style.display = 'block';
-        localStorage.setItem('theme', 'dark');
-      } else {
-        sunIcon.style.display = 'block';
-        moonIcon.style.display = 'none';
-        localStorage.setItem('theme', 'light');
+    themeToggleBtn.addEventListener('click', (e) => {
+      const isCurrentlyDark = document.body.classList.contains('dark-theme');
+      const nextDark = !isCurrentlyDark;
+
+      const toggleThemeState = () => {
+        document.body.classList.toggle('dark-theme', nextDark);
+        localStorage.setItem('theme', nextDark ? 'dark' : 'light');
+        updateIcons(nextDark);
+      };
+
+      if (!document.startViewTransition) {
+        toggleThemeState();
+        return;
       }
+
+      // Calculate ripple center from click event or button position
+      const rect = themeToggleBtn.getBoundingClientRect();
+      const x = e && e.clientX ? e.clientX : rect.left + rect.width / 2;
+      const y = e && e.clientY ? e.clientY : rect.top + rect.height / 2;
+      const endRadius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y)
+      );
+
+      const transition = document.startViewTransition(() => {
+        toggleThemeState();
+      });
+
+      transition.ready.then(() => {
+        const clipPath = [
+          `circle(0px at ${x}px ${y}px)`,
+          `circle(${endRadius}px at ${x}px ${y}px)`
+        ];
+        document.documentElement.animate(
+          {
+            clipPath: clipPath
+          },
+          {
+            duration: 450,
+            easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+            pseudoElement: '::view-transition-new(root)'
+          }
+        );
+      });
     });
   }
 });
