@@ -624,43 +624,38 @@ input, textarea { font-family: inherit; }
 /* ============================================================
    PROCESS — ACCORDION
    ============================================================ */
-.proc {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
+.proc__3d-strip {
+  width: 100%;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+  pointer-events: none;
+  opacity: 0.85;
 }
-.proc__left {
-  /* removed sticky to allow normal scrolling */
+.proc__3d-strip canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 .proc__title {
   font-family: var(--ffh);
-  font-size: clamp(2.8rem, 5.5vw, 5rem);
+  font-size: clamp(2.4rem, 5vw, 4rem);
   font-weight: 900;
-  line-height: 1.0;
-  letter-spacing: -2.5px;
+  line-height: 1.05;
+  letter-spacing: -2px;
   color: var(--black);
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 .proc__sub {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--muted);
   line-height: 1.75;
-  max-width: 380px;
+  max-width: 600px;
 }
-.proc__3d-container {
-  height: 500px;
-  width: 100%;
-  position: relative;
-  margin-top: -50px;
-  margin-bottom: -150px;
-  z-index: -1;
-  opacity: 0.8;
-  pointer-events: none;
-}
-.proc__3d-container canvas {
-  width: 100%;
-  height: 100%;
+.proc__steps {
+  max-width: 860px;
+  margin: 0 auto;
 }
 
 /* Accordion */
@@ -1187,13 +1182,9 @@ body.dark-theme .theme-toggle {
   .about-canvas-bottom { order: 5 !important; }
 
   /* Compact 3D canvases placed cleanly under content on mobile */
-  .proc__3d-container { 
-    height: 180px !important; 
-    margin-top: 20px !important; 
-    margin-bottom: 0 !important; 
-    position: relative !important;
-    z-index: 1 !important;
-    opacity: 0.85 !important;
+  .proc__3d-strip { 
+    height: 140px !important; 
+    margin-bottom: 12px !important; 
   }
   #canvas-about-top, #canvas-about-bottom { height: 300px !important; margin-bottom: -50px !important; }
   
