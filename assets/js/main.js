@@ -550,7 +550,7 @@ if (advGrid && advDots) {
   });
 })();
 
-/* ---- MINI 3D FIGURES ---- */
+/* ---- MINI 3D FIGURES (Curated Edge-to-Edge Designer Composition) ---- */
 function initMini3D(canvasId) {
   const canvas = document.getElementById(canvasId);
   if (!canvas || typeof THREE === 'undefined') return;
@@ -558,112 +558,145 @@ function initMini3D(canvasId) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-  const updateSize = () => {
-    if (!canvas.clientWidth) return;
-    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-  };
-  updateSize();
-
   const scene = new THREE.Scene();
   const isMob = window.innerWidth < 768;
-  const camera = new THREE.PerspectiveCamera(isMob ? 55 : 50, (canvas.clientWidth || 300) / (canvas.clientHeight || 180), 0.1, 100);
-  camera.position.z = isMob ? 11 : 14;
+  const fov = 48;
+  const camera = new THREE.PerspectiveCamera(fov, 1, 0.1, 100);
+  camera.position.z = isMob ? 11 : 13;
 
-  scene.add(new THREE.AmbientLight(0xffffff, 0.7));
-  const dLight = new THREE.DirectionalLight(0xFF5C00, 1.5);
-  dLight.position.set(5, 7, 5);
+  // Studio lighting
+  scene.add(new THREE.AmbientLight(0xffffff, 0.75));
+  const dLight = new THREE.DirectionalLight(0xFF5C00, 1.4);
+  dLight.position.set(6, 8, 6);
   scene.add(dLight);
   
-  const d2 = new THREE.DirectionalLight(0x0066FF, 1.1);
-  d2.position.set(-5, -4, 3);
+  const d2 = new THREE.DirectionalLight(0x0066FF, 1.0);
+  d2.position.set(-6, -5, 4);
   scene.add(d2);
 
-  /* Shapes */
-  const shapes = [];
-  const spreadX = isMob ? 22 : 30;
-  const spreadY = isMob ? 8 : 12;
-  
-  // Base geometries (scaled down slightly for perfect balance)
-  const baseDefs = [
-    { geo: new THREE.IcosahedronGeometry(isMob ? 1.75 : 1.6, 0) },
-    { geo: new THREE.OctahedronGeometry(isMob ? 1.45 : 1.3, 0) },
-    { geo: new THREE.TorusGeometry(isMob ? 1.25 : 1.1, 0.32, 12, 48) },
-    { geo: new THREE.IcosahedronGeometry(isMob ? 1.15 : 1.0, 0) },
-    { geo: new THREE.TetrahedronGeometry(isMob ? 1.45 : 1.25, 0) },
-    { geo: new THREE.OctahedronGeometry(isMob ? 1.0 : 0.85, 0) },
-    { geo: new THREE.TorusGeometry(isMob ? 0.9 : 0.75, 0.22, 8, 32) },
-    { geo: new THREE.BoxGeometry(isMob ? 1.2 : 1.05, isMob ? 1.2 : 1.05, isMob ? 1.2 : 1.05) },
-    { geo: new THREE.TetrahedronGeometry(isMob ? 1.0 : 0.85, 0) }
-  ];
-  
-  const mats = [
-    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: true,  transparent: true, opacity: .6 }),
-    new THREE.MeshStandardMaterial({ color: 0xE64D00, wireframe: false, transparent: true, opacity: .35, metalness: .8, roughness: .2 }),
-    new THREE.MeshStandardMaterial({ color: 0x1a1a1a, wireframe: true,  transparent: true, opacity: .3 }),
-    new THREE.MeshStandardMaterial({ color: 0x0066FF, wireframe: true,  transparent: true, opacity: .35 }),
-    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: false, transparent: true, opacity: .25, metalness: .9, roughness: .1 }),
-    new THREE.MeshStandardMaterial({ color: 0x0066FF, wireframe: false, transparent: true, opacity: .25, metalness: .85, roughness: .2 }),
+  // Geometric models
+  const geoList = [
+    new THREE.IcosahedronGeometry(isMob ? 1.5 : 1.4, 0),        // 0: Icosahedron
+    new THREE.OctahedronGeometry(isMob ? 1.3 : 1.2, 0),          // 1: Octahedron
+    new THREE.TorusGeometry(isMob ? 1.15 : 1.05, 0.28, 12, 48),  // 2: Torus
+    new THREE.TetrahedronGeometry(isMob ? 1.3 : 1.2, 0),        // 3: Tetrahedron
+    new THREE.BoxGeometry(isMob ? 1.1 : 1.0, isMob ? 1.1 : 1.0, isMob ? 1.1 : 1.0), // 4: Box
+    new THREE.TorusGeometry(isMob ? 0.9 : 0.8, 0.22, 8, 32),     // 5: Small Torus
   ];
 
-  // Generate 24 random shapes across the strip
-  for (let i = 0; i < 24; i++) {
-    const base = baseDefs[Math.floor(Math.random() * baseDefs.length)];
-    const mat = mats[Math.floor(Math.random() * mats.length)];
-    const mesh = new THREE.Mesh(base.geo, mat);
-    
-    const x = (Math.random() - 0.5) * spreadX;
-    const y = (Math.random() - 0.5) * spreadY;
-    const z = (Math.random() - 0.5) * 6;
-    
-    mesh.position.set(x, y, z);
-    mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
+  // Materials
+  const matList = [
+    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: true,  transparent: true, opacity: 0.65 }), // 0: Orange wireframe
+    new THREE.MeshStandardMaterial({ color: 0xE64D00, wireframe: false, transparent: true, opacity: 0.35, metalness: 0.8, roughness: 0.2 }), // 1: Orange glass
+    new THREE.MeshStandardMaterial({ color: 0x1a1a1a, wireframe: true,  transparent: true, opacity: 0.28 }), // 2: Charcoal wireframe
+    new THREE.MeshStandardMaterial({ color: 0x0066FF, wireframe: true,  transparent: true, opacity: 0.38 }), // 3: Blue wireframe
+    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: false, transparent: true, opacity: 0.25, metalness: 0.9, roughness: 0.1 }), // 4: Glowing orange
+    new THREE.MeshStandardMaterial({ color: 0x0066FF, wireframe: false, transparent: true, opacity: 0.28, metalness: 0.85, roughness: 0.2 }), // 5: Blue glass
+  ];
+
+  // 11 beautifully orchestrated coordinates spanning edge-to-edge from -0.92 to +0.92
+  const layout = [
+    // Left edge
+    { nx: -0.92, ny:  0.22, z: -0.5, geo: 0, mat: 0, s: 0.88, rx:  0.015, ry:  0.012, spd: 0.22, ph: 0.2 },
+    { nx: -0.74, ny: -0.32, z:  0.5, geo: 1, mat: 1, s: 0.85, rx: -0.012, ry:  0.015, spd: 0.28, ph: 1.5 },
+    // Mid-left
+    { nx: -0.55, ny:  0.42, z: -0.2, geo: 2, mat: 3, s: 0.95, rx:  0.018, ry: -0.014, spd: 0.20, ph: 3.1 },
+    { nx: -0.36, ny: -0.25, z:  0.8, geo: 3, mat: 2, s: 0.80, rx: -0.014, ry: -0.012, spd: 0.25, ph: 4.2 },
+    // Center-left
+    { nx: -0.17, ny:  0.28, z: -0.4, geo: 5, mat: 4, s: 0.85, rx:  0.012, ry:  0.018, spd: 0.30, ph: 0.8 },
+    // Center focal point
+    { nx:  0.02, ny: -0.28, z:  1.0, geo: 0, mat: 0, s: 1.10, rx: -0.015, ry:  0.014, spd: 0.18, ph: 2.4 },
+    // Center-right
+    { nx:  0.21, ny:  0.38, z: -0.3, geo: 4, mat: 5, s: 0.85, rx:  0.014, ry: -0.015, spd: 0.26, ph: 5.1 },
+    // Mid-right
+    { nx:  0.40, ny: -0.32, z:  0.6, geo: 0, mat: 3, s: 0.90, rx: -0.016, ry:  0.012, spd: 0.21, ph: 1.1 },
+    { nx:  0.58, ny:  0.28, z: -0.6, geo: 1, mat: 1, s: 0.95, rx:  0.012, ry:  0.016, spd: 0.29, ph: 3.7 },
+    // Right edge
+    { nx:  0.76, ny: -0.25, z:  0.4, geo: 2, mat: 2, s: 0.85, rx: -0.015, ry: -0.012, spd: 0.24, ph: 0.5 },
+    { nx:  0.92, ny:  0.18, z: -0.2, geo: 3, mat: 0, s: 0.90, rx:  0.014, ry:  0.015, spd: 0.27, ph: 2.9 },
+  ];
+
+  const shapes = [];
+  layout.forEach(item => {
+    const mesh = new THREE.Mesh(geoList[item.geo], matList[item.mat]);
+    mesh.scale.setScalar(item.s);
     mesh.userData = {
-      rx: (Math.random() - .5) * .025,
-      ry: (Math.random() - .5) * .025,
-      amp: .3 + Math.random() * .5,
-      spd: .2 + Math.random() * .3,
-      ph: Math.random() * Math.PI * 2,
-      by: y,
+      nx: item.nx,
+      ny: item.ny,
+      z: item.z,
+      rx: item.rx,
+      ry: item.ry,
+      spd: item.spd,
+      ph: item.ph,
+      baseY: 0
     };
     scene.add(mesh);
     shapes.push(mesh);
-  }
+  });
 
-  /* Particles */
+  // Particles evenly distributed across full span
+  const numParticles = 140;
   const pGeo = new THREE.BufferGeometry();
-  const numParticles = 300;
   const pPos = new Float32Array(numParticles * 3);
+  const pData = [];
   for (let i = 0; i < numParticles; i++) {
-    pPos[i*3]   = (Math.random() - .5) * 35;
-    pPos[i*3+1] = (Math.random() - .5) * 20;
-    pPos[i*3+2] = (Math.random() - .5) * 15;
+    const npx = ((i / (numParticles - 1)) - 0.5) * 2.2;
+    const npy = (Math.random() - 0.5) * 1.8;
+    const npz = (Math.random() - 0.5) * 10;
+    pData.push({ npx, npy, npz });
   }
   pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-  const pts = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xFF5C00, size: .12, transparent: true, opacity: .6 }));
+  const pts = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xFF5C00, size: 0.11, transparent: true, opacity: 0.55 }));
   scene.add(pts);
+
+  // Responsive repositioning ensuring edge-to-edge coverage
+  const reposition = () => {
+    const w = canvas.clientWidth || window.innerWidth;
+    const h = canvas.clientHeight || 180;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+
+    const vFOV = (camera.fov * Math.PI) / 180;
+    const visibleH = 2 * Math.tan(vFOV / 2) * camera.position.z;
+    const visibleW = visibleH * camera.aspect;
+
+    shapes.forEach(s => {
+      const posX = s.userData.nx * (visibleW / 2);
+      const posY = s.userData.ny * (visibleH / 2);
+      s.position.x = posX;
+      s.userData.baseY = posY;
+      s.position.y = posY;
+      s.position.z = s.userData.z;
+    });
+
+    const posAttr = pGeo.attributes.position;
+    for (let i = 0; i < numParticles; i++) {
+      const p = pData[i];
+      posAttr.setXYZ(i, p.npx * (visibleW / 2), p.npy * (visibleH / 2), p.npz);
+    }
+    posAttr.needsUpdate = true;
+  };
+
+  reposition();
 
   let t = 0;
   function animate() {
     requestAnimationFrame(animate);
-    t += 0.01;
-    pts.rotation.y = t * 0.05;
+    t += 0.012;
+    pts.rotation.y = t * 0.04;
 
     shapes.forEach(s => {
       s.rotation.x += s.userData.rx;
       s.rotation.y += s.userData.ry;
-      s.position.y = s.userData.by + Math.sin(t * s.userData.spd + s.userData.ph) * s.userData.amp;
+      s.position.y = s.userData.baseY + Math.sin(t * s.userData.spd + s.userData.ph) * 0.35;
     });
 
     renderer.render(scene, camera);
   }
   animate();
 
-  window.addEventListener('resize', () => {
-    if(!canvas.clientWidth) return;
-    camera.aspect = canvas.clientWidth / canvas.clientHeight;
-    camera.updateProjectionMatrix();
-    updateSize();
-  });
+  window.addEventListener('resize', reposition);
 }
 
 initMini3D('canvas-about-top');

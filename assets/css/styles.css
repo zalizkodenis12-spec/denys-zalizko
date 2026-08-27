@@ -1286,14 +1286,17 @@ body.dark-theme .theme-toggle:hover {
   }
   .proc__left .proc__3d-container {
     order: -1 !important;
-    height: 180px !important;
-    width: 100% !important;
+    height: 190px !important;
+    width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
     margin-top: -10px !important;
     margin-bottom: 8px !important;
     position: relative !important;
     z-index: 1 !important;
     opacity: 0.95 !important;
     overflow: hidden !important;
+    pointer-events: none !important;
   }
   .proc__left .proc__title {
     order: 1 !important;
@@ -1336,14 +1339,38 @@ body.dark-theme .theme-toggle:hover {
   /* About Section Reordering */
   .about { display: flex !important; flex-direction: column !important; gap: 20px !important; }
   .about__left, .about__right { display: contents !important; }
-  .about-canvas-top { order: 0 !important; }
+  .about-canvas-top {
+    order: 0 !important;
+    width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+    height: 220px !important;
+    position: relative !important;
+    z-index: 1 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
   .about__left .sec__title { order: 1 !important; }
   .about__left .about__text { order: 2 !important; margin-bottom: 0 !important; }
   .about__right .about__photo { order: 3 !important; margin: 16px 0 !important; }
   .about__left .about__actions { order: 4 !important; }
-  .about-canvas-bottom { order: 5 !important; }
+  .about-canvas-bottom {
+    order: 5 !important;
+    width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+    height: 220px !important;
+    position: relative !important;
+    z-index: 1 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    margin-top: 10px !important;
+    margin-bottom: 0 !important;
+  }
 
-  #canvas-about-top, #canvas-about-bottom { height: 300px !important; margin-bottom: -50px !important; }
+  #canvas-about-top, #canvas-about-bottom { height: 100% !important; width: 100% !important; margin: 0 !important; }
   
   #advDots { display: flex !important; }
 
