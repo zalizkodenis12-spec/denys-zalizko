@@ -208,43 +208,149 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 })();
 
-/* ---- CONTACT FORM ---- */
+/* ---- CONTACT FORM WITH STRICT VALIDATION & TELEGRAM INTEGRATION ---- */
 const form = document.getElementById('contactForm');
 if (form) {
   const status = document.getElementById('cfStatus');
+  const btn = document.getElementById('cfSubmit');
 
-  function validate(inp) {
-    const err = inp.closest('.form__field').querySelector('.form__err');
-    if (!inp.value.trim()) {
-      inp.classList.add('error');
-      err.textContent = "Обов'язкове поле";
+  const nameInput = document.getElementById('formName') || form.querySelector('[name="name"]');
+  const phoneInput = document.getElementById('formPhone') || form.querySelector('[name="phone"]');
+  const projectInput = document.getElementById('formProject') || form.querySelector('[name="project"]');
+
+  const nameError = document.getElementById('nameError');
+  const phoneError = document.getElementById('phoneError');
+  const projectError = document.getElementById('projectError');
+
+  // Helper to set error
+  function setError(input, errorEl, message) {
+    if (input) input.classList.add('has-error');
+    if (errorEl) {
+      errorEl.textContent = message;
+      errorEl.classList.add('active');
+    }
+  }
+
+  // Helper to clear error
+  function clearError(input, errorEl) {
+    if (input) input.classList.remove('has-error');
+    if (errorEl) {
+      errorEl.textContent = '';
+      errorEl.classList.remove('active');
+    }
+  }
+
+  // 1. Name validation: >= 2 chars, letters (UK/EN) and space/hyphen/apostrophe only
+  function validateName() {
+    if (!nameInput) return true;
+    const val = nameInput.value.trim();
+    if (!val) {
+      setError(nameInput, nameError, "Будь ласка, введіть ваше ім'я");
       return false;
     }
-    inp.classList.remove('error');
-    err.textContent = '';
+    if (val.length < 2) {
+      setError(nameInput, nameError, "Ім'я повинно містити щонайменше 2 літери");
+      return false;
+    }
+    const nameRegex = /^[a-zA-Zа-яА-ЯіІїЇєЄґҐ\s\-']{2,50}$/u;
+    if (!nameRegex.test(val) || !/[a-zA-Zа-яА-ЯіІїЇєЄґҐ]/.test(val)) {
+      setError(nameInput, nameError, "Ім'я може містити лише літери, пробіли або дефіс (без цифр і символів)");
+      return false;
+    }
+    clearError(nameInput, nameError);
     return true;
   }
 
-  form.querySelectorAll('[required]').forEach(inp => {
-    inp.addEventListener('blur', () => validate(inp));
-    inp.addEventListener('input', () => { if (inp.classList.contains('error')) validate(inp); });
-  });
+  // 2. Phone validation: Ukrainian (+380... / 0...) or international, 10-14 digits
+  function validatePhone() {
+    if (!phoneInput) return true;
+    const val = phoneInput.value.trim();
+    if (!val) {
+      setError(phoneInput, phoneError, "Будь ласка, введіть номер телефону");
+      return false;
+    }
+    const cleaned = val.replace(/[\s\-\(\)]/g, '');
+    const ukrPhoneRegex = /^(\+?38)?0\d{9}$/;
+    const generalPhoneRegex = /^\+?[0-9]{10,14}$/;
+
+    // Block fake repeated numbers (0000000000, 1111111111, 1234567890)
+    const isRepeated = /^(\+?38)?0?(\d)\2{8,}$/.test(cleaned);
+    const isSequential = /^(\+?38)?0?123456789/.test(cleaned);
+
+    if (isRepeated || isSequential || (!ukrPhoneRegex.test(cleaned) && !generalPhoneRegex.test(cleaned))) {
+      setError(phoneInput, phoneError, "Введіть реальний номер телефону (наприклад, +380971234567 або 0971234567)");
+      return false;
+    }
+    clearError(phoneInput, phoneError);
+    return true;
+  }
+
+  // 3. Project description validation: >= 10 chars, not mindless gibberish
+  function validateProject() {
+    if (!projectInput) return true;
+    const val = projectInput.value.trim();
+    if (!val) {
+      setError(projectInput, projectError, "Будь ласка, опишіть ваш проєкт або задачу");
+      return false;
+    }
+    if (val.length < 10) {
+      setError(projectInput, projectError, "Опис проєкту занадто короткий (мінімум 10 символів)");
+      return false;
+    }
+    const uniqueChars = new Set(val.toLowerCase().replace(/\s/g, '')).size;
+    if (uniqueChars < 4) {
+      setError(projectInput, projectError, "Будь ласка, вкажіть більш змістовний опис задачі");
+      return false;
+    }
+    clearError(projectInput, projectError);
+    return true;
+  }
+
+  // Live validation listeners
+  if (nameInput) {
+    nameInput.addEventListener('input', () => { if (nameInput.classList.contains('has-error')) validateName(); });
+    nameInput.addEventListener('blur', validateName);
+  }
+
+  if (phoneInput) {
+    phoneInput.addEventListener('input', () => { if (phoneInput.classList.contains('has-error')) validatePhone(); });
+    phoneInput.addEventListener('blur', validatePhone);
+  }
+
+  if (projectInput) {
+    projectInput.addEventListener('input', () => { if (projectInput.classList.contains('has-error')) validateProject(); });
+    projectInput.addEventListener('blur', validateProject);
+  }
 
   /* Form submit */
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    let ok = true;
-    form.querySelectorAll('[required]').forEach(inp => { if (!validate(inp)) ok = false; });
-    if (!ok) return;
 
-    const btn = document.getElementById('cfSubmit');
-    btn.disabled = true;
-    btn.textContent = 'Відправляємо...';
+    const isNameValid = validateName();
+    const isPhoneValid = validatePhone();
+    const isProjectValid = validateProject();
 
-    const name    = document.querySelector('[name="name"]').value.trim();
-    const phone   = document.querySelector('[name="phone"]').value.trim();
-    const project = document.querySelector('[name="project"]').value.trim();
-    
+    if (!isNameValid || !isPhoneValid || !isProjectValid) {
+      if (!isNameValid && nameInput) nameInput.focus();
+      else if (!isPhoneValid && phoneInput) phoneInput.focus();
+      else if (!isProjectValid && projectInput) projectInput.focus();
+      return;
+    }
+
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'Відправляємо...';
+    }
+
+    if (status) {
+      status.className = 'form__status';
+      status.style.display = 'none';
+    }
+
+    const name = nameInput ? nameInput.value.trim() : '';
+    const phone = phoneInput ? phoneInput.value.trim() : '';
+    const project = projectInput ? projectInput.value.trim() : '';
+
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -252,25 +358,33 @@ if (form) {
         body: JSON.stringify({ name, phone, project })
       });
 
-      if (res.ok) {
-        status.textContent = '✅ Заявка успішно відправлена! Скоро зв\'яжусь.';
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && data.success) {
+        if (status) {
+          status.className = 'form__status success';
+          status.textContent = "🎉 Дякуємо! Вашу заявку прийнято. Ми зв'яжемося з вами найближчим часом.";
+        }
         form.reset();
+        clearError(nameInput, nameError);
+        clearError(phoneInput, phoneError);
+        clearError(projectInput, projectError);
       } else {
-        status.textContent = '❌ Помилка відправки. Можливо, не налаштований бот.';
+        if (status) {
+          status.className = 'form__status error';
+          status.textContent = `❌ ${data.error || "Помилка відправки. Спробуйте ще раз або напишіть нам у Telegram."}`;
+        }
       }
     } catch (err) {
-      status.textContent = '❌ Сталася помилка. Напишіть мені в Telegram напряму.';
+      if (status) {
+        status.className = 'form__status error';
+        status.textContent = "❌ Не вдалося відправити заявку. Перевірте з'єднання або напишіть у Telegram.";
+      }
     } finally {
-      setTimeout(() => {
+      if (btn) {
         btn.disabled = false;
         btn.textContent = 'НАДІСЛАТИ';
-      }, 2000);
-      
-      setTimeout(() => {
-        if (status.textContent.includes('✅')) {
-          status.textContent = '';
-        }
-      }, 5000);
+      }
     }
   });
 }

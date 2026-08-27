@@ -412,12 +412,23 @@
 
       <div class="contact-new__right rv">
         <form class="form-new" id="contactForm" novalidate>
-          <input type="text" name="name" placeholder="Ім'я" required>
-          <input type="text" name="phone" placeholder="Телефон" required>
-          <textarea name="project" placeholder="Розкажіть нам про свій проєкт" rows="5" required></textarea>
+          <div class="form-new__group">
+            <input type="text" id="formName" name="name" placeholder="Ваше ім'я" autocomplete="name" required>
+            <span class="form-new__error" id="nameError"></span>
+          </div>
+
+          <div class="form-new__group">
+            <input type="tel" id="formPhone" name="phone" placeholder="Номер телефону (+380... або 0...)" autocomplete="tel" required>
+            <span class="form-new__error" id="phoneError"></span>
+          </div>
+
+          <div class="form-new__group">
+            <textarea id="formProject" name="project" placeholder="Розкажіть нам про свій проєкт (мінімум 10 символів)" rows="4" required></textarea>
+            <span class="form-new__error" id="projectError"></span>
+          </div>
           
           <button type="submit" class="btn-black" id="cfSubmit">НАДІСЛАТИ</button>
-          <p class="form__status" id="cfStatus" role="status" aria-live="polite"></p>
+          <div class="form__status" id="cfStatus" role="status" aria-live="polite"></div>
         </form>
       </div>
     </div>
