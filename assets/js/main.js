@@ -698,7 +698,7 @@ if (teamTrack && teamDots) {
   });
 })();
 
-/* ---- MINI 3D FIGURES (Curated Edge-to-Edge Designer Composition) ---- */
+/* ---- MINI 3D FIGURES (Adaptive Desktop & Mobile Layout) ---- */
 function initMini3D(canvasId) {
   const canvas = document.getElementById(canvasId);
   if (!canvas || typeof THREE === 'undefined') return;
@@ -706,140 +706,244 @@ function initMini3D(canvasId) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-  const scene = new THREE.Scene();
   const isMob = window.innerWidth < 768;
-  const fov = 48;
-  const camera = new THREE.PerspectiveCamera(fov, 1, 0.1, 100);
-  camera.position.z = isMob ? 11 : 13;
 
-  // Studio lighting
-  scene.add(new THREE.AmbientLight(0xffffff, 0.75));
-  const dLight = new THREE.DirectionalLight(0xFF5C00, 1.4);
-  dLight.position.set(6, 8, 6);
-  scene.add(dLight);
-  
-  const d2 = new THREE.DirectionalLight(0x0066FF, 1.0);
-  d2.position.set(-6, -5, 4);
-  scene.add(d2);
-
-  // Geometric models
-  const geoList = [
-    new THREE.IcosahedronGeometry(isMob ? 1.5 : 1.4, 0),        // 0: Icosahedron
-    new THREE.OctahedronGeometry(isMob ? 1.3 : 1.2, 0),          // 1: Octahedron
-    new THREE.TorusGeometry(isMob ? 1.15 : 1.05, 0.28, 12, 48),  // 2: Torus
-    new THREE.TetrahedronGeometry(isMob ? 1.3 : 1.2, 0),        // 3: Tetrahedron
-    new THREE.BoxGeometry(isMob ? 1.1 : 1.0, isMob ? 1.1 : 1.0, isMob ? 1.1 : 1.0), // 4: Box
-    new THREE.TorusGeometry(isMob ? 0.9 : 0.8, 0.22, 8, 32),     // 5: Small Torus
-  ];
-
-  // Materials
-  const matList = [
-    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: true,  transparent: true, opacity: 0.65 }), // 0: Orange wireframe
-    new THREE.MeshStandardMaterial({ color: 0xE64D00, wireframe: false, transparent: true, opacity: 0.35, metalness: 0.8, roughness: 0.2 }), // 1: Orange glass
-    new THREE.MeshStandardMaterial({ color: 0x1a1a1a, wireframe: true,  transparent: true, opacity: 0.28 }), // 2: Charcoal wireframe
-    new THREE.MeshStandardMaterial({ color: 0x0066FF, wireframe: true,  transparent: true, opacity: 0.38 }), // 3: Blue wireframe
-    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: false, transparent: true, opacity: 0.25, metalness: 0.9, roughness: 0.1 }), // 4: Glowing orange
-    new THREE.MeshStandardMaterial({ color: 0x0066FF, wireframe: false, transparent: true, opacity: 0.28, metalness: 0.85, roughness: 0.2 }), // 5: Blue glass
-  ];
-
-  // Beautiful organic scattered 3D layout covering full width & height
-  const shapesCount = isMob ? 15 : 18;
-  const shapes = [];
-  
-  for (let i = 0; i < shapesCount; i++) {
-    // Spread nx evenly across [-0.92, +0.92] with organic jitter
-    const step = i / (shapesCount - 1);
-    const nx = -0.92 + step * 1.84 + (Math.random() - 0.5) * 0.12;
-    // Organic height distribution: scattered across top, middle, bottom
-    const ny = (Math.sin(i * 2.5 + Math.PI / 4) * 0.52) + ((i % 3 === 0 ? 0.22 : (i % 3 === 1 ? -0.28 : 0.05))) + (Math.random() - 0.5) * 0.15;
-    const nz = (Math.random() - 0.5) * 4.5;
-    
-    const geo = geoList[Math.floor(Math.random() * geoList.length)];
-    const mat = matList[Math.floor(Math.random() * matList.length)];
-    const mesh = new THREE.Mesh(geo, mat);
-    
-    const scale = 0.75 + Math.random() * 0.45;
-    mesh.scale.setScalar(scale);
-    mesh.rotation.set(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2);
-    
-    mesh.userData = {
-      nx: Math.max(-0.95, Math.min(0.95, nx)),
-      ny: Math.max(-0.75, Math.min(0.75, ny)),
-      z: nz,
-      rx: (Math.random() - 0.5) * 0.022,
-      ry: (Math.random() - 0.5) * 0.022,
-      spd: 0.18 + Math.random() * 0.22,
-      ph: Math.random() * Math.PI * 2,
-      amp: 0.25 + Math.random() * 0.35,
-      baseY: 0
+  if (!isMob) {
+    /* ============================================================
+       DESKTOP ENGINE (Original Full Cluster View)
+       ============================================================ */
+    const updateSizeDesktop = () => {
+      if (!canvas.clientWidth) return;
+      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
     };
-    scene.add(mesh);
-    shapes.push(mesh);
-  }
+    updateSizeDesktop();
 
-  // Particles evenly distributed across full span
-  const numParticles = 140;
-  const pGeo = new THREE.BufferGeometry();
-  const pPos = new Float32Array(numParticles * 3);
-  const pData = [];
-  for (let i = 0; i < numParticles; i++) {
-    const npx = ((i / (numParticles - 1)) - 0.5) * 2.2;
-    const npy = (Math.random() - 0.5) * 1.8;
-    const npz = (Math.random() - 0.5) * 10;
-    pData.push({ npx, npy, npz });
-  }
-  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-  const pts = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xFF5C00, size: 0.11, transparent: true, opacity: 0.55 }));
-  scene.add(pts);
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(50, (canvas.clientWidth || 400) / (canvas.clientHeight || 400), 0.1, 100);
+    camera.position.z = 22; // Original pulled back cluster view for desktop
 
-  // Responsive repositioning ensuring edge-to-edge coverage
-  const reposition = () => {
-    const w = canvas.clientWidth || window.innerWidth;
-    const h = canvas.clientHeight || 180;
-    renderer.setSize(w, h);
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
+    scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+    const dLight = new THREE.DirectionalLight(0xFF5C00, 1.4);
+    dLight.position.set(4, 6, 4);
+    scene.add(dLight);
+    
+    const d2 = new THREE.DirectionalLight(0x0057B7, 1);
+    d2.position.set(-4, -3, 2);
+    scene.add(d2);
 
-    const vFOV = (camera.fov * Math.PI) / 180;
-    const visibleH = 2 * Math.tan(vFOV / 2) * camera.position.z;
-    const visibleW = visibleH * camera.aspect;
+    const shapes = [];
+    const spread = 25; // Original desktop spread
+    
+    const baseDefs = [
+      { geo: new THREE.IcosahedronGeometry(1.8, 0) },
+      { geo: new THREE.OctahedronGeometry(1.3, 0) },
+      { geo: new THREE.TorusGeometry(1.1, .35, 12, 48) },
+      { geo: new THREE.IcosahedronGeometry(.9, 0) },
+      { geo: new THREE.TetrahedronGeometry(1.2, 0) },
+      { geo: new THREE.OctahedronGeometry(.7, 0) },
+      { geo: new THREE.TorusGeometry(0.8, .2, 8, 32) },
+      { geo: new THREE.BoxGeometry(1, 1, 1) },
+      { geo: new THREE.TetrahedronGeometry(0.8, 0) }
+    ];
+    
+    const mats = [
+      new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: true,  transparent: true, opacity: .5 }),
+      new THREE.MeshStandardMaterial({ color: 0xE64D00, wireframe: false, transparent: true, opacity: .3, metalness: .8, roughness: .2 }),
+      new THREE.MeshStandardMaterial({ color: 0x1a1a1a, wireframe: true,  transparent: true, opacity: .2 }),
+      new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: false, transparent: true, opacity: .2, metalness: .9, roughness: .1 }),
+      new THREE.MeshStandardMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.1 }),
+    ];
 
-    shapes.forEach(s => {
-      const posX = s.userData.nx * (visibleW / 2);
-      const posY = s.userData.ny * (visibleH / 2);
-      s.position.x = posX;
-      s.userData.baseY = posY;
-      s.position.y = posY;
-      s.position.z = s.userData.z;
-    });
-
-    const posAttr = pGeo.attributes.position;
-    for (let i = 0; i < numParticles; i++) {
-      const p = pData[i];
-      posAttr.setXYZ(i, p.npx * (visibleW / 2), p.npy * (visibleH / 2), p.npz);
+    // Generate 20 original shapes across desktop canvas
+    for (let i = 0; i < 20; i++) {
+      const base = baseDefs[Math.floor(Math.random() * baseDefs.length)];
+      const mat = mats[Math.floor(Math.random() * mats.length)];
+      const mesh = new THREE.Mesh(base.geo, mat);
+      
+      const x = (Math.random() - 0.5) * spread;
+      const y = (Math.random() - 0.5) * spread;
+      const z = (Math.random() - 0.5) * 10;
+      
+      mesh.position.set(x, y, z);
+      mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
+      mesh.userData = {
+        rx: (Math.random() - .5) * .02,
+        ry: (Math.random() - .5) * .02,
+        amp: .3 + Math.random() * .5,
+        spd: .2 + Math.random() * .3,
+        ph: Math.random() * Math.PI * 2,
+        by: y,
+      };
+      scene.add(mesh);
+      shapes.push(mesh);
     }
-    posAttr.needsUpdate = true;
-  };
 
-  reposition();
+    /* Desktop Particles */
+    const pGeo = new THREE.BufferGeometry();
+    const numParticles = 300;
+    const pPos = new Float32Array(numParticles * 3);
+    for (let i = 0; i < numParticles; i++) {
+      pPos[i*3]   = (Math.random() - .5) * 40;
+      pPos[i*3+1] = (Math.random() - .5) * 40;
+      pPos[i*3+2] = (Math.random() - .5) * 20;
+    }
+    pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+    const pts = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xFF5C00, size: .09, transparent: true, opacity: .5 }));
+    scene.add(pts);
 
-  let t = 0;
-  function animate() {
-    requestAnimationFrame(animate);
-    t += 0.012;
-    pts.rotation.y = t * 0.04;
+    let t = 0;
+    function animateDesktop() {
+      requestAnimationFrame(animateDesktop);
+      t += 0.01;
+      pts.rotation.y = t * 0.05;
 
-    shapes.forEach(s => {
-      s.rotation.x += s.userData.rx;
-      s.rotation.y += s.userData.ry;
-      s.position.y = s.userData.baseY + Math.sin(t * s.userData.spd + s.userData.ph) * 0.35;
+      shapes.forEach(s => {
+        s.rotation.x += s.userData.rx;
+        s.rotation.y += s.userData.ry;
+        s.position.y = s.userData.by + Math.sin(t * s.userData.spd + s.userData.ph) * s.userData.amp;
+      });
+
+      renderer.render(scene, camera);
+    }
+    animateDesktop();
+
+    window.addEventListener('resize', () => {
+      if(!canvas.clientWidth) return;
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      camera.updateProjectionMatrix();
+      updateSizeDesktop();
     });
 
-    renderer.render(scene, camera);
-  }
-  animate();
+  } else {
+    /* ============================================================
+       MOBILE ENGINE (Edge-to-Edge Organic Scatter)
+       ============================================================ */
+    const scene = new THREE.Scene();
+    const fov = 48;
+    const camera = new THREE.PerspectiveCamera(fov, 1, 0.1, 100);
+    camera.position.z = 11;
 
-  window.addEventListener('resize', reposition);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.75));
+    const dLight = new THREE.DirectionalLight(0xFF5C00, 1.4);
+    dLight.position.set(6, 8, 6);
+    scene.add(dLight);
+    
+    const d2 = new THREE.DirectionalLight(0x0066FF, 1.0);
+    d2.position.set(-6, -5, 4);
+    scene.add(d2);
+
+    const geoList = [
+      new THREE.IcosahedronGeometry(1.5, 0),
+      new THREE.OctahedronGeometry(1.3, 0),
+      new THREE.TorusGeometry(1.15, 0.28, 12, 48),
+      new THREE.TetrahedronGeometry(1.3, 0),
+      new THREE.BoxGeometry(1.1, 1.1, 1.1),
+      new THREE.TorusGeometry(0.9, 0.22, 8, 32),
+    ];
+
+    const matList = [
+      new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: true,  transparent: true, opacity: 0.65 }),
+      new THREE.MeshStandardMaterial({ color: 0xE64D00, wireframe: false, transparent: true, opacity: 0.35, metalness: 0.8, roughness: 0.2 }),
+      new THREE.MeshStandardMaterial({ color: 0x1a1a1a, wireframe: true,  transparent: true, opacity: 0.28 }),
+      new THREE.MeshStandardMaterial({ color: 0x0066FF, wireframe: true,  transparent: true, opacity: 0.38 }),
+      new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: false, transparent: true, opacity: 0.25, metalness: 0.9, roughness: 0.1 }),
+      new THREE.MeshStandardMaterial({ color: 0x0066FF, wireframe: false, transparent: true, opacity: 0.28, metalness: 0.85, roughness: 0.2 }),
+    ];
+
+    const shapesCount = 15;
+    const shapes = [];
+    
+    for (let i = 0; i < shapesCount; i++) {
+      const step = i / (shapesCount - 1);
+      const nx = -0.92 + step * 1.84 + (Math.random() - 0.5) * 0.12;
+      const ny = (Math.sin(i * 2.5 + Math.PI / 4) * 0.52) + ((i % 3 === 0 ? 0.22 : (i % 3 === 1 ? -0.28 : 0.05))) + (Math.random() - 0.5) * 0.15;
+      const nz = (Math.random() - 0.5) * 4.5;
+      
+      const geo = geoList[Math.floor(Math.random() * geoList.length)];
+      const mat = matList[Math.floor(Math.random() * matList.length)];
+      const mesh = new THREE.Mesh(geo, mat);
+      
+      const scale = 0.75 + Math.random() * 0.45;
+      mesh.scale.setScalar(scale);
+      mesh.rotation.set(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2);
+      
+      mesh.userData = {
+        nx: Math.max(-0.95, Math.min(0.95, nx)),
+        ny: Math.max(-0.75, Math.min(0.75, ny)),
+        z: nz,
+        rx: (Math.random() - 0.5) * 0.022,
+        ry: (Math.random() - 0.5) * 0.022,
+        spd: 0.18 + Math.random() * 0.22,
+        ph: Math.random() * Math.PI * 2,
+        amp: 0.25 + Math.random() * 0.35,
+        baseY: 0
+      };
+      scene.add(mesh);
+      shapes.push(mesh);
+    }
+
+    const numParticles = 140;
+    const pGeo = new THREE.BufferGeometry();
+    const pPos = new Float32Array(numParticles * 3);
+    const pData = [];
+    for (let i = 0; i < numParticles; i++) {
+      const npx = ((i / (numParticles - 1)) - 0.5) * 2.2;
+      const npy = (Math.random() - 0.5) * 1.8;
+      const npz = (Math.random() - 0.5) * 10;
+      pData.push({ npx, npy, npz });
+    }
+    pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+    const pts = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xFF5C00, size: 0.11, transparent: true, opacity: 0.55 }));
+    scene.add(pts);
+
+    const reposition = () => {
+      const w = canvas.clientWidth || window.innerWidth;
+      const h = canvas.clientHeight || 180;
+      renderer.setSize(w, h);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+
+      const vFOV = (camera.fov * Math.PI) / 180;
+      const visibleH = 2 * Math.tan(vFOV / 2) * camera.position.z;
+      const visibleW = visibleH * camera.aspect;
+
+      shapes.forEach(s => {
+        const posX = s.userData.nx * (visibleW / 2);
+        const posY = s.userData.ny * (visibleH / 2);
+        s.position.x = posX;
+        s.userData.baseY = posY;
+        s.position.y = posY;
+        s.position.z = s.userData.z;
+      });
+
+      const posAttr = pGeo.attributes.position;
+      for (let i = 0; i < numParticles; i++) {
+        const p = pData[i];
+        posAttr.setXYZ(i, p.npx * (visibleW / 2), p.npy * (visibleH / 2), p.npz);
+      }
+      posAttr.needsUpdate = true;
+    };
+
+    reposition();
+
+    let t = 0;
+    function animateMobile() {
+      requestAnimationFrame(animateMobile);
+      t += 0.012;
+      pts.rotation.y = t * 0.04;
+
+      shapes.forEach(s => {
+        s.rotation.x += s.userData.rx;
+        s.rotation.y += s.userData.ry;
+        s.position.y = s.userData.baseY + Math.sin(t * s.userData.spd + s.userData.ph) * 0.35;
+      });
+
+      renderer.render(scene, camera);
+    }
+    animateMobile();
+
+    window.addEventListener('resize', reposition);
+  }
 }
 
 initMini3D('canvas-about-top');
