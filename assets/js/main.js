@@ -580,48 +580,48 @@ function initMini3D(canvasId) {
 
   /* Shapes */
   const shapes = [];
-  const spreadX = isMob ? 20 : 26;
-  const spreadY = isMob ? 6 : 10;
+  const spreadX = isMob ? 22 : 30;
+  const spreadY = isMob ? 8 : 12;
   
-  // Base geometries (balanced & aesthetic)
+  // Base geometries (larger & prominent)
   const baseDefs = [
-    { geo: new THREE.IcosahedronGeometry(isMob ? 1.6 : 1.5, 0) },
-    { geo: new THREE.OctahedronGeometry(isMob ? 1.3 : 1.2, 0) },
-    { geo: new THREE.TorusGeometry(isMob ? 1.1 : 1.0, 0.3, 12, 48) },
-    { geo: new THREE.IcosahedronGeometry(isMob ? 1.1 : 0.9, 0) },
-    { geo: new THREE.TetrahedronGeometry(isMob ? 1.3 : 1.1, 0) },
-    { geo: new THREE.OctahedronGeometry(isMob ? 0.9 : 0.8, 0) },
-    { geo: new THREE.TorusGeometry(isMob ? 0.8 : 0.7, 0.22, 8, 32) },
-    { geo: new THREE.BoxGeometry(isMob ? 1.1 : 1.0, isMob ? 1.1 : 1.0, isMob ? 1.1 : 1.0) },
-    { geo: new THREE.TetrahedronGeometry(isMob ? 0.9 : 0.8, 0) }
+    { geo: new THREE.IcosahedronGeometry(isMob ? 2.2 : 2.0, 0) },
+    { geo: new THREE.OctahedronGeometry(isMob ? 1.8 : 1.6, 0) },
+    { geo: new THREE.TorusGeometry(isMob ? 1.5 : 1.3, 0.4, 12, 48) },
+    { geo: new THREE.IcosahedronGeometry(isMob ? 1.4 : 1.2, 0) },
+    { geo: new THREE.TetrahedronGeometry(isMob ? 1.8 : 1.5, 0) },
+    { geo: new THREE.OctahedronGeometry(isMob ? 1.2 : 1.0, 0) },
+    { geo: new THREE.TorusGeometry(isMob ? 1.1 : 0.9, 0.28, 8, 32) },
+    { geo: new THREE.BoxGeometry(isMob ? 1.5 : 1.3, isMob ? 1.5 : 1.3, isMob ? 1.5 : 1.3) },
+    { geo: new THREE.TetrahedronGeometry(isMob ? 1.2 : 1.0, 0) }
   ];
   
   const mats = [
-    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: true,  transparent: true, opacity: .55 }),
-    new THREE.MeshStandardMaterial({ color: 0xE64D00, wireframe: false, transparent: true, opacity: .3, metalness: .8, roughness: .2 }),
-    new THREE.MeshStandardMaterial({ color: 0x1a1a1a, wireframe: true,  transparent: true, opacity: .25 }),
-    new THREE.MeshStandardMaterial({ color: 0x0066FF, wireframe: true,  transparent: true, opacity: .3 }),
-    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: false, transparent: true, opacity: .2, metalness: .9, roughness: .1 }),
-    new THREE.MeshStandardMaterial({ color: 0x0066FF, wireframe: false, transparent: true, opacity: .2, metalness: .85, roughness: .2 }),
+    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: true,  transparent: true, opacity: .6 }),
+    new THREE.MeshStandardMaterial({ color: 0xE64D00, wireframe: false, transparent: true, opacity: .35, metalness: .8, roughness: .2 }),
+    new THREE.MeshStandardMaterial({ color: 0x1a1a1a, wireframe: true,  transparent: true, opacity: .3 }),
+    new THREE.MeshStandardMaterial({ color: 0x0066FF, wireframe: true,  transparent: true, opacity: .35 }),
+    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: false, transparent: true, opacity: .25, metalness: .9, roughness: .1 }),
+    new THREE.MeshStandardMaterial({ color: 0x0066FF, wireframe: false, transparent: true, opacity: .25, metalness: .85, roughness: .2 }),
   ];
 
-  // Generate 12 clean, well-spaced shapes
-  for (let i = 0; i < 12; i++) {
+  // Generate 24 random shapes across the strip
+  for (let i = 0; i < 24; i++) {
     const base = baseDefs[Math.floor(Math.random() * baseDefs.length)];
     const mat = mats[Math.floor(Math.random() * mats.length)];
     const mesh = new THREE.Mesh(base.geo, mat);
     
     const x = (Math.random() - 0.5) * spreadX;
     const y = (Math.random() - 0.5) * spreadY;
-    const z = (Math.random() - 0.5) * 5;
+    const z = (Math.random() - 0.5) * 6;
     
     mesh.position.set(x, y, z);
     mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
     mesh.userData = {
-      rx: (Math.random() - .5) * .02,
-      ry: (Math.random() - .5) * .02,
-      amp: .25 + Math.random() * .4,
-      spd: .2 + Math.random() * .25,
+      rx: (Math.random() - .5) * .025,
+      ry: (Math.random() - .5) * .025,
+      amp: .3 + Math.random() * .5,
+      spd: .2 + Math.random() * .3,
       ph: Math.random() * Math.PI * 2,
       by: y,
     };
@@ -631,15 +631,15 @@ function initMini3D(canvasId) {
 
   /* Particles */
   const pGeo = new THREE.BufferGeometry();
-  const numParticles = 140;
+  const numParticles = 300;
   const pPos = new Float32Array(numParticles * 3);
   for (let i = 0; i < numParticles; i++) {
-    pPos[i*3]   = (Math.random() - .5) * 30;
-    pPos[i*3+1] = (Math.random() - .5) * 16;
-    pPos[i*3+2] = (Math.random() - .5) * 12;
+    pPos[i*3]   = (Math.random() - .5) * 35;
+    pPos[i*3+1] = (Math.random() - .5) * 20;
+    pPos[i*3+2] = (Math.random() - .5) * 15;
   }
   pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-  const pts = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xFF5C00, size: .1, transparent: true, opacity: .5 }));
+  const pts = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xFF5C00, size: .12, transparent: true, opacity: .6 }));
   scene.add(pts);
 
   let t = 0;
