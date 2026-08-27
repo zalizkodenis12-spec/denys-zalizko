@@ -355,13 +355,15 @@ if (form) {
 
         if (btn) {
           btn.textContent = 'ВІДПРАВЛЕНО ✓';
-          btn.style.background = '#10B981';
+          btn.style.background = '#0066FF';
           btn.style.color = '#FFFFFF';
+          btn.style.boxShadow = '0 8px 25px rgba(0, 102, 255, 0.35)';
           setTimeout(() => {
             btn.disabled = false;
             btn.textContent = 'НАДІСЛАТИ';
             btn.style.background = '';
             btn.style.color = '';
+            btn.style.boxShadow = '';
           }, 3500);
         }
       } else {
@@ -706,45 +708,40 @@ function initMini3D(canvasId) {
     new THREE.MeshStandardMaterial({ color: 0x0066FF, wireframe: false, transparent: true, opacity: 0.28, metalness: 0.85, roughness: 0.2 }), // 5: Blue glass
   ];
 
-  // 11 beautifully orchestrated coordinates spanning edge-to-edge from -0.92 to +0.92
-  const layout = [
-    // Left edge
-    { nx: -0.92, ny:  0.22, z: -0.5, geo: 0, mat: 0, s: 0.88, rx:  0.015, ry:  0.012, spd: 0.22, ph: 0.2 },
-    { nx: -0.74, ny: -0.32, z:  0.5, geo: 1, mat: 1, s: 0.85, rx: -0.012, ry:  0.015, spd: 0.28, ph: 1.5 },
-    // Mid-left
-    { nx: -0.55, ny:  0.42, z: -0.2, geo: 2, mat: 3, s: 0.95, rx:  0.018, ry: -0.014, spd: 0.20, ph: 3.1 },
-    { nx: -0.36, ny: -0.25, z:  0.8, geo: 3, mat: 2, s: 0.80, rx: -0.014, ry: -0.012, spd: 0.25, ph: 4.2 },
-    // Center-left
-    { nx: -0.17, ny:  0.28, z: -0.4, geo: 5, mat: 4, s: 0.85, rx:  0.012, ry:  0.018, spd: 0.30, ph: 0.8 },
-    // Center focal point
-    { nx:  0.02, ny: -0.28, z:  1.0, geo: 0, mat: 0, s: 1.10, rx: -0.015, ry:  0.014, spd: 0.18, ph: 2.4 },
-    // Center-right
-    { nx:  0.21, ny:  0.38, z: -0.3, geo: 4, mat: 5, s: 0.85, rx:  0.014, ry: -0.015, spd: 0.26, ph: 5.1 },
-    // Mid-right
-    { nx:  0.40, ny: -0.32, z:  0.6, geo: 0, mat: 3, s: 0.90, rx: -0.016, ry:  0.012, spd: 0.21, ph: 1.1 },
-    { nx:  0.58, ny:  0.28, z: -0.6, geo: 1, mat: 1, s: 0.95, rx:  0.012, ry:  0.016, spd: 0.29, ph: 3.7 },
-    // Right edge
-    { nx:  0.76, ny: -0.25, z:  0.4, geo: 2, mat: 2, s: 0.85, rx: -0.015, ry: -0.012, spd: 0.24, ph: 0.5 },
-    { nx:  0.92, ny:  0.18, z: -0.2, geo: 3, mat: 0, s: 0.90, rx:  0.014, ry:  0.015, spd: 0.27, ph: 2.9 },
-  ];
-
+  // Beautiful organic scattered 3D layout covering full width & height
+  const shapesCount = isMob ? 15 : 18;
   const shapes = [];
-  layout.forEach(item => {
-    const mesh = new THREE.Mesh(geoList[item.geo], matList[item.mat]);
-    mesh.scale.setScalar(item.s);
+  
+  for (let i = 0; i < shapesCount; i++) {
+    // Spread nx evenly across [-0.92, +0.92] with organic jitter
+    const step = i / (shapesCount - 1);
+    const nx = -0.92 + step * 1.84 + (Math.random() - 0.5) * 0.12;
+    // Organic height distribution: scattered across top, middle, bottom
+    const ny = (Math.sin(i * 2.5 + Math.PI / 4) * 0.52) + ((i % 3 === 0 ? 0.22 : (i % 3 === 1 ? -0.28 : 0.05))) + (Math.random() - 0.5) * 0.15;
+    const nz = (Math.random() - 0.5) * 4.5;
+    
+    const geo = geoList[Math.floor(Math.random() * geoList.length)];
+    const mat = matList[Math.floor(Math.random() * matList.length)];
+    const mesh = new THREE.Mesh(geo, mat);
+    
+    const scale = 0.75 + Math.random() * 0.45;
+    mesh.scale.setScalar(scale);
+    mesh.rotation.set(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2);
+    
     mesh.userData = {
-      nx: item.nx,
-      ny: item.ny,
-      z: item.z,
-      rx: item.rx,
-      ry: item.ry,
-      spd: item.spd,
-      ph: item.ph,
+      nx: Math.max(-0.95, Math.min(0.95, nx)),
+      ny: Math.max(-0.75, Math.min(0.75, ny)),
+      z: nz,
+      rx: (Math.random() - 0.5) * 0.022,
+      ry: (Math.random() - 0.5) * 0.022,
+      spd: 0.18 + Math.random() * 0.22,
+      ph: Math.random() * Math.PI * 2,
+      amp: 0.25 + Math.random() * 0.35,
       baseY: 0
     };
     scene.add(mesh);
     shapes.push(mesh);
-  });
+  }
 
   // Particles evenly distributed across full span
   const numParticles = 140;
