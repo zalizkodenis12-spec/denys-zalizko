@@ -29,15 +29,12 @@ export default async function handler(req, res) {
     }
 
     const cleanedPhone = phone.replace(/[\s\-\(\)]/g, '');
-    const phoneRegex = /^(\+?38)?0\d{9}$/;
-    const generalPhoneRegex = /^\+?[0-9]{10,14}$/;
-
-    if (!phoneRegex.test(cleanedPhone) && !generalPhoneRegex.test(cleanedPhone)) {
-      return res.status(400).json({ success: false, error: 'Некоректний формат номера телефону.' });
+    if (cleanedPhone.length < 9) {
+      return res.status(400).json({ success: false, error: 'Номер телефону повинен містити щонайменше 9-10 цифр.' });
     }
 
-    if (!project || typeof project !== 'string' || project.trim().length < 10) {
-      return res.status(400).json({ success: false, error: 'Опис проєкту має містити щонайменше 10 символів.' });
+    if (!project || typeof project !== 'string' || project.trim().length < 3) {
+      return res.status(400).json({ success: false, error: 'Будь ласка, опишіть ваш проєкт або задачу.' });
     }
 
     // 2. Environment Variables Check

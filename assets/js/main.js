@@ -240,7 +240,7 @@ if (form) {
     }
   }
 
-  // 1. Name validation: >= 2 chars, letters (UK/EN) and space/hyphen/apostrophe only
+  // 1. Name validation: >= 2 chars
   function validateName() {
     if (!nameInput) return true;
     const val = nameInput.value.trim();
@@ -252,16 +252,11 @@ if (form) {
       setError(nameInput, nameError, "Ім'я повинно містити щонайменше 2 літери");
       return false;
     }
-    const nameRegex = /^[a-zA-Zа-яА-ЯіІїЇєЄґҐ\s\-']{2,50}$/u;
-    if (!nameRegex.test(val) || !/[a-zA-Zа-яА-ЯіІїЇєЄґҐ]/.test(val)) {
-      setError(nameInput, nameError, "Ім'я може містити лише літери, пробіли або дефіс (без цифр і символів)");
-      return false;
-    }
     clearError(nameInput, nameError);
     return true;
   }
 
-  // 2. Phone validation: Ukrainian (+380... / 0...) or international, 10-14 digits
+  // 2. Phone validation: >= 9 digits
   function validatePhone() {
     if (!phoneInput) return true;
     const val = phoneInput.value.trim();
@@ -269,37 +264,25 @@ if (form) {
       setError(phoneInput, phoneError, "Будь ласка, введіть номер телефону");
       return false;
     }
-    const cleaned = val.replace(/[\s\-\(\)]/g, '');
-    const ukrPhoneRegex = /^(\+?38)?0\d{9}$/;
-    const generalPhoneRegex = /^\+?[0-9]{10,14}$/;
-
-    // Block fake repeated numbers (0000000000, 1111111111, 1234567890)
-    const isRepeated = /^(\+?38)?0?(\d)\2{8,}$/.test(cleaned);
-    const isSequential = /^(\+?38)?0?123456789/.test(cleaned);
-
-    if (isRepeated || isSequential || (!ukrPhoneRegex.test(cleaned) && !generalPhoneRegex.test(cleaned))) {
-      setError(phoneInput, phoneError, "Введіть реальний номер телефону (наприклад, +380971234567 або 0971234567)");
+    const digitsOnly = val.replace(/\D/g, '');
+    if (digitsOnly.length < 9) {
+      setError(phoneInput, phoneError, "Введіть коректний номер телефону");
       return false;
     }
     clearError(phoneInput, phoneError);
     return true;
   }
 
-  // 3. Project description validation: >= 10 chars, not mindless gibberish
+  // 3. Project description validation: >= 3 chars
   function validateProject() {
     if (!projectInput) return true;
     const val = projectInput.value.trim();
     if (!val) {
-      setError(projectInput, projectError, "Будь ласка, опишіть ваш проєкт або задачу");
+      setError(projectInput, projectError, "Будь ласка, опишіть ваш проєкт");
       return false;
     }
-    if (val.length < 10) {
-      setError(projectInput, projectError, "Опис проєкту занадто короткий (мінімум 10 символів)");
-      return false;
-    }
-    const uniqueChars = new Set(val.toLowerCase().replace(/\s/g, '')).size;
-    if (uniqueChars < 4) {
-      setError(projectInput, projectError, "Будь ласка, вкажіть більш змістовний опис задачі");
+    if (val.length < 3) {
+      setError(projectInput, projectError, "Вкажіть хоча б кілька слів про проєкт");
       return false;
     }
     clearError(projectInput, projectError);
@@ -339,7 +322,7 @@ if (form) {
 
     if (btn) {
       btn.disabled = true;
-      btn.textContent = 'Відправляємо...';
+      btn.textContent = 'ВІДПРАВЛЯЄМО...';
     }
 
     if (status) {
@@ -369,10 +352,26 @@ if (form) {
         clearError(nameInput, nameError);
         clearError(phoneInput, phoneError);
         clearError(projectInput, projectError);
+
+        if (btn) {
+          btn.textContent = 'ВІДПРАВЛЕНО ✓';
+          btn.style.background = '#10B981';
+          btn.style.color = '#FFFFFF';
+          setTimeout(() => {
+            btn.disabled = false;
+            btn.textContent = 'НАДІСЛАТИ';
+            btn.style.background = '';
+            btn.style.color = '';
+          }, 3500);
+        }
       } else {
         if (status) {
           status.className = 'form__status error';
           status.textContent = `❌ ${data.error || "Помилка відправки. Спробуйте ще раз або напишіть нам у Telegram."}`;
+        }
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = 'НАДІСЛАТИ';
         }
       }
     } catch (err) {
@@ -380,7 +379,6 @@ if (form) {
         status.className = 'form__status error';
         status.textContent = "❌ Не вдалося відправити заявку. Перевірте з'єднання або напишіть у Telegram.";
       }
-    } finally {
       if (btn) {
         btn.disabled = false;
         btn.textContent = 'НАДІСЛАТИ';
