@@ -501,8 +501,29 @@ body.dark-theme .case__preview {
 .adv__title { max-width: 720px; }
 
 /* ============================================================
-   ABOUT
+   ABOUT / TEAM
    ============================================================ */
+.team-slider {
+  position: relative;
+  width: 100%;
+}
+.team-track {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.team-track::-webkit-scrollbar {
+  display: none;
+}
+.team-card {
+  flex: 0 0 100%;
+  width: 100%;
+  scroll-snap-align: start;
+}
 .about {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1363,7 +1384,24 @@ body.dark-theme .theme-toggle:hover {
   .about__left .sec__title { order: 1 !important; }
   .about__left .about__text { order: 2 !important; margin-bottom: 0 !important; }
   .about__right .about__photo { order: 3 !important; margin: 16px 0 !important; }
-  .about__left .about__actions { order: 4 !important; }
+  .about__left .about__actions {
+    order: 4 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    width: 100% !important;
+    margin-top: 4px !important;
+  }
+  .about__left .about__actions .btn {
+    flex: 1 1 50% !important;
+    min-width: 0 !important;
+    padding: 12px 6px !important;
+    font-size: 0.82rem !important;
+    text-align: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+  }
   .about-canvas-bottom {
     order: 5 !important;
     width: 100vw !important;

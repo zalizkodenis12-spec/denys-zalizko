@@ -531,6 +531,40 @@ if (advGrid && advDots) {
   }, { passive: true });
 }
 
+/* ---- TEAM CAROUSEL (prepared for multiple members) ---- */
+const teamTrack = document.getElementById('teamTrack');
+const teamDots = document.getElementById('teamDots');
+if (teamTrack && teamDots) {
+  const teamCards = teamTrack.querySelectorAll('.team-card');
+  if (teamCards.length > 1) {
+    teamDots.style.display = 'flex';
+    teamCards.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'slider-dot';
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => {
+        teamTrack.scrollTo({
+          left: teamCards[i].offsetLeft,
+          behavior: 'smooth'
+        });
+      });
+      teamDots.appendChild(dot);
+    });
+
+    teamTrack.addEventListener('scroll', () => {
+      const scrollPos = teamTrack.scrollLeft;
+      const cardWidth = teamCards[0].offsetWidth;
+      let activeIndex = Math.round(scrollPos / cardWidth);
+      if (activeIndex >= teamCards.length) activeIndex = teamCards.length - 1;
+      const dots = teamDots.querySelectorAll('.slider-dot');
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === activeIndex);
+      });
+    }, { passive: true });
+  }
+}
+
+
 
 /* ---- GLOBAL 3D BACKGROUND ---- */
 (function initGlobal3D() {
