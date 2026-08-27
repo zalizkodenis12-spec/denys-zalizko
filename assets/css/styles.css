@@ -1286,13 +1286,14 @@ body.dark-theme .theme-toggle:hover {
   }
   .proc__left .proc__3d-container {
     order: -1 !important;
-    height: 140px !important;
+    height: 180px !important;
     width: 100% !important;
-    margin-top: 0 !important;
-    margin-bottom: 12px !important;
+    margin-top: -10px !important;
+    margin-bottom: 8px !important;
     position: relative !important;
     z-index: 1 !important;
-    opacity: 0.85 !important;
+    opacity: 0.95 !important;
+    overflow: hidden !important;
   }
   .proc__left .proc__title {
     order: 1 !important;

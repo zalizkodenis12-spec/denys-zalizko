@@ -78,29 +78,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Calculate ripple center from click event or button position
       const rect = themeToggleBtn.getBoundingClientRect();
-      const x = e && e.clientX ? e.clientX : rect.left + rect.width / 2;
-      const y = e && e.clientY ? e.clientY : rect.top + rect.height / 2;
+      const x = (e && e.clientX && e.clientX > 0) ? e.clientX : (rect.left + rect.width / 2);
+      const y = (e && e.clientY && e.clientY > 0) ? e.clientY : (rect.top + rect.height / 2);
       const endRadius = Math.hypot(
         Math.max(x, window.innerWidth - x),
         Math.max(y, window.innerHeight - y)
-      );
+      ) * 1.25;
 
       const transition = document.startViewTransition(() => {
         toggleThemeState();
       });
 
       transition.ready.then(() => {
-        const clipPath = [
-          `circle(0px at ${x}px ${y}px)`,
-          `circle(${endRadius}px at ${x}px ${y}px)`
-        ];
         document.documentElement.animate(
           {
-            clipPath: clipPath
+            clipPath: [
+              `circle(0px at ${x}px ${y}px)`,
+              `circle(${endRadius}px at ${x}px ${y}px)`
+            ]
           },
           {
-            duration: 700,
-            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+            duration: 450,
+            easing: 'ease-out',
             pseudoElement: '::view-transition-new(root)'
           }
         );
@@ -560,64 +559,67 @@ function initMini3D(canvasId) {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
   const updateSize = () => {
+    if (!canvas.clientWidth) return;
     renderer.setSize(canvas.clientWidth, canvas.clientHeight);
   };
   updateSize();
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
-  camera.position.z = 22; // Pulled back for cluster view
+  const isMob = window.innerWidth < 768;
+  const camera = new THREE.PerspectiveCamera(isMob ? 55 : 50, (canvas.clientWidth || 300) / (canvas.clientHeight || 180), 0.1, 100);
+  camera.position.z = isMob ? 11 : 14;
 
-  scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-  const dLight = new THREE.DirectionalLight(0xFF5C00, 1.4);
-  dLight.position.set(4, 6, 4);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+  const dLight = new THREE.DirectionalLight(0xFF5C00, 1.5);
+  dLight.position.set(5, 7, 5);
   scene.add(dLight);
   
-  const d2 = new THREE.DirectionalLight(0x0057B7, 1);
-  d2.position.set(-4, -3, 2);
+  const d2 = new THREE.DirectionalLight(0x0066FF, 1.1);
+  d2.position.set(-5, -4, 3);
   scene.add(d2);
 
   /* Shapes */
   const shapes = [];
-  const spread = 25; // Massive spread to fill space
+  const spreadX = isMob ? 22 : 30;
+  const spreadY = isMob ? 8 : 12;
   
-  // Base geometries
+  // Base geometries (larger & prominent)
   const baseDefs = [
-    { geo: new THREE.IcosahedronGeometry(1.8, 0) },
-    { geo: new THREE.OctahedronGeometry(1.3, 0) },
-    { geo: new THREE.TorusGeometry(1.1, .35, 12, 48) },
-    { geo: new THREE.IcosahedronGeometry(.9, 0) },
-    { geo: new THREE.TetrahedronGeometry(1.2, 0) },
-    { geo: new THREE.OctahedronGeometry(.7, 0) },
-    { geo: new THREE.TorusGeometry(0.8, .2, 8, 32) },
-    { geo: new THREE.BoxGeometry(1, 1, 1) },
-    { geo: new THREE.TetrahedronGeometry(0.8, 0) }
+    { geo: new THREE.IcosahedronGeometry(isMob ? 2.2 : 2.0, 0) },
+    { geo: new THREE.OctahedronGeometry(isMob ? 1.8 : 1.6, 0) },
+    { geo: new THREE.TorusGeometry(isMob ? 1.5 : 1.3, 0.4, 12, 48) },
+    { geo: new THREE.IcosahedronGeometry(isMob ? 1.4 : 1.2, 0) },
+    { geo: new THREE.TetrahedronGeometry(isMob ? 1.8 : 1.5, 0) },
+    { geo: new THREE.OctahedronGeometry(isMob ? 1.2 : 1.0, 0) },
+    { geo: new THREE.TorusGeometry(isMob ? 1.1 : 0.9, 0.28, 8, 32) },
+    { geo: new THREE.BoxGeometry(isMob ? 1.5 : 1.3, isMob ? 1.5 : 1.3, isMob ? 1.5 : 1.3) },
+    { geo: new THREE.TetrahedronGeometry(isMob ? 1.2 : 1.0, 0) }
   ];
   
   const mats = [
-    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: true,  transparent: true, opacity: .5 }),
-    new THREE.MeshStandardMaterial({ color: 0xE64D00, wireframe: false, transparent: true, opacity: .3, metalness: .8, roughness: .2 }),
-    new THREE.MeshStandardMaterial({ color: 0x1a1a1a, wireframe: true,  transparent: true, opacity: .2 }),
-    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: false, transparent: true, opacity: .2, metalness: .9, roughness: .1 }),
-    new THREE.MeshStandardMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.1 }),
+    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: true,  transparent: true, opacity: .6 }),
+    new THREE.MeshStandardMaterial({ color: 0xE64D00, wireframe: false, transparent: true, opacity: .35, metalness: .8, roughness: .2 }),
+    new THREE.MeshStandardMaterial({ color: 0x1a1a1a, wireframe: true,  transparent: true, opacity: .3 }),
+    new THREE.MeshStandardMaterial({ color: 0x0066FF, wireframe: true,  transparent: true, opacity: .35 }),
+    new THREE.MeshStandardMaterial({ color: 0xFF5C00, wireframe: false, transparent: true, opacity: .25, metalness: .9, roughness: .1 }),
+    new THREE.MeshStandardMaterial({ color: 0x0066FF, wireframe: false, transparent: true, opacity: .25, metalness: .85, roughness: .2 }),
   ];
 
-  // Generate 20 random shapes based on the templates
-  for (let i = 0; i < 20; i++) {
+  // Generate 24 random shapes across the strip
+  for (let i = 0; i < 24; i++) {
     const base = baseDefs[Math.floor(Math.random() * baseDefs.length)];
     const mat = mats[Math.floor(Math.random() * mats.length)];
     const mesh = new THREE.Mesh(base.geo, mat);
     
-    // Spread them far out
-    const x = (Math.random() - 0.5) * spread;
-    const y = (Math.random() - 0.5) * spread;
-    const z = (Math.random() - 0.5) * 10;
+    const x = (Math.random() - 0.5) * spreadX;
+    const y = (Math.random() - 0.5) * spreadY;
+    const z = (Math.random() - 0.5) * 6;
     
     mesh.position.set(x, y, z);
     mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
     mesh.userData = {
-      rx: (Math.random() - .5) * .02,
-      ry: (Math.random() - .5) * .02,
+      rx: (Math.random() - .5) * .025,
+      ry: (Math.random() - .5) * .025,
       amp: .3 + Math.random() * .5,
       spd: .2 + Math.random() * .3,
       ph: Math.random() * Math.PI * 2,
@@ -632,12 +634,12 @@ function initMini3D(canvasId) {
   const numParticles = 300;
   const pPos = new Float32Array(numParticles * 3);
   for (let i = 0; i < numParticles; i++) {
-    pPos[i*3]   = (Math.random() - .5) * 40;
-    pPos[i*3+1] = (Math.random() - .5) * 40;
-    pPos[i*3+2] = (Math.random() - .5) * 20;
+    pPos[i*3]   = (Math.random() - .5) * 35;
+    pPos[i*3+1] = (Math.random() - .5) * 20;
+    pPos[i*3+2] = (Math.random() - .5) * 15;
   }
   pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-  const pts = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xFF5C00, size: .09, transparent: true, opacity: .5 }));
+  const pts = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xFF5C00, size: .12, transparent: true, opacity: .6 }));
   scene.add(pts);
 
   let t = 0;
