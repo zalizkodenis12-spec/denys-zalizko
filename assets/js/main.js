@@ -583,17 +583,17 @@ function initMini3D(canvasId) {
   const spreadX = isMob ? 22 : 30;
   const spreadY = isMob ? 8 : 12;
   
-  // Base geometries (larger & prominent)
+  // Base geometries (scaled down slightly for perfect balance)
   const baseDefs = [
-    { geo: new THREE.IcosahedronGeometry(isMob ? 2.2 : 2.0, 0) },
-    { geo: new THREE.OctahedronGeometry(isMob ? 1.8 : 1.6, 0) },
-    { geo: new THREE.TorusGeometry(isMob ? 1.5 : 1.3, 0.4, 12, 48) },
-    { geo: new THREE.IcosahedronGeometry(isMob ? 1.4 : 1.2, 0) },
-    { geo: new THREE.TetrahedronGeometry(isMob ? 1.8 : 1.5, 0) },
-    { geo: new THREE.OctahedronGeometry(isMob ? 1.2 : 1.0, 0) },
-    { geo: new THREE.TorusGeometry(isMob ? 1.1 : 0.9, 0.28, 8, 32) },
-    { geo: new THREE.BoxGeometry(isMob ? 1.5 : 1.3, isMob ? 1.5 : 1.3, isMob ? 1.5 : 1.3) },
-    { geo: new THREE.TetrahedronGeometry(isMob ? 1.2 : 1.0, 0) }
+    { geo: new THREE.IcosahedronGeometry(isMob ? 1.75 : 1.6, 0) },
+    { geo: new THREE.OctahedronGeometry(isMob ? 1.45 : 1.3, 0) },
+    { geo: new THREE.TorusGeometry(isMob ? 1.25 : 1.1, 0.32, 12, 48) },
+    { geo: new THREE.IcosahedronGeometry(isMob ? 1.15 : 1.0, 0) },
+    { geo: new THREE.TetrahedronGeometry(isMob ? 1.45 : 1.25, 0) },
+    { geo: new THREE.OctahedronGeometry(isMob ? 1.0 : 0.85, 0) },
+    { geo: new THREE.TorusGeometry(isMob ? 0.9 : 0.75, 0.22, 8, 32) },
+    { geo: new THREE.BoxGeometry(isMob ? 1.2 : 1.05, isMob ? 1.2 : 1.05, isMob ? 1.2 : 1.05) },
+    { geo: new THREE.TetrahedronGeometry(isMob ? 1.0 : 0.85, 0) }
   ];
   
   const mats = [
