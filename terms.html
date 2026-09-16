@@ -214,6 +214,10 @@
   const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   const initDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
   document.body.classList.toggle('dark-theme', initDark);
+
+  try {
+    sessionStorage.setItem('denis_lang_chosen', 'ua');
+  } catch(e) {}
 </script>
 
 </body>

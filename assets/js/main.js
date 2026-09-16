@@ -394,48 +394,76 @@ if (form) {
   });
 }
 
-/* ---- LANGUAGE MODAL SELECTION ---- */
+/* ---- LANGUAGE MODAL SELECTION & PERSISTENCE ---- */
 (function initLangModal() {
   const modalOverlay = document.getElementById('langModalOverlay');
-  if (!modalOverlay) return;
-
-  const currentLang = document.documentElement.lang || 'uk';
+  const currentLang = (document.documentElement.lang || 'uk').toLowerCase();
   const hasChosenLang = sessionStorage.getItem('denis_lang_chosen');
 
-  // If already chosen in this session, hide immediately without flash
+  // If already chosen in this session, ensure class is on html and hide modal immediately
   if (hasChosenLang) {
-    modalOverlay.classList.add('lang-modal--hidden');
+    document.documentElement.classList.add('has-lang-choice');
+    if (modalOverlay) {
+      modalOverlay.classList.add('lang-modal--hidden');
+    }
   }
 
-  // Handle language button clicks
-  const langButtons = modalOverlay.querySelectorAll('[data-lang-choice]');
-  langButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const chosenLang = btn.getAttribute('data-lang-choice');
-      sessionStorage.setItem('denis_lang_chosen', chosenLang);
-      localStorage.setItem('denis_preferred_lang', chosenLang);
+  // Handle modal buttons
+  if (modalOverlay) {
+    const langButtons = modalOverlay.querySelectorAll('[data-lang-choice]');
+    langButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const chosenLang = btn.getAttribute('data-lang-choice');
+        try {
+          sessionStorage.setItem('denis_lang_chosen', chosenLang);
+          localStorage.setItem('denis_preferred_lang', chosenLang);
+        } catch(e) {}
 
-      modalOverlay.classList.add('lang-modal--hidden');
+        modalOverlay.classList.add('lang-modal--hidden');
 
-      if (chosenLang === 'en' && currentLang !== 'en') {
-        setTimeout(() => {
-          window.location.href = 'en.html';
-        }, 220);
-      } else if (chosenLang === 'ua' && currentLang === 'en') {
-        setTimeout(() => {
-          window.location.href = 'index.html';
-        }, 220);
-      }
+        if (chosenLang === 'en' && currentLang !== 'en') {
+          setTimeout(() => {
+            window.location.href = 'en.html';
+          }, 200);
+        } else if (chosenLang === 'ua' && currentLang === 'en') {
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 200);
+        } else {
+          setTimeout(() => {
+            document.documentElement.classList.add('has-lang-choice');
+          }, 360);
+        }
+      });
+    });
+  }
+
+  // Handle language switch links (desktop header + mobile menu)
+  const switchLinks = document.querySelectorAll('.lang-switch, [data-switch-to]');
+  switchLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = link.getAttribute('href') || '';
+      const targetLang = link.getAttribute('data-switch-to') || (href.indexOf('en.html') !== -1 ? 'en' : 'ua');
+      try {
+        sessionStorage.setItem('denis_lang_chosen', targetLang);
+        localStorage.setItem('denis_preferred_lang', targetLang);
+      } catch(err) {}
+      window.location.href = href;
     });
   });
 
-  // Header language switcher buttons
-  document.querySelectorAll('.lang-switch').forEach(sw => {
-    sw.addEventListener('click', () => {
-      const isTargetEn = sw.getAttribute('href') === 'en.html';
-      sessionStorage.setItem('denis_lang_chosen', isTargetEn ? 'en' : 'ua');
-      localStorage.setItem('denis_preferred_lang', isTargetEn ? 'en' : 'ua');
-    });
+  // Handle bfcache / back-forward navigation
+  window.addEventListener('pageshow', () => {
+    try {
+      const chosen = sessionStorage.getItem('denis_lang_chosen');
+      if (chosen) {
+        document.documentElement.classList.add('has-lang-choice');
+        if (modalOverlay) {
+          modalOverlay.classList.add('lang-modal--hidden');
+        }
+      }
+    } catch(e) {}
   });
 })();
 

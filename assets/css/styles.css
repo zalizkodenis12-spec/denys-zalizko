@@ -1589,6 +1589,13 @@ body.dark-theme .form__status.error {
 }
 
 /* ---- LANGUAGE SELECTION MODAL ---- */
+html.has-lang-choice .lang-modal-overlay {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 .lang-modal-overlay {
   position: fixed;
   inset: 0;

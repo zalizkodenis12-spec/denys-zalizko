@@ -11,6 +11,21 @@
     gtag('config', 'G-YBHS45T8XF');
   </script>
 
+  <!-- Early Language Choice & Route Guard -->
+  <script>
+    (function() {
+      try {
+        var chosen = sessionStorage.getItem('denis_lang_chosen');
+        if (chosen) {
+          document.documentElement.classList.add('has-lang-choice');
+          if (chosen === 'en') {
+            window.location.replace('en.html' + window.location.search + window.location.hash);
+          }
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Денис Залізко — Веб-розробник | Лендінги, Магазини, Telegram-боти</title>
@@ -81,7 +96,7 @@
       <a href="#services">Послуги</a>
       <a href="#process">Процес</a>
       <a href="#contact">Контакти</a>
-      <a href="en.html" style="font-weight: 800; color: var(--accent);">EN</a>
+      <a href="en.html" class="lang-switch" data-switch-to="en" style="font-weight: 800; color: var(--accent);">EN</a>
     </nav>
     
     <a href="#contact" class="btn btn--fill" id="hdr-cta">Замовити сайт</a>
@@ -104,7 +119,7 @@
     <a href="#contact">Контакти</a>
   </nav>
   <a href="#contact" class="btn btn--fill">Замовити сайт</a>
-  <a href="en.html" class="mob-nav__lang">English (EN)</a>
+  <a href="en.html" class="mob-nav__lang lang-switch" data-switch-to="en">English (EN)</a>
 </div>
 
 <main>

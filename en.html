@@ -11,6 +11,21 @@
     gtag('config', 'G-YBHS45T8XF');
   </script>
 
+  <!-- Early Language Choice & Route Guard -->
+  <script>
+    (function() {
+      try {
+        var chosen = sessionStorage.getItem('denis_lang_chosen');
+        if (chosen) {
+          document.documentElement.classList.add('has-lang-choice');
+          if (chosen === 'ua') {
+            window.location.replace('index.html' + window.location.search + window.location.hash);
+          }
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Denis Zalizko — Web Developer | Landing Pages, Online Stores, 3D Websites</title>
@@ -81,7 +96,7 @@
       <a href="#services">Services</a>
       <a href="#process">Process</a>
       <a href="#contact">Contact</a>
-      <a href="index.html" style="font-weight: 800; color: var(--accent);">UA</a>
+      <a href="index.html" class="lang-switch" data-switch-to="ua" style="font-weight: 800; color: var(--accent);">UA</a>
     </nav>
     
     <a href="#contact" class="btn btn--fill" id="hdr-cta">Order Website</a>
@@ -104,7 +119,7 @@
     <a href="#contact">Contact</a>
   </nav>
   <a href="#contact" class="btn btn--fill">Order Website</a>
-  <a href="index.html" class="mob-nav__lang">Українська (UA)</a>
+  <a href="index.html" class="mob-nav__lang lang-switch" data-switch-to="ua">Українська (UA)</a>
 </div>
 
 <main>
