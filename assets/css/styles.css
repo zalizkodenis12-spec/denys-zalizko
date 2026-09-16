@@ -1735,5 +1735,53 @@ body.dark-theme .mob-nav__lang:hover {
   background: #222222;
 }
 
+/* Laptop / Desktop: 3x Larger Modal & Ultra-Transparent Background */
+@media (min-width: 769px) {
+  .lang-modal-overlay {
+    background: rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(1.5px) !important;
+    -webkit-backdrop-filter: blur(1.5px) !important;
+  }
+  
+  body.dark-theme .lang-modal-overlay {
+    background: rgba(0, 0, 0, 0.25) !important;
+    backdrop-filter: blur(1.5px) !important;
+    -webkit-backdrop-filter: blur(1.5px) !important;
+  }
+
+  .lang-modal {
+    max-width: 780px !important;
+    padding: 64px 54px !important;
+    border-radius: 28px !important;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.16), 0 8px 24px rgba(0, 0, 0, 0.06) !important;
+  }
+
+  .lang-modal__title {
+    font-size: 2.5rem !important;
+    letter-spacing: -1px !important;
+    margin-bottom: 12px !important;
+    line-height: 1.2 !important;
+  }
+
+  .lang-modal__sub {
+    font-size: 1.2rem !important;
+    margin-bottom: 40px !important;
+  }
+
+  .lang-modal__options {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px !important;
+  }
+
+  .lang-modal__btn {
+    padding: 24px 32px !important;
+    font-size: 1.35rem !important;
+    border-radius: 16px !important;
+    min-height: 80px !important;
+    letter-spacing: 0.8px !important;
+  }
+}
+
 
 
