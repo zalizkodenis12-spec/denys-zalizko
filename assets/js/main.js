@@ -211,6 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ---- CONTACT FORM WITH STRICT VALIDATION & TELEGRAM INTEGRATION ---- */
 const form = document.getElementById('contactForm');
 if (form) {
+  const isEn = document.documentElement.lang === 'en';
   const status = document.getElementById('cfStatus');
   const btn = document.getElementById('cfSubmit');
 
@@ -245,11 +246,11 @@ if (form) {
     if (!nameInput) return true;
     const val = nameInput.value.trim();
     if (!val) {
-      setError(nameInput, nameError, "Будь ласка, введіть ваше ім'я");
+      setError(nameInput, nameError, isEn ? "Please enter your name" : "Будь ласка, введіть ваше ім'я");
       return false;
     }
     if (val.length < 2) {
-      setError(nameInput, nameError, "Ім'я повинно містити щонайменше 2 літери");
+      setError(nameInput, nameError, isEn ? "Name must contain at least 2 letters" : "Ім'я повинно містити щонайменше 2 літери");
       return false;
     }
     clearError(nameInput, nameError);
@@ -261,12 +262,12 @@ if (form) {
     if (!phoneInput) return true;
     const val = phoneInput.value.trim();
     if (!val) {
-      setError(phoneInput, phoneError, "Будь ласка, введіть номер телефону");
+      setError(phoneInput, phoneError, isEn ? "Please enter your phone number" : "Будь ласка, введіть номер телефону");
       return false;
     }
     const digitsOnly = val.replace(/\D/g, '');
     if (digitsOnly.length < 9) {
-      setError(phoneInput, phoneError, "Введіть коректний номер телефону");
+      setError(phoneInput, phoneError, isEn ? "Please enter a valid phone number" : "Введіть коректний номер телефону");
       return false;
     }
     clearError(phoneInput, phoneError);
@@ -278,11 +279,11 @@ if (form) {
     if (!projectInput) return true;
     const val = projectInput.value.trim();
     if (!val) {
-      setError(projectInput, projectError, "Будь ласка, опишіть ваш проєкт");
+      setError(projectInput, projectError, isEn ? "Please describe your project" : "Будь ласка, опишіть ваш проєкт");
       return false;
     }
     if (val.length < 3) {
-      setError(projectInput, projectError, "Вкажіть хоча б кілька слів про проєкт");
+      setError(projectInput, projectError, isEn ? "Please provide at least a few words about your project" : "Вкажіть хоча б кілька слів про проєкт");
       return false;
     }
     clearError(projectInput, projectError);
@@ -322,7 +323,7 @@ if (form) {
 
     if (btn) {
       btn.disabled = true;
-      btn.textContent = 'ВІДПРАВЛЯЄМО...';
+      btn.textContent = isEn ? 'SENDING...' : 'ВІДПРАВЛЯЄМО...';
     }
 
     if (status) {
@@ -346,7 +347,9 @@ if (form) {
       if (res.ok && data.success) {
         if (status) {
           status.className = 'form__status success';
-          status.textContent = "🎉 Дякуємо! Вашу заявку прийнято. Ми зв'яжемося з вами найближчим часом.";
+          status.textContent = isEn
+            ? "🎉 Thank you! Your request has been received. We will contact you shortly."
+            : "🎉 Дякуємо! Вашу заявку прийнято. Ми зв'яжемося з вами найближчим часом.";
         }
         form.reset();
         clearError(nameInput, nameError);
@@ -354,13 +357,13 @@ if (form) {
         clearError(projectInput, projectError);
 
         if (btn) {
-          btn.textContent = 'ВІДПРАВЛЕНО ✓';
+          btn.textContent = isEn ? 'SENT ✓' : 'ВІДПРАВЛЕНО ✓';
           btn.style.background = '#0066FF';
           btn.style.color = '#FFFFFF';
           btn.style.boxShadow = '0 8px 25px rgba(0, 102, 255, 0.35)';
           setTimeout(() => {
             btn.disabled = false;
-            btn.textContent = 'НАДІСЛАТИ';
+            btn.textContent = isEn ? 'SUBMIT' : 'НАДІСЛАТИ';
             btn.style.background = '';
             btn.style.color = '';
             btn.style.boxShadow = '';
@@ -369,25 +372,72 @@ if (form) {
       } else {
         if (status) {
           status.className = 'form__status error';
-          status.textContent = `❌ ${data.error || "Помилка відправки. Спробуйте ще раз або напишіть нам у Telegram."}`;
+          status.textContent = `❌ ${data.error || (isEn ? "Sending error. Please try again or reach out on Telegram." : "Помилка відправки. Спробуйте ще раз або напишіть нам у Telegram.")}`;
         }
         if (btn) {
           btn.disabled = false;
-          btn.textContent = 'НАДІСЛАТИ';
+          btn.textContent = isEn ? 'SUBMIT' : 'НАДІСЛАТИ';
         }
       }
     } catch (err) {
       if (status) {
         status.className = 'form__status error';
-        status.textContent = "❌ Не вдалося відправити заявку. Перевірте з'єднання або напишіть у Telegram.";
+        status.textContent = isEn
+          ? "❌ Failed to send request. Check your connection or message us on Telegram."
+          : "❌ Не вдалося відправити заявку. Перевірте з'єднання або напишіть у Telegram.";
       }
       if (btn) {
         btn.disabled = false;
-        btn.textContent = 'НАДІСЛАТИ';
+        btn.textContent = isEn ? 'SUBMIT' : 'НАДІСЛАТИ';
       }
     }
   });
 }
+
+/* ---- LANGUAGE MODAL SELECTION ---- */
+(function initLangModal() {
+  const modalOverlay = document.getElementById('langModalOverlay');
+  if (!modalOverlay) return;
+
+  const currentLang = document.documentElement.lang || 'uk';
+  const hasChosenLang = sessionStorage.getItem('denis_lang_chosen');
+
+  // If already chosen in this session, hide immediately without flash
+  if (hasChosenLang) {
+    modalOverlay.classList.add('lang-modal--hidden');
+  }
+
+  // Handle language button clicks
+  const langButtons = modalOverlay.querySelectorAll('[data-lang-choice]');
+  langButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const chosenLang = btn.getAttribute('data-lang-choice');
+      sessionStorage.setItem('denis_lang_chosen', chosenLang);
+      localStorage.setItem('denis_preferred_lang', chosenLang);
+
+      modalOverlay.classList.add('lang-modal--hidden');
+
+      if (chosenLang === 'en' && currentLang !== 'en') {
+        setTimeout(() => {
+          window.location.href = 'en.html';
+        }, 220);
+      } else if (chosenLang === 'ua' && currentLang === 'en') {
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 220);
+      }
+    });
+  });
+
+  // Header language switcher buttons
+  document.querySelectorAll('.lang-switch').forEach(sw => {
+    sw.addEventListener('click', () => {
+      const isTargetEn = sw.getAttribute('href') === 'en.html';
+      sessionStorage.setItem('denis_lang_chosen', isTargetEn ? 'en' : 'ua');
+      localStorage.setItem('denis_preferred_lang', isTargetEn ? 'en' : 'ua');
+    });
+  });
+})();
 
 /* ---- ACCORDION ---- */
 document.querySelectorAll('.acc').forEach(acc => {
