@@ -98,12 +98,13 @@
       margin: 28px 0 32px;
     }
     .partner-step {
-      background: var(--gray);
+      background: var(--white);
       border: 1px solid var(--border);
       border-radius: var(--r);
       padding: 28px 24px;
       display: flex;
       flex-direction: column;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.02);
     }
     .partner-step__num {
       font-size: 1.1rem;
@@ -131,7 +132,7 @@
       border: 1px solid var(--border);
       border-radius: var(--r);
       padding: 32px;
-      margin-bottom: 48px;
+      margin-bottom: 0;
       background: var(--white);
     }
     .partner-terms-box h3 {
@@ -150,10 +151,26 @@
     .partner-terms-box li {
       margin-bottom: 8px;
     }
+    .partner-contact-wrap {
+      margin-top: 48px;
+      padding-top: 0;
+      border-top: none !important;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .partner-contact-wrap .form-new input,
+    .partner-contact-wrap .form-new textarea {
+      padding: 14px 18px;
+    }
+    .partner-contact-wrap .btn-black {
+      padding: 16px;
+    }
     .partner-sec-title {
-      font-size: clamp(2.2rem, 4vw, 3.5rem) !important;
+      font-size: clamp(1.85rem, 3.2vw, 2.7rem) !important;
       line-height: 1.05 !important;
-      letter-spacing: -1.5px !important;
+      letter-spacing: -1.2px !important;
       display: flex;
       flex-direction: column;
     }
@@ -223,15 +240,16 @@
         padding: 24px 16px;
         text-align: left;
       }
-      .contact-new {
-        grid-template-columns: 1fr;
-        gap: 32px;
+      .partner-contact-wrap {
+        grid-template-columns: 1fr !important;
+        gap: 28px !important;
+        margin-top: 36px !important;
       }
       .contact-new__left {
         text-align: center;
       }
       .partner-sec-title {
-        font-size: clamp(1.8rem, 7.5vw, 2.5rem) !important;
+        font-size: clamp(1.6rem, 6.8vw, 2.2rem) !important;
         text-align: center;
         align-items: center;
       }
@@ -318,40 +336,41 @@
           <li><strong>Для кого підходить:</strong> маркетологам, таргетологам, веб-дизайнерам, копірайтерам, підприємцям та всім, хто співпрацює з бізнесом.</li>
         </ul>
       </div>
-    </div>
 
-    <!-- SECTION 3: CONTACT FORM (NO BOX / NO BORDER) -->
-    <div class="contact-new" style="margin-top: 64px;">
-      <div class="contact-new__left">
-        <h2 class="sec__title partner-sec-title">
-          <span class="nowrap-line">ХОЧЕТЕ СТАТИ</span>
-          <span class="nowrap-line" style="color: var(--accent);">НАШИМ</span>
-          <span class="nowrap-line">ПАРТНЕРОМ?</span>
-        </h2>
-        <p class="contact-new__desc">Залиште заявку — ми зв'яжемося для обговорення взаємовигідних умов та формату співпраці.</p>
+      <!-- SECTION 3: CONTACT FORM (INSIDE CARD) -->
+      <div class="contact-new partner-contact-wrap">
+        <div class="contact-new__left">
+          <h2 class="sec__title partner-sec-title">
+            <span class="nowrap-line">ХОЧЕТЕ СТАТИ</span>
+            <span class="nowrap-line" style="color: var(--accent);">НАШИМ</span>
+            <span class="nowrap-line">ПАРТНЕРОМ?</span>
+          </h2>
+          <p class="contact-new__desc" style="font-size: 1rem; margin-top: 14px;">Залиште заявку — ми зв'яжемося для обговорення взаємовигідних умов та формату співпраці.</p>
+        </div>
+
+        <div class="contact-new__right">
+          <form class="form-new" id="contactForm" novalidate>
+            <div class="form-new__group">
+              <input type="text" id="formName" name="name" placeholder="Ім'я" autocomplete="name" required>
+              <span class="form-new__error" id="nameError"></span>
+            </div>
+
+            <div class="form-new__group">
+              <input type="text" id="formPhone" name="phone" placeholder="Телефон або Telegram (@username)" autocomplete="tel" required>
+              <span class="form-new__error" id="phoneError"></span>
+            </div>
+
+            <div class="form-new__group">
+              <textarea id="formProject" name="project" placeholder="Розкажіть про свою діяльність або формат співпраці" rows="4" required></textarea>
+              <span class="form-new__error" id="projectError"></span>
+            </div>
+            
+            <button type="submit" class="btn-black" id="cfSubmit">СТАТИ ПАРТНЕРОМ</button>
+            <div class="form__status" id="cfStatus" role="status" aria-live="polite"></div>
+          </form>
+        </div>
       </div>
 
-      <div class="contact-new__right">
-        <form class="form-new" id="contactForm" novalidate>
-          <div class="form-new__group">
-            <input type="text" id="formName" name="name" placeholder="Ім'я" autocomplete="name" required>
-            <span class="form-new__error" id="nameError"></span>
-          </div>
-
-          <div class="form-new__group">
-            <input type="text" id="formPhone" name="phone" placeholder="Телефон або Telegram (@username)" autocomplete="tel" required>
-            <span class="form-new__error" id="phoneError"></span>
-          </div>
-
-          <div class="form-new__group">
-            <textarea id="formProject" name="project" placeholder="Розкажіть про свою діяльність або формат співпраці" rows="4" required></textarea>
-            <span class="form-new__error" id="projectError"></span>
-          </div>
-          
-          <button type="submit" class="btn-black" id="cfSubmit">СТАТИ ПАРТНЕРОМ</button>
-          <div class="form__status" id="cfStatus" role="status" aria-live="polite"></div>
-        </form>
-      </div>
     </div>
   </div>
 </main>
