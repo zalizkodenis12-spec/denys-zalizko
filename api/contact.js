@@ -28,6 +28,22 @@ export default async function handler(req, res) {
       return res.status(400).json({ success: false, error: 'Будь ласка, введіть номер телефону або Telegram.' });
     }
 
+    let contactVal = phone.trim();
+    const isTelegram = contactVal.startsWith('@') || (!contactVal.startsWith('+') && !/^\d/.test(contactVal));
+    if (isTelegram) {
+      if (!contactVal.startsWith('@')) contactVal = '@' + contactVal;
+      const tgRegex = /^@[a-zA-Z0-9_]{3,32}$/;
+      if (!tgRegex.test(contactVal)) {
+        return res.status(400).json({ success: false, error: 'Telegram юзернейм повинен починатися з @ (наприклад: @username).' });
+      }
+    } else {
+      const digitsOnly = contactVal.replace(/\D/g, '');
+      const phoneRegex = /^(\+?\d{1,4}?[-.\s]?)?(\(?\d{2,4}\)?[-.\s]?)?\d{3,4}[-.\s]?\d{2,4}[-.\s]?\d{0,4}$/;
+      if (digitsOnly.length < 10 || digitsOnly.length > 15 || !phoneRegex.test(contactVal)) {
+        return res.status(400).json({ success: false, error: 'Введіть дійсний номер телефону (від 10 цифр, наприклад: 0961234567).' });
+      }
+    }
+
     if (!project || typeof project !== 'string' || project.trim().length < 3) {
       return res.status(400).json({ success: false, error: 'Будь ласка, опишіть ваш проєкт або задачу.' });
     }
@@ -54,7 +70,7 @@ export default async function handler(req, res) {
     };
 
     const cleanName = escapeHtml(name.trim());
-    const cleanPhone = escapeHtml(phone.trim());
+    const cleanPhone = escapeHtml(contactVal);
     const rawProject = project.trim();
 
     // Check if partner application
@@ -68,8 +84,6 @@ export default async function handler(req, res) {
       .replace(/^\[Partner Program\]\s*/i, '');
     cleanProposal = escapeHtml(cleanProposal);
 
-    // Detect if Telegram handle or phone number
-    const isTelegram = /^@|[a-zA-Z]/.test(cleanPhone) && !/^\+?\d[\d\s\-()]{7,}$/.test(cleanPhone);
     const contactLabel = isTelegram ? '✈️ <b>Telegram:</b>' : '📞 <b>Телефон:</b>';
     const personLabel = isPartner ? '👤 <b>Партнер:</b>' : '👤 <b>Клієнт:</b>';
     const contentLabel = isPartner ? '💬 <b>Пропозиція:</b>' : '💬 <b>Опис проєкту:</b>';

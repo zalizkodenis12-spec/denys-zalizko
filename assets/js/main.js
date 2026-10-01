@@ -260,21 +260,27 @@ if (form) {
   // 2. Phone or Telegram validation
   function validatePhone() {
     if (!phoneInput) return true;
-    const val = phoneInput.value.trim();
+    let val = phoneInput.value.trim();
     if (!val) {
       setError(phoneInput, phoneError, isEn ? "Please enter your phone or Telegram" : "Будь ласка, введіть номер телефону або Telegram");
       return false;
     }
-    const isTg = val.startsWith('@') || /[a-zA-Z]/.test(val);
+    const isTg = val.startsWith('@') || (!val.startsWith('+') && !/^\d/.test(val));
     if (isTg) {
-      if (val.length < 3) {
-        setError(phoneInput, phoneError, isEn ? "Please enter a valid Telegram handle" : "Вкажіть коректний Telegram юзернейм");
+      if (!val.startsWith('@')) {
+        val = '@' + val;
+        phoneInput.value = val;
+      }
+      const tgRegex = /^@[a-zA-Z0-9_]{3,32}$/;
+      if (!tgRegex.test(val)) {
+        setError(phoneInput, phoneError, isEn ? "Telegram handle must start with @ (e.g. @username)" : "Юзернейм має починатися з @ (наприклад: @username)");
         return false;
       }
     } else {
       const digitsOnly = val.replace(/\D/g, '');
-      if (digitsOnly.length < 9) {
-        setError(phoneInput, phoneError, isEn ? "Please enter a valid phone number" : "Введіть коректний номер телефону");
+      const phoneRegex = /^(\+?\d{1,4}?[-.\s]?)?(\(?\d{2,4}\)?[-.\s]?)?\d{3,4}[-.\s]?\d{2,4}[-.\s]?\d{0,4}$/;
+      if (digitsOnly.length < 10 || digitsOnly.length > 15 || !phoneRegex.test(val)) {
+        setError(phoneInput, phoneError, isEn ? "Enter a valid phone number (at least 10 digits, e.g. 0961234567)" : "Введіть дійсний номер телефону (від 10 цифр, наприклад: 0961234567)");
         return false;
       }
     }

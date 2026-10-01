@@ -623,9 +623,8 @@ body.dark-theme .about__photo-img--dark {
   transition: var(--trans);
   position: relative;
 }
-.svc:nth-child(4) { border-right: none; }
+.svc:nth-child(4n) { border-right: none; }
 .svc:nth-child(n+5) { border-bottom: none; }
-.svc:nth-child(7) { grid-column: span 2; border-right: none; }
 .svc:hover { background: var(--accent-bg); }
 
 .svc__num {
@@ -1298,6 +1297,11 @@ body.dark-theme .theme-toggle:hover {
   .svc:nth-child(7) {
     top: calc(var(--hh) + 108px) !important;
     z-index: 7 !important;
+    grid-column: auto !important;
+  }
+  .svc:nth-child(8) {
+    top: calc(var(--hh) + 124px) !important;
+    z-index: 8 !important;
     grid-column: auto !important;
   }
   
