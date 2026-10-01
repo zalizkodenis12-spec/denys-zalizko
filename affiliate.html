@@ -14,7 +14,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Партнерська програма | DenisWeb Studio</title>
-  <meta name="description" content="Партнерська програма DenisWeb Studio. Рекомендуйте розробку сайтів та рекламу для бізнесу й отримуйте гарантовану грошову винагороду з кожного проєкту.">
+  <meta name="description" content="Партнерська програма DenisWeb Studio: 30% разова виплата з кожного залученого клієнта або White Label розробка для агентств. Прозорий прайс, швидкі терміни та демоверсія за 1-2 дні.">
   <meta name="robots" content="index, follow">
 
   <!-- Favicon & Touch Icons -->
@@ -29,7 +29,7 @@
   <!-- OpenGraph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Партнерська програма | DenisWeb Studio">
-  <meta property="og:description" content="Отримуйте 10-15% від вартості залученого проєкту за створення сайтів чи рекламу. Прозорі умови партнерства.">
+  <meta property="og:description" content="Заробляйте 30% з кожного залученого проєкту або масштабуйте агенцію через White Label розробку.">
   <meta property="og:image" content="https://denys-zalizko.vercel.app/assets/images/logo-square.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,16 +63,16 @@
       order: 2 !important;
     }
     .legal-page {
-      padding-top: calc(var(--hh) + 60px);
-      padding-bottom: 120px;
+      padding-top: calc(var(--hh) + 40px);
+      padding-bottom: 100px;
       min-height: 100vh;
     }
     .legal-card {
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: var(--r-xl);
-      padding: 56px 48px;
-      margin-top: 32px;
+      padding: 56px 44px;
+      margin-top: 24px;
       box-shadow: 0 4px 24px rgba(0,0,0,0.04);
     }
     .legal-card h1 {
@@ -82,80 +82,400 @@
       letter-spacing: -1.5px;
       color: var(--black);
       margin-bottom: 12px;
+      text-align: center;
     }
     .legal-card .legal-date {
       color: var(--muted);
-      font-size: 1rem;
-      margin-bottom: 36px;
+      font-size: 1.05rem;
+      margin: 0 auto 36px;
       display: block;
+      line-height: 1.65;
+      max-width: 760px;
+      text-align: center;
+    }
+
+    /* Chips row */
+    .partner-chips {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 44px;
+    }
+    .partner-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(0, 102, 255, 0.08);
+      color: var(--accent);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    /* Section Titles */
+    .affiliate-sec-title {
+      font-family: var(--ffh);
+      font-size: clamp(1.4rem, 2.8vw, 1.9rem);
+      font-weight: 900;
+      letter-spacing: -0.8px;
+      color: var(--black);
+      margin: 44px 0 20px;
+      text-align: center;
+    }
+    .affiliate-sec-desc {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 680px;
+      margin: -10px auto 26px;
       line-height: 1.6;
-      max-width: 720px;
     }
-    .partner-steps {
+
+    /* Format Cards (30% vs White Label) */
+    .format-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      margin: 28px 0 44px;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 20px;
     }
-    .partner-step {
+    .format-card {
       background: var(--gray);
       border: 1px solid var(--border);
       border-radius: var(--r);
-      padding: 28px 24px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.25s ease, border-color 0.25s ease;
     }
-    .partner-step__num {
-      font-size: 1.1rem;
+    .format-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+    .format-card__badge {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 0.78rem;
       font-weight: 800;
-      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+      background: var(--black);
+      color: var(--white);
+    }
+    .format-card__badge.accent {
+      background: var(--accent);
+      color: #FFFFFF;
+    }
+    .format-card__title {
+      font-family: var(--ffh);
+      font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--black);
       margin-bottom: 12px;
     }
-    .partner-step__title {
+    .format-card__text {
+      font-size: 0.98rem;
+      color: var(--text);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .format-card__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.93rem;
+      color: var(--text);
+    }
+    .format-card__list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+    }
+    .format-card__list li svg {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      color: var(--accent);
+      margin-top: 2px;
+    }
+
+    /* Price Section & Grids */
+    .price-cat {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+    .price-cat__title {
       font-family: var(--ffh);
       font-size: 1.25rem;
       font-weight: 800;
       color: var(--black);
-      margin-bottom: 10px;
-      letter-spacing: -0.3px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    .partner-step__text {
-      font-size: 0.95rem;
+    .price-cat__title svg {
+      color: var(--accent);
+      width: 22px;
+      height: 22px;
+    }
+    .price-table {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 18px;
+      background: var(--gray);
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.04);
+      gap: 16px;
+    }
+    .price-row__name {
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: var(--black);
+    }
+    .price-row__desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+    .price-row__val {
+      font-family: var(--ffh);
+      font-weight: 900;
+      font-size: 1.05rem;
+      color: var(--accent);
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    /* Influencing Factors */
+    .factors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .factor-item {
+      background: var(--gray);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .factor-item__title {
+      font-family: var(--ffh);
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+    .factor-item__desc {
+      font-size: 0.9rem;
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.55;
     }
-    .partner-terms-box {
+
+    /* Included & Deadlines 2-Col Box */
+    .info-dual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .info-dual__col {
+      background: var(--gray);
       border: 1px solid var(--border);
       border-radius: var(--r);
-      padding: 32px;
-      margin-bottom: 48px;
-      background: var(--white);
+      padding: 26px 24px;
     }
-    .partner-terms-box h3 {
+    .info-dual__title {
       font-family: var(--ffh);
-      font-size: 1.35rem;
+      font-size: 1.2rem;
       font-weight: 800;
       color: var(--black);
       margin-bottom: 14px;
     }
-    .partner-terms-box ul {
-      padding-left: 20px;
+    .info-dual__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.92rem;
       color: var(--text);
-      font-size: 1rem;
-      line-height: 1.8;
     }
-    .partner-terms-box li {
-      margin-bottom: 8px;
+    .info-dual__list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
     }
+    .info-dual__list li svg {
+      width: 17px;
+      height: 17px;
+      min-width: 17px;
+      color: #10B981;
+      margin-top: 2px;
+    }
+
+    /* Contact Form Section */
     .partner-form-section {
       border-top: 1px solid var(--border);
       padding-top: 48px;
-      margin-top: 20px;
+      margin-top: 28px;
     }
-    @media (max-width: 640px) {
+    .partner-form-container {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .partner-form-container h2 {
+      font-family: var(--ffh);
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 900;
+      letter-spacing: -1.2px;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+    .partner-form-container p {
+      color: var(--text);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    /* Telegram Quick Link */
+    .partner-tg-direct {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color var(--trans);
+    }
+    .partner-tg-direct:hover {
+      color: var(--accent);
+    }
+    .partner-tg-direct strong {
+      color: var(--accent);
+    }
+
+    /* Dark theme support */
+    body.dark-theme .legal-card {
+      background: #141414;
+      border-color: #262626;
+    }
+    body.dark-theme .format-card,
+    body.dark-theme .factor-item,
+    body.dark-theme .info-dual__col,
+    body.dark-theme .price-row {
+      background: #1A1A1A;
+      border-color: #2B2B2B;
+    }
+    body.dark-theme .price-cat {
+      background: #141414;
+      border-color: #262626;
+    }
+    body.dark-theme .format-card__badge {
+      background: #333;
+      color: #FFF;
+    }
+    body.dark-theme .format-card__badge.accent {
+      background: var(--accent);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
       .legal-card {
-        padding: 32px 20px;
+        padding: 32px 18px;
       }
-      .partner-terms-box {
-        padding: 24px 16px;
+      .legal-card h1 {
+        font-size: 2.1rem;
+        text-align: center;
+      }
+      .legal-card .legal-date {
+        font-size: 0.95rem;
+        margin-bottom: 24px;
+        text-align: center;
+      }
+      .affiliate-sec-title {
+        font-size: 1.45rem;
+        text-align: center;
+        margin-top: 36px;
+      }
+      .affiliate-sec-desc {
+        text-align: center;
+      }
+      .format-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .format-card {
+        padding: 24px 20px;
+        text-align: center;
+        align-items: center;
+      }
+      .format-card__badge {
+        align-self: center;
+      }
+      .format-card__list {
+        text-align: left;
+      }
+      .info-dual {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .info-dual__col {
+        padding: 22px 18px;
+      }
+      .price-cat {
+        padding: 20px 16px;
+      }
+      .price-row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 14px;
+        gap: 8px;
+      }
+      .price-row__val {
+        text-align: center;
+      }
+      .partner-chips {
+        justify-content: center;
+      }
+      .partner-chip {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+      }
+      .partner-form-container h2 {
+        font-size: 1.95rem;
+        text-align: center;
+      }
+      .partner-form-container p {
+        font-size: 0.95rem;
+        text-align: center;
       }
       .legal-hdr .logo__name {
         font-size: 1.15rem !important;
@@ -180,75 +500,279 @@
 
 <!-- Main content -->
 <main class="legal-page">
-  <div class="wrap" style="max-width: 1000px;">
+  <div class="wrap" style="max-width: 960px;">
     <div class="legal-card">
+
       <h1>Партнерська програма</h1>
-      <span class="legal-date">Заробляйте разом із DenisWeb Studio: рекомендуйте наші послуги зі створення сучасних сайтів та запуску реклами (Meta, Google) і отримуйте до 15% від кожного реалізованого проєкту.</span>
+      <span class="legal-date">Заробляйте разом із DenisWeb Studio: отримуйте 30% з кожного залученого проєкту або делегуйте технічну розробку вашої агенції у форматі White Label.</span>
 
-      <!-- SECTION 1: How it works -->
-      <section>
-        <h2 style="font-family: var(--ffh); font-size: 1.6rem; font-weight: 800; color: var(--black); letter-spacing: -0.5px;">Як працює партнерство</h2>
-        <div class="partner-steps">
-          <div class="partner-step">
-            <div class="partner-step__num">01 / Рекомендація</div>
-            <h3 class="partner-step__title">Передаєте контакт</h3>
-            <p class="partner-step__text">Ви радите нас своєму знайомому чи клієнту, якому потрібен новий сайт, редизайн або реклама, та надсилаєте контакт нам.</p>
-          </div>
-
-          <div class="partner-step">
-            <div class="partner-step__num">02 / Презентація</div>
-            <h3 class="partner-step__title">Ми закриваємо угоду</h3>
-            <p class="partner-step__text">Ми проводимо бриф, розробляємо безкоштовну демоверсію, погоджуємо умови та беремо на себе повну технічну реалізацію.</p>
-          </div>
-
-          <div class="partner-step">
-            <div class="partner-step__num">03 / Оплата</div>
-            <h3 class="partner-step__title">Ви отримуєте бонус</h3>
-            <p class="partner-step__text">Після оплати клієнтом ви негайно отримуєте свій партнерський відсоток на карту або розрахунковий рахунок без затримок.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 2: Conditions -->
-      <div class="partner-terms-box">
-        <h3>Умови та переваги для партнерів</h3>
-        <ul>
-          <li><strong>Винагорода від 10% до 15%</strong> від повної вартості кожного залученого проєкту (наприклад, від 1 500 до 6 000+ грн з одного сайту).</li>
-          <li><strong>Повний цикл робіт на нас:</strong> вам не потрібно вести переговори чи розбиратися в коді — ми все робимо під ключ від ідеї до запуску.</li>
-          <li><strong>Безкоштовна демоверсія для клієнта:</strong> клієнт одразу бачить підхід і якість ще до внесення передплати, що забезпечує максимальну конверсію в угоду.</li>
-          <li><strong>Чесність та прозорість:</strong> ми відкрито повідомляємо про статус роботи над проєктом та виплачуємо бонус одразу після розрахунку клієнта.</li>
-          <li><strong>Для кого підходить:</strong> маркетологам, таргетологам, веб-дизайнерам, копірайтерам, підприємцям та всім, хто співпрацює з бізнесом.</li>
-        </ul>
+      <!-- Chips -->
+      <div class="partner-chips">
+        <span class="partner-chip">💸 30% разова виплата</span>
+        <span class="partner-chip">🏷️ White Label розробка</span>
+        <span class="partner-chip">⚡ Демоверсія за 1–2 дні</span>
+        <span class="partner-chip">🔒 Поетапна оплата</span>
       </div>
 
-      <!-- SECTION 3: DUPLICATED CONTACT FORM AS REQUESTED -->
-      <div class="partner-form-section">
-        <div class="contact-new">
-          <div class="contact-new__left">
-            <h2 class="sec__title" style="letter-spacing: -1.5px;">ХОЧЕТЕ СТАТИ<br><span style="color: var(--accent);">НАШИМ</span><br>ПАРТНЕРОМ?</h2>
-            <p class="contact-new__desc">Залиште заявку — ми зв'яжемося для обговорення взаємовигідних умов та формату співпраці.</p>
+      <!-- SECTION 1: FORMATS -->
+      <h2 class="affiliate-sec-title">Формати співпраці</h2>
+      <p class="affiliate-sec-desc">Оберіть формат, який найкраще підходить для вашої поточної моделі заробітку або масштабування бізнесу:</p>
+
+      <div class="format-grid">
+        <!-- Card 1 -->
+        <div class="format-card">
+          <span class="format-card__badge accent">Рекомендація</span>
+          <h3 class="format-card__title">30% з кожного проєкту</h3>
+          <p class="format-card__text">Ви радите нас клієнту, якому потрібен сайт, телеграм-бот або налаштування реклами. Ми самостійно проводимо бриф, розробляємо демоверсію, погоджуємо деталі та ведемо клієнта під ключ.</p>
+          <ul class="format-card__list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>30% разова виплата</strong> одразу після фінального розрахунку клієнта.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Нуль турбот:</strong> всі технічні питання та комунікацію ми беремо на себе.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Виплати на будь-яку банківську картку чи рахунок.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="format-card">
+          <span class="format-card__badge">Для агентств</span>
+          <h3 class="format-card__title">White Label розробка</h3>
+          <p class="format-card__text">Продавайте послуги створення сайтів, складних рішень чи ботів під назвою власної агенції чи бренду за будь-яким власним прайсом і націнкою.</p>
+          <ul class="format-card__list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Повна анонімність:</strong> жодних згадок DenisWeb Studio, зберігаємо суворе NDA.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Ваша маржа:</strong> ви самі встановлюєте фінальну вартість для вашого замовника.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Швидка здача: закриваємо ваші дедлайни без потреби розширювати штат.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SECTION 2: PAYMENT & FACTORS -->
+      <h2 class="affiliate-sec-title">Оплата та що впливає на ціну</h2>
+      <p class="affiliate-sec-desc"><strong>Поетапна оплата:</strong> перша частина виплачується в процесі розробки (після погодження концепту/демоверсії), фінальний розрахунок — після повного тестування та здачі проєкту.</p>
+
+      <div class="factors-grid">
+        <div class="factor-item">
+          <div class="factor-item__title">Обсяг та структура</div>
+          <div class="factor-item__desc">Довжина сторінки, загальна кількість блоків, інтерактивних розділів та сторінок.</div>
+        </div>
+        <div class="factor-item">
+          <div class="factor-item__title">Дизайн та візуал</div>
+          <div class="factor-item__desc">Складна кастомна графіка, 3D-моделі, шейдери та інтерактивні елементи.</div>
+        </div>
+        <div class="factor-item">
+          <div class="factor-item__title">Анімація</div>
+          <div class="factor-item__desc">Рівень складності: від базових мікроінтеракцій до складної динамічної скрол-анімації.</div>
+        </div>
+        <div class="factor-item">
+          <div class="factor-item__title">Функціонал та логіка</div>
+          <div class="factor-item__desc">Інтеграції сторонніх сервісів, калькулятори, кабінети, CRM, платіжні системи та API.</div>
+        </div>
+        <div class="factor-item">
+          <div class="factor-item__title">Правки</div>
+          <div class="factor-item__desc">Кількість та глибина ітерацій редагувань за індивідуальним запитом клієнта.</div>
+        </div>
+      </div>
+
+      <!-- SECTION 3: PRICING -->
+      <h2 class="affiliate-sec-title">Орієнтовний прайс на розробку</h2>
+      <p class="affiliate-sec-desc">Базові орієнтири вартості послуг студії для швидкого розрахунку партнерської винагороди:</p>
+
+      <!-- Category 1: Sites -->
+      <div class="price-cat">
+        <div class="price-cat__title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          1. Сайти та веб-рішення
+        </div>
+        <div class="price-table">
+          <div class="price-row">
+            <div>
+              <div class="price-row__name">Landing Page</div>
+              <div class="price-row__desc">Базові односторінкові сайти під продукт чи послугу</div>
+            </div>
+            <div class="price-row__val">від 6 000 до 12 000+ ₴</div>
           </div>
+          <div class="price-row">
+            <div>
+              <div class="price-row__name">Анімовані сайти</div>
+              <div class="price-row__desc">Кастомна dynamic та інтерактивна анімація</div>
+            </div>
+            <div class="price-row__val">від 12 000 ₴</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <div class="price-row__name">Багатосторінкові сайти / каталоги</div>
+              <div class="price-row__desc">Структуровані сайти компаній з кількома розділами</div>
+            </div>
+            <div class="price-row__val">від 12 000 ₴</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <div class="price-row__name">Інтернет-магазини (E-commerce)</div>
+              <div class="price-row__desc">Каталог товарів, кошик, оплата та інтеграції</div>
+            </div>
+            <div class="price-row__val">від 18 000 ₴</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <div class="price-row__name">Складні платформи / стартапи / Web-додатки</div>
+              <div class="price-row__desc">ШІ-модулі, кастомний бекенд, кабінети, високі навантаження</div>
+            </div>
+            <div class="price-row__val">від 50 000 ₴</div>
+          </div>
+        </div>
+      </div>
 
-          <div class="contact-new__right">
-            <form class="form-new" id="contactForm" novalidate>
-              <div class="form-new__group">
-                <input type="text" id="formName" name="name" placeholder="Ім'я" autocomplete="name" required>
-                <span class="form-new__error" id="nameError"></span>
-              </div>
+      <!-- Category 2: Bots & Automation -->
+      <div class="price-cat">
+        <div class="price-cat__title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a2 2 0 0 1 2 2v2h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4V4a2 2 0 0 1 2-2z"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><line x1="9" y1="16" x2="15" y2="16"/></svg>
+          2. Боти та автоматизація
+        </div>
+        <div class="price-table">
+          <div class="price-row">
+            <div>
+              <div class="price-row__name">Telegram-боти</div>
+              <div class="price-row__desc">Базовий та середній рівень (воронки, прийом заявок, меню)</div>
+            </div>
+            <div class="price-row__val">від 4 000 до 9 000+ ₴</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <div class="price-row__name">Автоматизація бізнес-процесів</div>
+              <div class="price-row__desc">Make, n8n, кастомні парсери даних, зв'язки з CRM</div>
+            </div>
+            <div class="price-row__val">від 8 000 до 15 000+ ₴</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <div class="price-row__name">Складне програмне забезпечення</div>
+              <div class="price-row__desc">Кастомні внутрішні системи та софт під замовлення</div>
+            </div>
+            <div class="price-row__val">від 40 000 ₴</div>
+          </div>
+        </div>
+      </div>
 
-              <div class="form-new__group">
-                <input type="tel" id="formPhone" name="phone" placeholder="Телефон або Telegram" autocomplete="tel" required>
-                <span class="form-new__error" id="phoneError"></span>
-              </div>
+      <!-- Category 3: Additional Services -->
+      <div class="price-cat">
+        <div class="price-cat__title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          3. Додаткові послуги та інтеграції
+        </div>
+        <div class="price-table">
+          <div class="price-row">
+            <div>
+              <div class="price-row__name">Базове SEO-налаштування та оптимізація швидкості</div>
+              <div class="price-row__desc">Семантика, мета-теги, прискорення завантаження</div>
+            </div>
+            <div class="price-row__val">від 1 500 ₴</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <div class="price-row__name">Підключення платіжних систем + доставка</div>
+              <div class="price-row__desc">Онлайн-еквайринг (Monobank, LiqPay) + Нова Пошта</div>
+            </div>
+            <div class="price-row__val">від 3 500 ₴</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <div class="price-row__name">Технічна підтримка та супровід після запуску</div>
+              <div class="price-row__desc">Оновлення контенту, моніторинг стабільності</div>
+            </div>
+            <div class="price-row__val">від 1 000 до 3 000 ₴ / міс</div>
+          </div>
+        </div>
+      </div>
 
-              <div class="form-new__group">
-                <textarea id="formProject" name="project" placeholder="Розкажіть про свою діяльність або формат співпраці" rows="4" required></textarea>
-                <span class="form-new__error" id="projectError"></span>
-              </div>
-              
-              <button type="submit" class="btn-black" id="cfSubmit">СТАТИ ПАРТНЕРОМ</button>
-              <div class="form__status" id="cfStatus" role="status" aria-live="polite"></div>
-            </form>
+      <!-- SECTION 4: INCLUDED & DEADLINES -->
+      <div class="info-dual">
+        <div class="info-dual__col">
+          <div class="info-dual__title">Що входить за замовчуванням:</div>
+          <ul class="info-dual__list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>100% адаптивність</strong> під усі екрани (телефони, планшети, ПК).</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Оптимізація швидкості</strong> завантаження (Google PageSpeed 90+).</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Презентація та демонстрація сайту</strong> перед фінальною передачею.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Інструкція або консультація</strong> щодо подальшого використання.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="info-dual__col">
+          <div class="info-dual__title">Дедлайни та терміни:</div>
+          <ul class="info-dual__list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>1–2 дні:</strong> швидка розробка базового лендінгу або першої демоверсії.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>1–4 дні:</strong> розробка більшості видів Telegram-ботів.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Fast-track (термінова розробка):</strong> скорочення термінів удвічі за доплату (+20–30%).</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SECTION 5: CONTACT FORM -->
+      <div class="partner-form-section">
+        <div class="partner-form-container">
+          <h2>ХОЧЕТЕ СТАТИ НАШИМ ПАРТНЕРОМ?</h2>
+          <p>Залиште заявку — ми зв'яжемося для обговорення взаємовигідних умов співпраці, деталей виплат або старту першого спільного проєкту.</p>
+
+          <form class="form-new" id="contactForm" novalidate>
+            <div class="form-new__group">
+              <input type="text" id="formName" name="name" placeholder="Ім'я" autocomplete="name" required>
+              <span class="form-new__error" id="nameError"></span>
+            </div>
+
+            <div class="form-new__group">
+              <input type="tel" id="formPhone" name="phone" placeholder="Телефон або Telegram" autocomplete="tel" required>
+              <span class="form-new__error" id="phoneError"></span>
+            </div>
+
+            <div class="form-new__group">
+              <textarea id="formProject" name="project" placeholder="Розкажіть про свою діяльність чи побажання (30% комісія чи White Label)" rows="4" required></textarea>
+              <span class="form-new__error" id="projectError"></span>
+            </div>
+            
+            <button type="submit" class="btn-black" id="cfSubmit" style="width: 100%;">СТАТИ ПАРТНЕРОМ</button>
+            <div class="form__status" id="cfStatus" role="status" aria-live="polite"></div>
+          </form>
+
+          <div>
+            <a href="https://t.me/absolutikdenchik" target="_blank" rel="noopener" class="partner-tg-direct">
+              Або напишіть напряму: <strong>@absolutikdenchik</strong> в Telegram →
+            </a>
           </div>
         </div>
       </div>
@@ -325,7 +849,7 @@
 
     function validateProject() {
       const val = projectInput ? projectInput.value.trim() : '';
-      if (!val) { setError(projectInput, projectError, "Будь ласка, розкажіть про свою діяльність"); return false; }
+      if (!val) { setError(projectInput, projectError, "Будь ласка, вкажіть кілька слів про співпрацю"); return false; }
       if (val.length < 3) { setError(projectInput, projectError, "Вкажіть хоча б кілька слів"); return false; }
       clearError(projectInput, projectError); return true;
     }
