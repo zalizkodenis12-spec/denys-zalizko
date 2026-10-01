@@ -150,6 +150,17 @@
       padding-top: 48px;
       margin-top: 20px;
     }
+    .partner-sec-title {
+      font-size: clamp(2rem, 3.8vw, 3.3rem) !important;
+      line-height: 1.08 !important;
+      letter-spacing: -1.5px !important;
+      display: flex;
+      flex-direction: column;
+    }
+    .partner-sec-title .nowrap-line {
+      white-space: nowrap !important;
+      display: block;
+    }
     @media (max-width: 640px) {
       .legal-card {
         padding: 32px 18px;
@@ -259,7 +270,11 @@
       <div class="partner-form-section">
         <div class="contact-new">
           <div class="contact-new__left">
-            <h2 class="sec__title" style="letter-spacing: -1.5px;">WANT TO BECOME<br><span style="color: var(--accent);">OUR</span><br>PARTNER?</h2>
+            <h2 class="sec__title partner-sec-title">
+              <span class="nowrap-line">WANT TO BECOME</span>
+              <span class="nowrap-line" style="color: var(--accent);">OUR</span>
+              <span class="nowrap-line">PARTNER?</span>
+            </h2>
             <p class="contact-new__desc">Submit your details — we will get in touch to discuss commission terms and collaboration opportunities.</p>
           </div>
 
@@ -271,7 +286,7 @@
               </div>
 
               <div class="form-new__group">
-                <input type="tel" id="formPhone" name="phone" placeholder="Phone or Telegram" autocomplete="tel" required>
+                <input type="text" id="formPhone" name="phone" placeholder="Phone or Telegram handle (@username)" autocomplete="tel" required>
                 <span class="form-new__error" id="phoneError"></span>
               </div>
 
@@ -353,7 +368,7 @@
     function validatePhone() {
       const val = phoneInput ? phoneInput.value.trim() : '';
       if (!val) { setError(phoneInput, phoneError, "Please enter your phone or contact handle"); return false; }
-      if (val.length < 5) { setError(phoneInput, phoneError, "Please enter a valid contact"); return false; }
+      if (val.length < 3) { setError(phoneInput, phoneError, "Please enter a valid contact"); return false; }
       clearError(phoneInput, phoneError); return true;
     }
 
@@ -408,7 +423,7 @@
         const res = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, phone, project })
+          body: JSON.stringify({ name, phone, project, isPartner: true })
         });
         const data = await res.json().catch(() => ({}));
 

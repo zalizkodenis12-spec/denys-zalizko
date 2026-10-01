@@ -1575,9 +1575,9 @@ body.dark-theme .theme-toggle:hover {
 }
 .form__status.success {
   display: block;
-  background: rgba(16, 185, 129, 0.1);
-  color: #059669;
-  border: 1px solid rgba(16, 185, 129, 0.25);
+  background: rgba(0, 102, 255, 0.08);
+  color: var(--accent);
+  border: 1px solid rgba(0, 102, 255, 0.25);
 }
 .form__status.error {
   display: block;
@@ -1594,7 +1594,9 @@ body.dark-theme .form-new input:focus, body.dark-theme .form-new textarea:focus 
   border-color: var(--accent);
 }
 body.dark-theme .form__status.success {
-  color: #34D399;
+  background: rgba(0, 102, 255, 0.15);
+  color: #4D94FF;
+  border-color: rgba(0, 102, 255, 0.35);
 }
 body.dark-theme .form__status.error {
   color: #F87171;

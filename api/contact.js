@@ -24,13 +24,8 @@ export default async function handler(req, res) {
       return res.status(400).json({ success: false, error: "Будь ласка, введіть коректне ім'я (мінімум 2 літери)." });
     }
 
-    if (!phone || typeof phone !== 'string') {
-      return res.status(400).json({ success: false, error: 'Будь ласка, введіть номер телефону.' });
-    }
-
-    const cleanedPhone = phone.replace(/[\s\-\(\)]/g, '');
-    if (cleanedPhone.length < 9) {
-      return res.status(400).json({ success: false, error: 'Номер телефону повинен містити щонайменше 9-10 цифр.' });
+    if (!phone || typeof phone !== 'string' || phone.trim().length < 3) {
+      return res.status(400).json({ success: false, error: 'Будь ласка, введіть номер телефону або Telegram.' });
     }
 
     if (!project || typeof project !== 'string' || project.trim().length < 3) {
@@ -60,7 +55,24 @@ export default async function handler(req, res) {
 
     const cleanName = escapeHtml(name.trim());
     const cleanPhone = escapeHtml(phone.trim());
-    const cleanProject = escapeHtml(project.trim());
+    const rawProject = project.trim();
+
+    // Check if partner application
+    const isPartner = rawProject.includes('[Партнерська програма]') || 
+                      rawProject.includes('[Partner Program]') || 
+                      Boolean(req.body && req.body.isPartner);
+
+    let cleanProposal = rawProject
+      .replace(/^\[Партнерська програма\]\s*/i, '')
+      .replace(/^\[Partner Program - EN\]\s*/i, '')
+      .replace(/^\[Partner Program\]\s*/i, '');
+    cleanProposal = escapeHtml(cleanProposal);
+
+    // Detect if Telegram handle or phone number
+    const isTelegram = /^@|[a-zA-Z]/.test(cleanPhone) && !/^\+?\d[\d\s\-()]{7,}$/.test(cleanPhone);
+    const contactLabel = isTelegram ? '✈️ <b>Telegram:</b>' : '📞 <b>Телефон:</b>';
+    const personLabel = isPartner ? '👤 <b>Партнер:</b>' : '👤 <b>Клієнт:</b>';
+    const contentLabel = isPartner ? '💬 <b>Пропозиція:</b>' : '💬 <b>Опис проєкту:</b>';
 
     // Kyiv timestamp
     const kyivTime = new Intl.DateTimeFormat('uk-UA', {
@@ -72,10 +84,10 @@ export default async function handler(req, res) {
     const messageText = 
 `🚀 <b>НОВА ЗАЯВКА З САЙТУ DenisWeb Studio!</b>
 
-👤 <b>Клієнт:</b> ${cleanName}
-📞 <b>Телефон:</b> <code>${cleanPhone}</code>
-💬 <b>Опис проєкту:</b>
-${cleanProject}
+${personLabel} ${cleanName}
+${contactLabel} <code>${cleanPhone}</code>
+${contentLabel}
+${cleanProposal}
 
 📅 <b>Дата та час:</b> ${kyivTime}`;
 

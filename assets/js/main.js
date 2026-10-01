@@ -257,18 +257,26 @@ if (form) {
     return true;
   }
 
-  // 2. Phone validation: >= 9 digits
+  // 2. Phone or Telegram validation
   function validatePhone() {
     if (!phoneInput) return true;
     const val = phoneInput.value.trim();
     if (!val) {
-      setError(phoneInput, phoneError, isEn ? "Please enter your phone number" : "Будь ласка, введіть номер телефону");
+      setError(phoneInput, phoneError, isEn ? "Please enter your phone or Telegram" : "Будь ласка, введіть номер телефону або Telegram");
       return false;
     }
-    const digitsOnly = val.replace(/\D/g, '');
-    if (digitsOnly.length < 9) {
-      setError(phoneInput, phoneError, isEn ? "Please enter a valid phone number" : "Введіть коректний номер телефону");
-      return false;
+    const isTg = val.startsWith('@') || /[a-zA-Z]/.test(val);
+    if (isTg) {
+      if (val.length < 3) {
+        setError(phoneInput, phoneError, isEn ? "Please enter a valid Telegram handle" : "Вкажіть коректний Telegram юзернейм");
+        return false;
+      }
+    } else {
+      const digitsOnly = val.replace(/\D/g, '');
+      if (digitsOnly.length < 9) {
+        setError(phoneInput, phoneError, isEn ? "Please enter a valid phone number" : "Введіть коректний номер телефону");
+        return false;
+      }
     }
     clearError(phoneInput, phoneError);
     return true;

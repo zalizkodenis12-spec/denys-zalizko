@@ -150,6 +150,17 @@
       padding-top: 48px;
       margin-top: 20px;
     }
+    .partner-sec-title {
+      font-size: clamp(2rem, 3.8vw, 3.3rem) !important;
+      line-height: 1.08 !important;
+      letter-spacing: -1.5px !important;
+      display: flex;
+      flex-direction: column;
+    }
+    .partner-sec-title .nowrap-line {
+      white-space: nowrap !important;
+      display: block;
+    }
     @media (max-width: 640px) {
       .legal-card {
         padding: 32px 18px;
@@ -259,7 +270,11 @@
       <div class="partner-form-section">
         <div class="contact-new">
           <div class="contact-new__left">
-            <h2 class="sec__title" style="letter-spacing: -1.5px;">ХОЧЕТЕ СТАТИ<br><span style="color: var(--accent);">НАШИМ</span><br>ПАРТНЕРОМ?</h2>
+            <h2 class="sec__title partner-sec-title">
+              <span class="nowrap-line">ХОЧЕТЕ СТАТИ</span>
+              <span class="nowrap-line" style="color: var(--accent);">НАШИМ</span>
+              <span class="nowrap-line">ПАРТНЕРОМ?</span>
+            </h2>
             <p class="contact-new__desc">Залиште заявку — ми зв'яжемося для обговорення взаємовигідних умов та формату співпраці.</p>
           </div>
 
@@ -271,7 +286,7 @@
               </div>
 
               <div class="form-new__group">
-                <input type="tel" id="formPhone" name="phone" placeholder="Телефон або Telegram" autocomplete="tel" required>
+                <input type="text" id="formPhone" name="phone" placeholder="Телефон або Telegram (@username)" autocomplete="tel" required>
                 <span class="form-new__error" id="phoneError"></span>
               </div>
 
@@ -353,7 +368,7 @@
     function validatePhone() {
       const val = phoneInput ? phoneInput.value.trim() : '';
       if (!val) { setError(phoneInput, phoneError, "Будь ласка, введіть телефон або контактний юзернейм"); return false; }
-      if (val.length < 5) { setError(phoneInput, phoneError, "Вкажіть коректний контакт"); return false; }
+      if (val.length < 3) { setError(phoneInput, phoneError, "Вкажіть коректний контакт"); return false; }
       clearError(phoneInput, phoneError); return true;
     }
 
@@ -408,7 +423,7 @@
         const res = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, phone, project })
+          body: JSON.stringify({ name, phone, project, isPartner: true })
         });
         const data = await res.json().catch(() => ({}));
 
