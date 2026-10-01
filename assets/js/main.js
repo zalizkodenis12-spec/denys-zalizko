@@ -25,16 +25,28 @@ mobNav.querySelectorAll('a').forEach(a => {
 
 document.addEventListener('DOMContentLoaded', () => {
   // Reveal animation
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  const initReveals = () => {
+    const reveals = document.querySelectorAll('.rv, .rv-left, .rv-right, .rv-scale');
+    if (!('IntersectionObserver' in window)) {
+      reveals.forEach(el => {
+        el.classList.add('is-visible');
+        el.classList.add('in');
+      });
+      return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
 
-  document.querySelectorAll('.rv, .rv-left, .rv-right, .rv-scale').forEach(el => observer.observe(el));
+    reveals.forEach(el => observer.observe(el));
+  };
+  initReveals();
 
   // Theme Toggle with MagicUI Circular Expanding Ripple
   const themeToggleBtn = document.getElementById('themeToggle');
@@ -511,10 +523,14 @@ if (casesMoreBtn && casesGrid) {
     casesGrid.classList.add('show-all');
     if (casesMoreWrap) {
       casesMoreWrap.style.display = 'none';
+      casesMoreWrap.classList.add('cases-more-btn--hidden');
     }
+    casesMoreBtn.style.display = 'none';
     const extraCases = casesGrid.querySelectorAll('.case--extra');
     extraCases.forEach(item => {
       item.classList.add('is-visible');
+      item.classList.add('in');
+      item.style.display = 'block';
     });
   });
 }
@@ -546,7 +562,7 @@ if (casesMoreBtn && casesGrid) {
   function startAuto() {
     clearInterval(autoTimer);
     autoTimer = setInterval(() => {
-      if (!isTouch && window.innerWidth <= 640) {
+      if (!isTouch && window.innerWidth <= 768) {
         goTo(current + 1);
       }
     }, 3000);
@@ -579,12 +595,12 @@ if (casesMoreBtn && casesGrid) {
     resumeTimer = setTimeout(() => {
       isTouch = false;
       startAuto();
-    }, 2000);
+    }, 2500);
   }, { passive: true });
 
-  // Only run carousel on mobile
+  // Only run carousel on mobile/tablet
   function checkScreen() {
-    if (window.innerWidth <= 640) {
+    if (window.innerWidth <= 768) {
       startAuto();
     } else {
       stopAuto();
@@ -602,6 +618,7 @@ if (advGrid && advDots) {
   const cards = advGrid.querySelectorAll('.adv-clean');
   
   // Створюємо крапки
+  advDots.innerHTML = '';
   cards.forEach((_, i) => {
     const dot = document.createElement('div');
     dot.className = 'slider-dot';
@@ -612,9 +629,11 @@ if (advGrid && advDots) {
   // Оновлюємо крапки при скролі
   advGrid.addEventListener('scroll', () => {
     const scrollPos = advGrid.scrollLeft;
-    const cardWidth = cards[0].offsetWidth + 16; // width + gap
+    const cardWidth = (cards[0] ? cards[0].offsetWidth : 0) + 16; // width + gap
+    if (!cardWidth) return;
     let activeIndex = Math.round(scrollPos / cardWidth);
     if (activeIndex >= cards.length) activeIndex = cards.length - 1;
+    if (activeIndex < 0) activeIndex = 0;
     
     const dots = advDots.querySelectorAll('.slider-dot');
     dots.forEach((dot, i) => {
