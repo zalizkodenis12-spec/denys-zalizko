@@ -29,7 +29,7 @@
   <!-- OpenGraph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Our Partners | DenisWeb Studio">
-  <meta property="og:description" content="Partner agencies of DenisWeb Studio: Labgramm, VLM Digital and premier digital teams.">
+  <meta property="og:description" content="Partner agencies of DenisWeb Studio: Labgramm and VLM Digital.">
   <meta property="og:image" content="https://denys-zalizko.vercel.app/assets/images/logo-square.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -82,23 +82,25 @@
       letter-spacing: -1.5px;
       color: var(--black);
       margin-bottom: 12px;
+      text-align: center;
     }
     .legal-card .legal-date {
       color: var(--muted);
-      font-size: 1rem;
-      margin-bottom: 36px;
+      font-size: 1.05rem;
+      margin: 0 auto 40px;
       display: block;
       line-height: 1.6;
-      max-width: 760px;
+      max-width: 740px;
+      text-align: center;
     }
 
-    /* ---- PARTNERS INFINITE SLIDER ---- */
+    /* ---- PARTNERS MINIMAL CAROUSEL ---- */
     .partner-slider-wrap {
       position: relative;
       background: var(--gray);
       border: 1px solid var(--border);
       border-radius: var(--r-xl);
-      padding: 40px;
+      padding: 48px 36px 36px;
       overflow: hidden;
       margin-bottom: 40px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.03);
@@ -108,19 +110,17 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 24px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border);
     }
     .partner-slider-count {
       font-family: var(--ffh);
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.05em;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
       color: var(--muted);
     }
     .partner-slider-controls {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       align-items: center;
     }
     .partner-arrow-btn {
@@ -140,7 +140,7 @@
       background: var(--black);
       color: var(--white);
       border-color: var(--black);
-      transform: scale(1.06);
+      transform: scale(1.08);
     }
     .partner-arrow-btn svg {
       width: 20px;
@@ -156,7 +156,7 @@
     .partner-track {
       display: flex;
       width: 100%;
-      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
       will-change: transform;
     }
     .partner-slide {
@@ -164,120 +164,79 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 24px;
+      align-items: center;
+      text-align: center;
+      padding: 16px 20px 24px;
+      box-sizing: border-box;
     }
 
-    /* Agency card presentation */
-    .partner-card__header {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      width: 100%;
-      flex-wrap: wrap;
-    }
+    /* Square avatar */
     .partner-card__avatar {
-      width: 130px;
-      height: 130px;
-      border-radius: 24px;
+      width: 160px;
+      height: 160px;
+      border-radius: 32px;
       overflow: hidden;
-      background: #0D0D0D;
+      background: #0B0B0B;
       border: 2px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-      padding: 12px;
+      margin: 0 auto 24px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.1);
+      padding: 16px;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .partner-card__avatar:hover {
+      transform: translateY(-4px) scale(1.04);
+      border-color: var(--accent);
+      box-shadow: 0 16px 40px rgba(0, 102, 255, 0.2);
     }
     .partner-card__avatar img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      border-radius: 12px;
+      border-radius: 20px;
+      display: block;
     }
-    .partner-card__title-box {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .partner-card__tag {
-      display: inline-flex;
-      align-items: center;
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-      background: var(--accent-bg);
-      padding: 4px 12px;
-      border-radius: 999px;
-      width: fit-content;
-    }
+
+    /* Agency Name */
     .partner-card__name {
       font-family: var(--ffh);
-      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-size: clamp(2rem, 4vw, 2.7rem);
       font-weight: 900;
-      letter-spacing: -0.8px;
+      letter-spacing: -1px;
       color: var(--black);
-      margin: 0;
+      margin: 0 0 12px;
+      text-align: center;
     }
-    .partner-card__tagline {
-      font-size: 1.05rem;
-      color: var(--muted);
-      font-weight: 500;
-      line-height: 1.4;
+    .partner-card__name a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--trans);
     }
-
-    /* Agency description body */
-    .partner-card__body {
-      width: 100%;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 28px;
-    }
-    .partner-details-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      margin-bottom: 24px;
-    }
-    .partner-detail-item {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .partner-detail-label {
-      font-size: 0.82rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+    .partner-card__name a:hover {
       color: var(--accent);
     }
-    .partner-detail-val {
-      font-size: 0.98rem;
+
+    /* Agency one-sentence description */
+    .partner-card__desc {
+      font-size: clamp(1.05rem, 2vw, 1.22rem);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
     }
 
-    /* Links / buttons */
-    .partner-card__actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-    }
-
-    /* Progress bar and dots */
+    /* Bottom progress and dots */
     .partner-slider-bottom {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 24px;
-      padding-top: 16px;
+      margin-top: 28px;
+      padding-top: 18px;
       border-top: 1px solid var(--border);
     }
     .partner-dots {
@@ -299,7 +258,7 @@
       border-radius: 999px;
     }
     .partner-timer-bar-wrap {
-      width: 120px;
+      width: 100px;
       height: 4px;
       background: var(--border);
       border-radius: 999px;
@@ -344,14 +303,10 @@
       flex-wrap: wrap;
     }
 
-    /* Dark theme adjustments */
+    /* Dark theme */
     body.dark-theme .partner-slider-wrap {
       background: #141414;
       border-color: #262626;
-    }
-    body.dark-theme .partner-card__body {
-      background: #1A1A1A;
-      border-color: #2A2A2A;
     }
     body.dark-theme .partner-arrow-btn {
       background: #222222;
@@ -366,21 +321,30 @@
 
     @media (max-width: 640px) {
       .legal-card {
-        padding: 32px 20px;
+        padding: 32px 18px;
       }
       .partner-slider-wrap {
-        padding: 24px 18px;
+        padding: 24px 16px 20px;
+      }
+      .partner-slide {
+        padding: 10px 6px 16px;
       }
       .partner-card__avatar {
-        width: 100px;
-        height: 100px;
-        border-radius: 18px;
+        width: 130px;
+        height: 130px;
+        border-radius: 24px;
+        padding: 12px;
+        margin-bottom: 18px;
       }
-      .partner-card__body {
-        padding: 20px 16px;
+      .partner-card__name {
+        font-size: 1.85rem;
+      }
+      .partner-card__desc {
+        font-size: 0.98rem;
+        line-height: 1.55;
       }
       .partner-cta-box {
-        padding: 30px 20px;
+        padding: 30px 18px;
       }
       .legal-hdr .logo__name {
         font-size: 1.15rem !important;
@@ -405,12 +369,12 @@
 
 <!-- Main content -->
 <main class="legal-page">
-  <div class="wrap" style="max-width: 960px;">
+  <div class="wrap" style="max-width: 900px;">
     <div class="legal-card">
       <h1>Our Partners</h1>
       <span class="legal-date">Companies, brands, and platforms with whom DenisWeb Studio builds lasting, high-trust partnerships. We design custom websites, launch advertising campaigns, and scale businesses online.</span>
 
-      <!-- PARTNERS INFINITE SLIDER -->
+      <!-- PARTNERS MINIMAL SLIDER -->
       <div class="partner-slider-wrap" id="partnerSliderWrap">
         
         <!-- Header bar: Counter & Arrows -->
@@ -432,83 +396,24 @@
 
             <!-- SLIDE 1: Labgramm -->
             <div class="partner-slide" id="slide-0">
-              <div class="partner-card__header">
-                <div class="partner-card__avatar">
-                  <img src="assets/images/partners/labgramm.png" alt="Labgramm Logo">
-                </div>
-                <div class="partner-card__title-box">
-                  <span class="partner-card__tag">Performance &amp; Media Agency</span>
-                  <h2 class="partner-card__name">Labgramm</h2>
-                  <div class="partner-card__tagline">Performance Marketing &amp; Business Scaling Agency</div>
-                </div>
-              </div>
-
-              <div class="partner-card__body">
-                <div class="partner-details-grid">
-                  <div class="partner-detail-item">
-                    <span class="partner-detail-label">Core Services</span>
-                    <span class="partner-detail-val">Targeted advertising (Meta: Instagram, Facebook) and Google Search Advertising (PPC).</span>
-                  </div>
-                  <div class="partner-detail-item">
-                    <span class="partner-detail-label">Ad Channels</span>
-                    <span class="partner-detail-val">Meta (Instagram/FB), Google, YouTube, LinkedIn, TikTok, Telegram.</span>
-                  </div>
-                  <div class="partner-detail-item">
-                    <span class="partner-detail-label">Project Geography</span>
-                    <span class="partner-detail-val">Ukraine, Europe (Poland, Germany, Spain), Baltics (Estonia, Lithuania, Latvia), Central Asia, USA, and Canada.</span>
-                  </div>
-                  <div class="partner-detail-item">
-                    <span class="partner-detail-label">Core Strength</span>
-                    <span class="partner-detail-val">Custom strategies and tactics tailored to each project, grounded in proven growth methodologies and analytical tracking.</span>
-                  </div>
-                </div>
-
-                <div class="partner-card__actions">
-                  <a href="https://labgramm.com/" target="_blank" rel="noopener" class="btn btn--fill btn--sm">Visit website ↗</a>
-                  <a href="https://www.instagram.com/labgrammedia/" target="_blank" rel="noopener" class="btn btn--out btn--sm">Instagram</a>
-                  <a href="https://www.youtube.com/@labgramm" target="_blank" rel="noopener" class="btn btn--out btn--sm">YouTube Channel</a>
-                </div>
-              </div>
+              <a href="https://labgramm.com/" target="_blank" rel="noopener" class="partner-card__avatar" title="Visit Labgramm">
+                <img src="assets/images/partners/labgramm.png" alt="Labgramm">
+              </a>
+              <h2 class="partner-card__name">
+                <a href="https://labgramm.com/" target="_blank" rel="noopener">Labgramm</a>
+              </h2>
+              <p class="partner-card__desc">Growth performance agency specializing in Meta Ads, Google Ads, and full-funnel business scaling.</p>
             </div>
 
             <!-- SLIDE 2: VLM Digital -->
             <div class="partner-slide" id="slide-1">
-              <div class="partner-card__header">
-                <div class="partner-card__avatar">
-                  <img src="assets/images/partners/vlm-digital.png" alt="VLM Digital Logo">
-                </div>
-                <div class="partner-card__title-box">
-                  <span class="partner-card__tag">Web &amp; PPC Agency</span>
-                  <h2 class="partner-card__name">VLM Digital</h2>
-                  <div class="partner-card__tagline">Turnkey Website Development &amp; Google Advertising</div>
-                </div>
-              </div>
-
-              <div class="partner-card__body">
-                <div class="partner-details-grid">
-                  <div class="partner-detail-item">
-                    <span class="partner-detail-label">Core Services</span>
-                    <span class="partner-detail-val">Turnkey website creation, Google Ads campaigns, fundamental SEO setup, and targeted advertising.</span>
-                  </div>
-                  <div class="partner-detail-item">
-                    <span class="partner-detail-label">Specialization</span>
-                    <span class="partner-detail-val">In-depth niche analysis, high-converting landing pages, and capturing high-intent search demand on Google.</span>
-                  </div>
-                  <div class="partner-detail-item">
-                    <span class="partner-detail-label">Project Geography</span>
-                    <span class="partner-detail-val">Ukraine and international markets: driving paying clients for small and medium-sized businesses.</span>
-                  </div>
-                  <div class="partner-detail-item">
-                    <span class="partner-detail-label">Core Strength</span>
-                    <span class="partner-detail-val">End-to-end execution from structure to measurable sales pipeline and reliable client generation.</span>
-                  </div>
-                </div>
-
-                <div class="partner-card__actions">
-                  <a href="https://vlm-digital.com.ua/" target="_blank" rel="noopener" class="btn btn--fill btn--sm">Visit website ↗</a>
-                  <a href="https://vlm-digital.com.ua/services" target="_blank" rel="noopener" class="btn btn--out btn--sm">Agency Services</a>
-                </div>
-              </div>
+              <a href="https://vlm-digital.com.ua/" target="_blank" rel="noopener" class="partner-card__avatar" title="Visit VLM Digital">
+                <img src="assets/images/partners/vlm-digital.png" alt="VLM Digital">
+              </a>
+              <h2 class="partner-card__name">
+                <a href="https://vlm-digital.com.ua/" target="_blank" rel="noopener">VLM Digital</a>
+              </h2>
+              <p class="partner-card__desc">Full-cycle digital agency delivering high-converting websites, SEO foundations, and high-ROI Google Ads campaigns.</p>
             </div>
 
           </div>
@@ -545,7 +450,7 @@
 <footer class="footer" style="background: var(--white); color: var(--black); border-top: 1px solid var(--border);">
   <div class="wrap footer__bottom" style="color: var(--muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; padding: 24px 40px;">
     <span>© 2026 DenisWeb Studio. All rights reserved.</span>
-    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+    <div class="footer__legal" style="display: flex; gap: 20px; flex-wrap: wrap;">
       <a href="partners-en.html" style="color: inherit; text-decoration: underline; text-underline-offset: 4px;">Partners</a>
       <a href="affiliate-en.html" style="color: inherit; text-decoration: underline; text-underline-offset: 4px;">Affiliate</a>
       <a href="privacy-en.html" style="color: inherit; text-decoration: underline; text-underline-offset: 4px;">Privacy Policy</a>
@@ -580,7 +485,6 @@
     const totalSlides = 2;
     let currentIndex = 0;
     const intervalTime = 5000;
-    let timerId = null;
     let progressStartTime = null;
     let animFrameId = null;
 

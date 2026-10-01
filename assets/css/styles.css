@@ -1437,9 +1437,22 @@ body.dark-theme .theme-toggle:hover {
   #advDots { display: flex !important; }
 
   .contact__right { padding: 28px 20px; }
-  .footer__inner { flex-wrap: wrap; gap: 16px; }
-  .footer__nav { display: none; }
-  .footer__bottom { flex-direction: column; gap: 6px; text-align: center; }
+  .footer__bottom { 
+    flex-direction: column !important; 
+    gap: 16px !important; 
+    text-align: center !important; 
+    align-items: center !important; 
+    justify-content: center !important; 
+    padding: 24px 20px !important; 
+  }
+  .footer__legal { 
+    display: flex !important; 
+    justify-content: center !important; 
+    align-items: center !important; 
+    text-align: center !important; 
+    gap: 12px 20px !important; 
+    width: 100% !important; 
+  }
   .mob-cta { display: flex; }
   .about__float { display: none; }
 }
