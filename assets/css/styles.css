@@ -1114,7 +1114,7 @@ body.dark-theme .theme-toggle:hover {
     order: 1 !important;
     margin: 0 !important;
   }
-  .logo {
+  .hdr__inner .logo {
     order: 2 !important;
     margin: 0 auto !important;
     text-align: center !important;
@@ -1465,7 +1465,13 @@ body.dark-theme .theme-toggle:hover {
     align-items: center !important;
     width: 100% !important;
   }
+  .footer .logo {
+    order: 1 !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
   .footer__socials {
+    order: 2 !important;
     margin-left: auto !important;
     display: flex !important;
     gap: 12px !important;
