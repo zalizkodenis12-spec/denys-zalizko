@@ -619,10 +619,13 @@ body.dark-theme .about__photo-img--dark {
 .svc {
   padding: 48px 32px;
   border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   transition: var(--trans);
   position: relative;
 }
-.svc:last-child { border-right: none; }
+.svc:nth-child(4) { border-right: none; }
+.svc:nth-child(n+5) { border-bottom: none; }
+.svc:nth-child(7) { grid-column: span 2; border-right: none; }
 .svc:hover { background: var(--accent-bg); }
 
 .svc__num {
@@ -1283,6 +1286,19 @@ body.dark-theme .theme-toggle:hover {
   .svc:nth-child(4) {
     top: calc(var(--hh) + 60px) !important;
     z-index: 4 !important;
+  }
+  .svc:nth-child(5) {
+    top: calc(var(--hh) + 76px) !important;
+    z-index: 5 !important;
+  }
+  .svc:nth-child(6) {
+    top: calc(var(--hh) + 92px) !important;
+    z-index: 6 !important;
+  }
+  .svc:nth-child(7) {
+    top: calc(var(--hh) + 108px) !important;
+    z-index: 7 !important;
+    grid-column: auto !important;
   }
   
   .adv-grid { grid-template-columns: 1fr; }
