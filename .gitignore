@@ -22,3 +22,5 @@ node_modules/
 dist/
 .env
 .env.local
+dws-lead/.env
+dws-lead/node_modules/
